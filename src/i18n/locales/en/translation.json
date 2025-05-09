@@ -1,0 +1,132 @@
+{
+  "app": {
+    "name": "JToolset",
+    "description": "Free online developer tools"
+  },
+  "header": {
+    "search": "Search tools...",
+    "theme": {
+      "light": "Light Mode",
+      "dark": "Dark Mode",
+      "system": "System Mode"
+    }
+  },
+  "sidebar": {
+    "filter": "Filter tools...",
+    "theme": "Theme"
+  },
+  "tools": {
+    "categories": {
+      "Time": "Time",
+      "Generator": "Generator", 
+      "Web": "Web",
+      "Crypto": "Crypto",
+      "Formatter": "Formatter",
+      "Encoder": "Encoder",
+      "Other": "Other"
+    },
+    "unix-time": {
+      "name": "Unix Time Converter",
+      "description": "Convert between Unix timestamp and human-readable date format",
+      "currentTime": "Current Unix Time",
+      "copy": "Copy",
+      "copied": "Copied",
+      "unixTimestamp": "Unix Timestamp",
+      "dateTime": "Date Time",
+      "convertToDateTime": "Convert to Date Time",
+      "convertToUnix": "Convert to Unix",
+      "useCurrentTime": "Use current time",
+      "timeInfo": "Time Information",
+      "timezone": "Timezone",
+      "formats": {
+        "friendly": "Friendly Format",
+        "iso8601": "ISO 8601",
+        "utc": "UTC",
+        "local": "Local Time",
+        "relative": "Relative Time"
+      }
+    },
+    "random": {
+      "name": "Random Generator",
+      "description": "Generate random strings, numbers, UUIDs, passwords and lists",
+      "selectType": "Select type",
+      "string": "String",
+      "number": "Number",
+      "uuid": "UUID",
+      "password": "Password",
+      "list": "List",
+      "length": "Length",
+      "include": "Include",
+      "uppercase": "Uppercase (A-Z)",
+      "lowercase": "Lowercase (a-z)",
+      "numbers": "Numbers (0-9)",
+      "symbols": "Special characters (!@#$%^&*...)",
+      "minValue": "Minimum value",
+      "maxValue": "Maximum value",
+      "quantity": "Quantity",
+      "allowDuplicates": "Allow duplicates",
+      "uuidVersion": "UUID Version",
+      "passwordStrength": "Password strength",
+      "weak": "Weak (letters and numbers)",
+      "medium": "Medium (letters, numbers and some special characters)",
+      "strong": "Strong (letters, numbers and many special characters)",
+      "listItems": "List items (one item per line)",
+      "generate": "Generate",
+      "result": "Result"
+    },
+    "jwt-decoder": {
+      "name": "JWT Decoder",
+      "description": "Parse and decode JWT (JSON Web Token)",
+      "jwtToken": "JWT Token",
+      "paste": "Paste",
+      "clear": "Clear",
+      "valid": "Valid token",
+      "expired": "Expired token",
+      "timeRemaining": "Time remaining",
+      "expired_at": "Expired at",
+      "payload": "Payload",
+      "header": "Header",
+      "signature": "Signature",
+      "timeInfo": "Time information",
+      "issuedAt": "Issued At (iat)",
+      "expiration": "Expiration (exp)",
+      "notBefore": "Not Before (nbf)",
+      "signatureInfo": "The JWT signature is used to verify the integrity of the token. This tool only decodes the header and payload, it cannot verify the signature."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Developer Toolkits",
+      "subtitle": "A collection of free tools to help make your development work easier. From Unix Time conversion to random string generation, JWT decoding to cookie management.",
+      "featuredTools": "Featured Tools",
+      "whyUse": "Why use JToolset?",
+      "feature1": {
+        "title": "Free & Open Source",
+        "description": "All tools are completely free, no registration or software download required."
+      },
+      "feature2": {
+        "title": "Works in browser",
+        "description": "Process data right in your browser, no data is sent to servers."
+      },
+      "feature3": {
+        "title": "Mobile optimized",
+        "description": "Responsive design, allowing you to use it on any device."
+      },
+      "readyToStart": "Ready to start?",
+      "exploreTools": "Explore all tools"
+    },
+    "toolsList": {
+      "title": "All Tools",
+      "subtitle": "Explore all developer tools",
+      "needSomethingElse": "Can't find the tool you need?",
+      "suggestTool": "Suggest a new tool"
+    }
+  },
+  "common": {
+    "share": "Share this tool",
+    "relatedTools": "Related Tools",
+    "shareMessage": "If you find this tool useful, share it with your friends and colleagues!",
+    "developing": "This tool is under development",
+    "language": "Language"
+  }
+}

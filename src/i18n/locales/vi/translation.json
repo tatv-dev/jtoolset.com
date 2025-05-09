@@ -1,0 +1,132 @@
+{
+  "app": {
+    "name": "JToolset",
+    "description": "Công cụ trực tuyến miễn phí cho nhà phát triển"
+  },
+  "header": {
+    "search": "Tìm công cụ...",
+    "theme": {
+      "light": "Chế độ sáng",
+      "dark": "Chế độ tối",
+      "system": "Chế độ hệ thống"
+    }
+  },
+  "sidebar": {
+    "filter": "Lọc công cụ...",
+    "theme": "Giao diện"
+  },
+  "tools": {
+    "categories": {
+      "Time": "Thời gian",
+      "Generator": "Tạo ngẫu nhiên", 
+      "Web": "Web",
+      "Crypto": "Mã hóa",
+      "Formatter": "Định dạng",
+      "Encoder": "Mã hóa/Giải mã",
+      "Other": "Khác"
+    },
+    "unix-time": {
+      "name": "Chuyển đổi Unix Time",
+      "description": "Chuyển đổi giữa Unix timestamp và định dạng ngày giờ dễ đọc",
+      "currentTime": "Thời gian Unix hiện tại",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép",
+      "unixTimestamp": "Unix Timestamp",
+      "dateTime": "Ngày giờ",
+      "convertToDateTime": "Chuyển đổi sang ngày giờ",
+      "convertToUnix": "Chuyển đổi sang Unix",
+      "useCurrentTime": "Dùng thời gian hiện tại",
+      "timeInfo": "Thông tin thời gian",
+      "timezone": "Múi giờ",
+      "formats": {
+        "friendly": "Định dạng thân thiện",
+        "iso8601": "ISO 8601",
+        "utc": "UTC",
+        "local": "Thời gian địa phương",
+        "relative": "Thời gian tương đối"
+      }
+    },
+    "random": {
+      "name": "Tạo ngẫu nhiên",
+      "description": "Tạo chuỗi ngẫu nhiên, số, UUID, mật khẩu và danh sách ngẫu nhiên",
+      "selectType": "Chọn loại",
+      "string": "Chuỗi",
+      "number": "Số",
+      "uuid": "UUID",
+      "password": "Mật khẩu",
+      "list": "Danh sách",
+      "length": "Độ dài",
+      "include": "Bao gồm",
+      "uppercase": "Chữ hoa (A-Z)",
+      "lowercase": "Chữ thường (a-z)",
+      "numbers": "Số (0-9)",
+      "symbols": "Ký tự đặc biệt (!@#$%^&*...)",
+      "minValue": "Giá trị tối thiểu",
+      "maxValue": "Giá trị tối đa",
+      "quantity": "Số lượng",
+      "allowDuplicates": "Cho phép số trùng lặp",
+      "uuidVersion": "Phiên bản UUID",
+      "passwordStrength": "Độ mạnh mật khẩu",
+      "weak": "Yếu (chữ và số)",
+      "medium": "Vừa (chữ, số và một số ký tự đặc biệt)",
+      "strong": "Mạnh (chữ, số và nhiều ký tự đặc biệt)",
+      "listItems": "Danh sách các mục (mỗi dòng một mục)",
+      "generate": "Tạo ngẫu nhiên",
+      "result": "Kết quả"
+    },
+    "jwt-decoder": {
+      "name": "JWT Decoder",
+      "description": "Phân tích và giải mã JWT (JSON Web Token)",
+      "jwtToken": "JWT Token",
+      "paste": "Dán",
+      "clear": "Xóa",
+      "valid": "Token còn hiệu lực",
+      "expired": "Token đã hết hạn",
+      "timeRemaining": "Còn lại",
+      "expired_at": "Hết hạn lúc",
+      "payload": "Payload",
+      "header": "Header",
+      "signature": "Signature",
+      "timeInfo": "Thông tin thời gian",
+      "issuedAt": "Phát hành lúc (iat)",
+      "expiration": "Hết hạn (exp)",
+      "notBefore": "Không trước (nbf)",
+      "signatureInfo": "Chữ ký JWT được sử dụng để xác minh tính toàn vẹn của token. Công cụ này chỉ giải mã phần header và payload, không thể xác thực chữ ký."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Bộ công cụ cho nhà phát triển",
+      "subtitle": "Tập hợp các công cụ miễn phí để giúp công việc lập trình của bạn dễ dàng hơn. Từ chuyển đổi Unix Time, tạo chuỗi ngẫu nhiên, giải mã JWT đến quản lý cookie.",
+      "featuredTools": "Công cụ nổi bật",
+      "whyUse": "Tại sao nên sử dụng JToolset?",
+      "feature1": {
+        "title": "Miễn phí & Mã nguồn mở",
+        "description": "Tất cả công cụ hoàn toàn miễn phí, không cần đăng ký hay tải xuống phần mềm."
+      },
+      "feature2": {
+        "title": "Làm việc trong trình duyệt",
+        "description": "Xử lý dữ liệu ngay trong trình duyệt của bạn, không gửi dữ liệu lên máy chủ."
+      },
+      "feature3": {
+        "title": "Tối ưu cho mobile",
+        "description": "Thiết kế responsive, cho phép bạn sử dụng trên bất kỳ thiết bị nào."
+      },
+      "readyToStart": "Sẵn sàng để bắt đầu?",
+      "exploreTools": "Xem tất cả công cụ"
+    },
+    "toolsList": {
+      "title": "Tất cả công cụ",
+      "subtitle": "Khám phá tất cả các công cụ cho nhà phát triển",
+      "needSomethingElse": "Không tìm thấy công cụ bạn cần?",
+      "suggestTool": "Đề xuất công cụ mới"
+    }
+  },
+  "common": {
+    "share": "Chia sẻ công cụ này",
+    "relatedTools": "Công cụ liên quan",
+    "shareMessage": "Nếu bạn thấy công cụ này hữu ích, hãy chia sẻ cho bạn bè và đồng nghiệp của bạn!",
+    "developing": "Công cụ đang được phát triển",
+    "language": "Ngôn ngữ"
+  }
+}
