@@ -1,0 +1,68 @@
+src/
+├── App.css
+├── App.jsx
+├── assets/
+│   └── react.svg
+├── components/
+│   ├── layout/
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── MobileNav.jsx
+│   │   ├── RootLayout.jsx
+│   │   ├── Sidebar.jsx
+│   │   └── ThemeToggle.jsx
+│   ├── tools/
+│   │   ├── cookie-tools/
+│   │   │   ├── CookieExporter.jsx
+│   │   │   ├── CookieImporter.jsx
+│   │   │   └── CookieTools.jsx
+│   │   ├── jwt-decoder/
+│   │   │   ├── JwtDecoder.jsx
+│   │   │   └── JwtDisplay.jsx
+│   │   ├── random/
+│   │   │   ├── RandomGenerator.jsx
+│   │   │   └── RandomOptions.jsx
+│   │   └── unix-time/
+│   │       ├── TimeDisplay.jsx
+│   │       └── UnixTimeConverter.jsx
+│   └── ui/
+│       ├── Button.jsx
+│       ├── Card.jsx
+│       ├── HeaderSearchBar.jsx
+│       ├── Input.jsx
+│       ├── LanguageSelector.jsx
+│       ├── Script.jsx
+│       ├── SearchBar.jsx
+│       ├── SidebarSearchBar.jsx
+│       └── Tooltip.jsx
+├── context/
+│   ├── LanguageContext.jsx
+│   ├── SearchContext.jsx
+│   └── ThemeContext.jsx
+├── hooks/
+│   ├── useLocalStorage.js
+│   ├── useMediaQuery.js
+│   └── useSearchTools.js
+├── i18n/
+│   ├── i18n.js
+│   └── locales/
+│       ├── en/
+│       │   └── translation.json
+│       └── vi/
+│           └── translation.json
+├── index.css
+├── lib/
+│   ├── ads.jsx
+│   ├── analytics.js
+│   ├── seo.js
+│   └── tools.js
+├── main.jsx
+├── pages/
+│   ├── HomePage.jsx
+│   ├── NotFoundPage.jsx
+│   ├── ToolPage.jsx
+│   └── ToolsListPage.jsx
+├── public/
+│   ├── icons/
+│   └── images/
+└── styles/
