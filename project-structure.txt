@@ -70,15 +70,13 @@ src/
 │   └── tools.js
 ├── main.jsx
 ├── pages/
+│   ├── AboutPage.jsx
 │   ├── HomePage.jsx
 │   ├── NotFoundPage.jsx
 │   ├── ToolPage.jsx
 │   └── ToolsListPage.jsx
 ├── public/
 │   ├── icons/
-│   ├── images/
-│   └── news/
-│       ├── en.json
-│       └── vi.json
+│   └── images/
 └── styles/
     └── news-ticker.css

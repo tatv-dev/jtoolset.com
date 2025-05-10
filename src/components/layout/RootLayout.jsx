@@ -5,10 +5,14 @@ import Sidebar from './Sidebar';
 import Footer from './Footer';
 import NewsTicker from '../ui/NewsTicker';
 import SidebarAds from '../ui/SidebarAds';
+import { GoogleAdSenseScript } from '@/lib/ads'; // Import the AdSense script component
 
 export default function RootLayout() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-dark-background text-gray-900 dark:text-dark-text transition-colors duration-200">
+      {/* Add GoogleAdSenseScript here */}
+      <GoogleAdSenseScript />
+      
       {/* News Ticker - Top of the page */}
       {/* <NewsTicker /> */}
       
