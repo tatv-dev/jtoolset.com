@@ -8,13 +8,37 @@ class NewsService {
   async fetchNews(lang = 'en') {
     try {
       const response = await fetch(`/news/${lang}.json`);
+      
+      // Check if the response is JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        // If not JSON, try to parse the text to see if it's a valid JSON
+        const text = await response.text();
+        try {
+          return JSON.parse(text);
+        } catch (parseError) {
+          console.error('Failed to parse response as JSON:', parseError);
+          return { items: [] };
+        }
+      }
+
       if (!response.ok) {
         throw new Error('Failed to fetch news');
       }
+      
       return await response.json();
     } catch (err) {
       console.error('Error fetching news:', err);
-      return { items: [] };
+      
+      // Fallback to a default news array
+      return {
+        items: [
+          {
+            time: new Date().toLocaleTimeString(),
+            title: 'Unable to load live news. Please check your connection.'
+          }
+        ]
+      };
     }
   }
 

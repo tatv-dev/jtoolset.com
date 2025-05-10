@@ -10,7 +10,7 @@ export default function RootLayout() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-dark-background text-gray-900 dark:text-dark-text transition-colors duration-200">
       {/* News Ticker - Top of the page */}
-      <NewsTicker />
+      {/* <NewsTicker /> */}
       
       {/* Header */}
       <Header />

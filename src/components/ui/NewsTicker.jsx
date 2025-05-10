@@ -1,6 +1,7 @@
 // src/components/ui/NewsTicker.jsx
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { newsService } from '@/lib/newsService';
 
 export default function NewsTicker() {
   const { t, i18n } = useTranslation();
@@ -14,11 +15,7 @@ export default function NewsTicker() {
       try {
         setLoading(true);
         // Load news based on current language
-        const response = await fetch(`/news/${i18n.language}.json`);
-        if (!response.ok) {
-          throw new Error('Failed to load news');
-        }
-        const data = await response.json();
+        const data = await newsService.fetchNews(i18n.language);
         setNews(data.items);
       } catch (err) {
         console.error('Error loading news:', err);
@@ -30,6 +27,23 @@ export default function NewsTicker() {
 
     loadNews();
   }, [i18n.language]);
+
+  // Poll for news updates
+  useEffect(() => {
+    if (news.length > 0) {
+      newsService.startPolling(i18n.language, (data) => {
+        // Only update if the news actually changes
+        if (JSON.stringify(data.items) !== JSON.stringify(news)) {
+          setNews(data.items);
+        }
+      });
+
+      // Cleanup function
+      return () => {
+        newsService.stopPolling(i18n.language);
+      };
+    }
+  }, [i18n.language, news]);
 
   if (loading || error || news.length === 0) {
     return null;

@@ -39,8 +39,11 @@ src/
 │       ├── HeaderSearchBar.jsx
 │       ├── Input.jsx
 │       ├── LanguageSelector.jsx
+│       ├── MobileAds.jsx
+│       ├── NewsTicker.jsx
 │       ├── Script.jsx
 │       ├── SearchBar.jsx
+│       ├── SidebarAds.jsx
 │       ├── SidebarSearchBar.jsx
 │       └── Tooltip.jsx
 ├── context/
@@ -62,6 +65,7 @@ src/
 ├── lib/
 │   ├── ads.jsx
 │   ├── analytics.js
+│   ├── newsService.js
 │   ├── seo.js
 │   └── tools.js
 ├── main.jsx
@@ -72,5 +76,9 @@ src/
 │   └── ToolsListPage.jsx
 ├── public/
 │   ├── icons/
-│   └── images/
+│   ├── images/
+│   └── news/
+│       ├── en.json
+│       └── vi.json
 └── styles/
+    └── news-ticker.css

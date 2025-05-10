@@ -16,7 +16,7 @@ export function getToolMetadata(tool) {
     description: tool.description,
     keywords: tool.tags,
     openGraph: {
-      title: `${tool.name} - Developer Toolkit`,
+      title: `${tool.name} - JToolset`,
       description: tool.description,
       type: 'website',
     },
@@ -33,10 +33,10 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://JToolset.com
+Host: https://jtoolset.com
 
 # Sitemaps
-Sitemap: https://JToolset.com/sitemap.xml
+Sitemap: https://jtoolset.com/sitemap.xml
 `.trim();
 }
 
