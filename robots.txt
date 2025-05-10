@@ -1,0 +1,22 @@
+# Robots.txt for JToolset
+
+# Allow all bots to crawl the entire site
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://jtoolset.com/sitemap.xml
+
+# Specific rules for common bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Optional: Crawl-delay to reduce server load
+Crawl-delay: 10
+
+# Optional: Paths to exclude if needed
+# Disallow: /private/
+# Disallow: /admin/
