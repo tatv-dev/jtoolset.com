@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import RootLayout from './components/layout/RootLayout'
 import HomePage from './pages/HomePage'
 import ToolsListPage from './pages/ToolsListPage'
+import AboutPage from './pages/AboutPage'
 import ToolPage from './pages/ToolPage'
 import NotFoundPage from './pages/NotFoundPage'
 import { ThemeProvider } from './context/ThemeContext'
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<RootLayout />}>
             <Route index element={<HomePage />} />
             <Route path="tools" element={<ToolsListPage />} />
+            <Route path="about" element={<AboutPage />} />
             <Route path="tools/:slug" element={<ToolPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>

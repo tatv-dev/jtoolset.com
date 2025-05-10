@@ -1,13 +1,77 @@
 // src/lib/ads.jsx
 import { useState, useEffect } from 'react';
-import Script from '@/components/ui/Script'; // Sử dụng component Script tùy chỉnh
+import Script from '@/components/ui/Script';
 
-// Google AdSense ID
-const GOOGLE_ADSENSE_ID = 'ca-pub-XXXXXXXXXX'; // Thay bằng ID của bạn
+// Cấu hình Google AdSense
+export const ADSENSE_CONFIG = {
+  CLIENT_ID: 'ca-pub-1107241811700935', // Thay bằng Publisher ID của bạn
+  AD_SLOTS: {
+    // Sidebar Ads
+    SIDEBAR_TOP: 'SIDEBAR-TOP-SLOT-ID',
+    SIDEBAR_MIDDLE: 'SIDEBAR-MIDDLE-SLOT-ID',
+    SIDEBAR_BOTTOM: 'SIDEBAR-BOTTOM-SLOT-ID',
+    
+    // Mobile Ads
+    MOBILE_TOP: 'MOBILE-TOP-SLOT-ID',
+    MOBILE_MIDDLE: 'MOBILE-MIDDLE-SLOT-ID',
+    MOBILE_BOTTOM: 'MOBILE-BOTTOM-SLOT-ID',
+    
+    // Tool Page Ads
+    TOOL_PAGE_TOP: 'TOOL-PAGE-TOP-SLOT-ID',
+    TOOL_PAGE_BOTTOM: 'TOOL-PAGE-BOTTOM-SLOT-ID'
+  }
+};
 
-export default function GoogleAdsScript() {
-  if (!GOOGLE_ADSENSE_ID || GOOGLE_ADSENSE_ID === 'ca-pub-XXXXXXXXXX') {
-    // Không render script nếu ID không được cấu hình
+// Component quảng cáo chung
+export function AdUnit({ 
+  slot, 
+  format = 'auto', 
+  responsive = true, 
+  className = '' 
+}) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Không hiển thị quảng cáo nếu chưa được cấu hình
+  if (!ADSENSE_CONFIG.CLIENT_ID || 
+      ADSENSE_CONFIG.CLIENT_ID === 'ca-pub-XXXXXXXXXX' || 
+      !slot) {
+    return null;
+  }
+
+  // Render placeholder nếu không có slot
+  if (!isClient) {
+    return null;
+  }
+
+  return (
+    <div className={className}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client={ADSENSE_CONFIG.CLIENT_ID}
+        data-ad-slot={slot}
+        data-ad-format={format}
+        data-full-width-responsive={responsive ? 'true' : 'false'}
+      />
+      <Script 
+        id={`ad-unit-${slot}`} 
+        strategy="afterInteractive"
+      >
+        {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+      </Script>
+    </div>
+  );
+}
+
+// Component Script Google AdSense
+export function GoogleAdSenseScript() {
+  // Không render script nếu chưa cấu hình
+  if (!ADSENSE_CONFIG.CLIENT_ID || 
+      ADSENSE_CONFIG.CLIENT_ID === 'ca-pub-XXXXXXXXXX') {
     return null;
   }
 
@@ -17,45 +81,7 @@ export default function GoogleAdsScript() {
       async
       strategy="afterInteractive"
       crossOrigin="anonymous"
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_ID}`}
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CONFIG.CLIENT_ID}`}
     />
-  );
-}
-
-// Component để hiển thị quảng cáo
-export function AdUnit({ slot, format = 'auto', responsive = true, className = '' }) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
-
-  if (!GOOGLE_ADSENSE_ID || GOOGLE_ADSENSE_ID === 'ca-pub-XXXXXXXXXX') {
-    // Render một placeholder thay vì quảng cáo thật
-    return (
-      <div className={`bg-gray-100 dark:bg-gray-800 rounded-md flex items-center justify-center p-4 text-center text-gray-500 dark:text-gray-400 text-sm ${className}`}>
-        <span>Ad Unit Placeholder</span>
-      </div>
-    );
-  }
-
-  return (
-    <div className={className}>
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'block' }}
-        data-ad-client={GOOGLE_ADSENSE_ID}
-        data-ad-slot={slot}
-        data-ad-format={format}
-        data-full-width-responsive={responsive ? 'true' : 'false'}
-      />
-      <Script id={`ad-unit-${slot}`} strategy="afterInteractive">
-        {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-      </Script>
-    </div>
   );
 }

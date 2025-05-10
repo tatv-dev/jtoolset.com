@@ -196,8 +196,8 @@
   },
   "pages": {
     "home": {
-      "title": "Developer Toolkits",
-      "subtitle": "A collection of free tools to help make your development work easier. From Unix Time conversion to random string generation, JWT decoding to cookie management.",
+      "title": "JToolset",
+      "subtitle": "A collection of free tools to help make your development work easier.",
       "featuredTools": "Featured Tools",
       "whyUse": "Why use JToolset?",
       "feature1": {

@@ -1,11 +1,18 @@
 // src/components/ui/MobileAds.jsx
 import { AdUnit } from '@/lib/ads';
+import { ADSENSE_CONFIG } from '@/lib/ads';
 
 export default function MobileAds({ position = 'top' }) {
+  // Kiểm tra xem đã cấu hình AdSense chưa
+  if (!ADSENSE_CONFIG.CLIENT_ID || 
+      ADSENSE_CONFIG.CLIENT_ID === 'ca-pub-XXXXXXXXXX') {
+    return null;
+  }
+
   const adSlots = {
-    top: 'ca-pub-XXXXXXXXXX-MOBILE-TOP',
-    middle: 'ca-pub-XXXXXXXXXX-MOBILE-MIDDLE',
-    bottom: 'ca-pub-XXXXXXXXXX-MOBILE-BOTTOM'
+    top: ADSENSE_CONFIG.AD_SLOTS.MOBILE_TOP,
+    middle: ADSENSE_CONFIG.AD_SLOTS.MOBILE_MIDDLE,
+    bottom: ADSENSE_CONFIG.AD_SLOTS.MOBILE_BOTTOM
   };
 
   return (
@@ -14,12 +21,12 @@ export default function MobileAds({ position = 'top' }) {
         <div className="text-xs text-gray-500 dark:text-gray-400 text-center mb-2">
           Advertisement
         </div>
-        <AdUnit 
+        {/* <AdUnit 
           slot={adSlots[position]}
           format="horizontal"
           responsive={true}
           className="min-h-[100px]"
-        />
+        /> */}
       </div>
     </div>
   );

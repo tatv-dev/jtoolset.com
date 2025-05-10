@@ -2,7 +2,8 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getToolBySlug, getRelatedTools } from '../lib/tools';
-// import { AdUnit } from '../lib/ads';
+import { AdUnit } from '../lib/ads';
+import { ADSENSE_CONFIG } from '@/lib/ads';
 import { useTranslation } from 'react-i18next';
 
 // Import dynamic tool components
@@ -113,7 +114,7 @@ export default function ToolPage() {
       
       {/* Quảng cáo */}
       {/* <AdUnit 
-        slot="9876543210" 
+        slot={ADSENSE_CONFIG.AD_SLOTS.TOOL_PAGE_TOP}
         className="py-4 flex justify-center" 
       /> */}
       
@@ -142,6 +143,12 @@ export default function ToolPage() {
           </div>
         </div>
       )}
+
+      {/* Quảng cáo dưới chân trang */}
+      {/* <AdUnit 
+        slot={ADSENSE_CONFIG.AD_SLOTS.TOOL_PAGE_BOTTOM}
+        className="py-4 flex justify-center" 
+      /> */}
       
       {/* Phần chia sẻ */}
       <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
