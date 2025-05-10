@@ -12,19 +12,27 @@ src/
 │   │   ├── Sidebar.jsx
 │   │   └── ThemeToggle.jsx
 │   ├── tools/
+│   │   ├── base64/
+│   │   │   └── Base64.jsx
 │   │   ├── cookie-tools/
 │   │   │   ├── CookieExporter.jsx
 │   │   │   ├── CookieImporter.jsx
 │   │   │   └── CookieTools.jsx
+│   │   ├── hash-generator/
+│   │   │   └── HashGenerator.jsx
+│   │   ├── json-formatter/
+│   │   │   └── JsonFormatter.jsx
 │   │   ├── jwt-decoder/
 │   │   │   ├── JwtDecoder.jsx
 │   │   │   └── JwtDisplay.jsx
 │   │   ├── random/
 │   │   │   ├── RandomGenerator.jsx
 │   │   │   └── RandomOptions.jsx
-│   │   └── unix-time/
-│   │       ├── TimeDisplay.jsx
-│   │       └── UnixTimeConverter.jsx
+│   │   ├── unix-time/
+│   │   │   ├── TimeDisplay.jsx
+│   │   │   └── UnixTimeConverter.jsx
+│   │   └── url-encoder/
+│   │       └── UrlEncoder.jsx
 │   └── ui/
 │       ├── Button.jsx
 │       ├── Card.jsx

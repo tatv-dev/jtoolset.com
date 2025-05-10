@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import news ticker styles */
+@import './styles/news-ticker.css';
+
 /* Các styles tùy chỉnh khác */
 
 :root {
