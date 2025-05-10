@@ -9,7 +9,11 @@ import { useTranslation } from 'react-i18next';
 import UnixTimeConverter from '../components/tools/unix-time/UnixTimeConverter';
 import RandomGenerator from '../components/tools/random/RandomGenerator';
 import JwtDecoder from '../components/tools/jwt-decoder/JwtDecoder';
-// import CookieTools from '../components/tools/cookie-tools/CookieTools';
+import CookieTools from '../components/tools/cookie-tools/CookieTools';
+import JsonFormatter from '../components/tools/json-formatter/JsonFormatter';
+import UrlEncoder from '../components/tools/url-encoder/UrlEncoder';
+import Base64 from '../components/tools/base64/Base64';
+import HashGenerator from '../components/tools/hash-generator/HashGenerator';
 
 export default function ToolPage() {
   const { t } = useTranslation();
@@ -41,14 +45,15 @@ export default function ToolPage() {
       case 'jwt-decoder':
         return <JwtDecoder />;
       case 'cookie-tools':
-        // return <CookieTools />;
-        return (
-          <div className="text-center py-12">
-            <h2 className="text-xl text-gray-600 dark:text-gray-300">
-              {t('common.developing')}
-            </h2>
-          </div>
-        );
+        return <CookieTools />;
+      case 'json-formatter':
+        return <JsonFormatter />;
+      case 'url-encoder':
+        return <UrlEncoder />;
+      case 'base64':
+        return <Base64 />;
+      case 'hash-generator':
+  return <HashGenerator />;
       default:
         return (
           <div className="text-center py-12">

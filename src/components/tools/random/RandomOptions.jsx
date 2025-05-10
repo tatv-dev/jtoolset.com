@@ -1,5 +1,6 @@
 // src/components/tools/random/RandomOptions.jsx
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function RandomOptions({
   type,
@@ -9,23 +10,25 @@ export default function RandomOptions({
   passwordOptions,
   listOptions,
 }) {
+  const { t } = useTranslation();
+
   switch (type) {
     case 'string':
-      return <StringOptions options={stringOptions} />;
+      return <StringOptions options={stringOptions} t={t} />;
     case 'number':
-      return <NumberOptions options={numberOptions} />;
+      return <NumberOptions options={numberOptions} t={t} />;
     case 'uuid':
-      return <UuidOptions options={uuidOptions} />;
+      return <UuidOptions options={uuidOptions} t={t} />;
     case 'password':
-      return <PasswordOptions options={passwordOptions} />;
+      return <PasswordOptions options={passwordOptions} t={t} />;
     case 'list':
-      return <ListOptions options={listOptions} />;
+      return <ListOptions options={listOptions} t={t} />;
     default:
-      return <StringOptions options={stringOptions} />;
+      return <StringOptions options={stringOptions} t={t} />;
   }
 }
 
-function StringOptions({ options }) {
+function StringOptions({ options, t }) {
   const {
     length,
     setLength,
@@ -43,7 +46,7 @@ function StringOptions({ options }) {
     <div className="space-y-4">
       <div>
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Độ dài: {length}
+          {t('tools.random.length')}: {length}
         </label>
         <input
           type="range"
@@ -62,7 +65,7 @@ function StringOptions({ options }) {
       
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          Bao gồm
+          {t('tools.random.include')}
         </label>
         <div className="space-y-2">
           <div className="flex items-center">
@@ -74,7 +77,7 @@ function StringOptions({ options }) {
               className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
             />
             <label htmlFor="include-uppercase" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Chữ hoa (A-Z)
+              {t('tools.random.uppercase')}
             </label>
           </div>
           <div className="flex items-center">
@@ -86,7 +89,7 @@ function StringOptions({ options }) {
               className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
             />
             <label htmlFor="include-lowercase" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Chữ thường (a-z)
+              {t('tools.random.lowercase')}
             </label>
           </div>
           <div className="flex items-center">
@@ -98,7 +101,7 @@ function StringOptions({ options }) {
               className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
             />
             <label htmlFor="include-numbers" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Số (0-9)
+              {t('tools.random.numbers')}
             </label>
           </div>
           <div className="flex items-center">
@@ -110,7 +113,7 @@ function StringOptions({ options }) {
               className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
             />
             <label htmlFor="include-symbols" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Ký tự đặc biệt (!@#$%^&*...)
+              {t('tools.random.symbols')}
             </label>
           </div>
         </div>
@@ -119,7 +122,7 @@ function StringOptions({ options }) {
   );
 }
 
-function NumberOptions({ options }) {
+function NumberOptions({ options, t }) {
   const {
     min,
     setMin,
@@ -136,7 +139,7 @@ function NumberOptions({ options }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="min-number" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Giá trị tối thiểu
+            {t('tools.random.minValue')}
           </label>
           <input
             type="number"
@@ -148,7 +151,7 @@ function NumberOptions({ options }) {
         </div>
         <div>
           <label htmlFor="max-number" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Giá trị tối đa
+            {t('tools.random.maxValue')}
           </label>
           <input
             type="number"
@@ -162,7 +165,7 @@ function NumberOptions({ options }) {
       
       <div>
         <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          Số lượng: {quantity}
+          {t('tools.random.quantity')}: {quantity}
         </label>
         <input
           type="range"
@@ -189,20 +192,20 @@ function NumberOptions({ options }) {
           className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
         />
         <label htmlFor="allow-duplicates" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-          Cho phép số trùng lặp
+          {t('tools.random.allowDuplicates')}
         </label>
       </div>
     </div>
   );
 }
 
-function UuidOptions({ options }) {
+function UuidOptions({ options, t }) {
   const { version, setVersion } = options;
 
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-        Phiên bản UUID
+        {t('tools.random.uuidVersion')}
       </label>
       <div className="flex space-x-4">
         <div className="flex items-center">
@@ -238,14 +241,14 @@ function UuidOptions({ options }) {
   );
 }
 
-function PasswordOptions({ options }) {
+function PasswordOptions({ options, t }) {
   const { length, setLength, strength, setStrength } = options;
 
   return (
     <div className="space-y-4">
       <div>
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Độ dài: {length}
+          {t('tools.random.length')}: {length}
         </label>
         <input
           type="range"
@@ -264,7 +267,7 @@ function PasswordOptions({ options }) {
       
       <div>
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Độ mạnh
+          {t('tools.random.passwordStrength')}
         </label>
         <div className="space-y-2">
           <div className="flex items-center">
@@ -278,7 +281,7 @@ function PasswordOptions({ options }) {
               className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
             />
             <label htmlFor="strength-weak" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Yếu (chữ và số)
+              {t('tools.random.weak')}
             </label>
           </div>
           <div className="flex items-center">
@@ -292,7 +295,7 @@ function PasswordOptions({ options }) {
               className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
             />
             <label htmlFor="strength-medium" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Vừa (chữ, số và một số ký tự đặc biệt)
+              {t('tools.random.medium')}
             </label>
           </div>
           <div className="flex items-center">
@@ -306,7 +309,7 @@ function PasswordOptions({ options }) {
               className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
             />
             <label htmlFor="strength-strong" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Mạnh (chữ, số và nhiều ký tự đặc biệt)
+              {t('tools.random.strong')}
             </label>
           </div>
         </div>
@@ -315,20 +318,20 @@ function PasswordOptions({ options }) {
   );
 }
 
-function ListOptions({ options }) {
+function ListOptions({ options, t }) {
   const { items, setItems } = options;
 
   return (
     <div>
       <label htmlFor="list-items" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-        Danh sách các mục (mỗi dòng một mục)
+        {t('tools.random.listItems')}
       </label>
       <textarea
         id="list-items"
         rows={6}
         value={items}
         onChange={(e) => setItems(e.target.value)}
-        placeholder="Nhập danh sách các mục, mỗi dòng một mục"
+        placeholder={t('tools.random.listItemsPlaceholder')}
         className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-primary-500 focus:border-primary-500"
       />
     </div>

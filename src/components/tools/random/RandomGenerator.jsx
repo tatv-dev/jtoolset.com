@@ -6,8 +6,10 @@ import { Shuffle, Copy, Check, RefreshCw } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import RandomOptions from './RandomOptions';
+import { useTranslation } from 'react-i18next';
 
 export default function RandomGenerator() {
+  const { t } = useTranslation();
   // Trạng thái
   const [generatorType, setGeneratorType] = useState('string');
   const [result, setResult] = useState('');
@@ -53,7 +55,7 @@ export default function RandomGenerator() {
     if (includeSymbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
     
     if (chars.length === 0) {
-      setResult('Please select at least one character type');
+      setResult(t('tools.random.errors.selectCharacterType'));
       return;
     }
     
@@ -72,22 +74,22 @@ export default function RandomGenerator() {
     const qty = parseInt(quantity);
     
     if (isNaN(minNum) || isNaN(maxNum) || isNaN(qty)) {
-      setResult('Please enter valid numbers');
+      setResult(t('tools.random.errors.enterValidNumbers'));
       return;
     }
     
     if (minNum > maxNum) {
-      setResult('Minimum value must be less than or equal to maximum value');
+      setResult(t('tools.random.errors.minGreaterThanMax'));
       return;
     }
     
     if (qty < 1) {
-      setResult('Quantity must be at least 1');
+      setResult(t('tools.random.errors.quantityLessThanOne'));
       return;
     }
     
     if (!allowDuplicates && (maxNum - minNum + 1) < qty) {
-      setResult(`Cannot generate ${qty} unique numbers in range ${minNum}-${maxNum}`);
+      setResult(t('tools.random.errors.cannotGenerateUnique', { qty, minNum, maxNum }));
       return;
     }
     
@@ -160,7 +162,7 @@ export default function RandomGenerator() {
   // Tạo danh sách ngẫu nhiên
   const randomizeList = () => {
     if (!listItems.trim()) {
-      setResult('Please enter items to randomize');
+      setResult(t('tools.random.errors.enterItems'));
       return;
     }
     
@@ -207,15 +209,15 @@ export default function RandomGenerator() {
   return (
     <div className="space-y-6">
       <Card
-        title="Random Generator"
-        description="Tạo giá trị ngẫu nhiên cho nhiều mục đích"
+        title={t('tools.random.name')}
+        description={t('tools.random.description')}
         icon={Shuffle}
       >
         <div className="space-y-4">
           {/* Generator Type Selector */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Chọn loại
+              {t('tools.random.selectType')}
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
               <button
@@ -226,7 +228,7 @@ export default function RandomGenerator() {
                 } border border-gray-200 dark:border-gray-700`}
                 onClick={() => setGeneratorType('string')}
               >
-                Chuỗi
+                {t('tools.random.string')}
               </button>
               <button
                 className={`px-3 py-2 text-sm font-medium rounded-md ${
@@ -236,7 +238,7 @@ export default function RandomGenerator() {
                 } border border-gray-200 dark:border-gray-700`}
                 onClick={() => setGeneratorType('number')}
               >
-                Số
+                {t('tools.random.number')}
               </button>
               <button
                 className={`px-3 py-2 text-sm font-medium rounded-md ${
@@ -246,7 +248,7 @@ export default function RandomGenerator() {
                 } border border-gray-200 dark:border-gray-700`}
                 onClick={() => setGeneratorType('uuid')}
               >
-                UUID
+                {t('tools.random.uuid')}
               </button>
               <button
                 className={`px-3 py-2 text-sm font-medium rounded-md ${
@@ -256,7 +258,7 @@ export default function RandomGenerator() {
                 } border border-gray-200 dark:border-gray-700`}
                 onClick={() => setGeneratorType('password')}
               >
-                Mật khẩu
+                {t('tools.random.password')}
               </button>
               <button
                 className={`px-3 py-2 text-sm font-medium rounded-md ${
@@ -266,7 +268,7 @@ export default function RandomGenerator() {
                 } border border-gray-200 dark:border-gray-700`}
                 onClick={() => setGeneratorType('list')}
               >
-                Danh sách
+                {t('tools.random.list')}
               </button>
             </div>
           </div>
@@ -319,10 +321,10 @@ export default function RandomGenerator() {
               size="lg"
               icon={isGenerating ? RefreshCw : Shuffle}
               onClick={handleGenerate}
-              className={`w-full ${isGenerating ? 'animate-spin' : ''}`}
+              className={`w-full`}
               disabled={isGenerating}
             >
-              Tạo ngẫu nhiên
+              {t('tools.random.generate')}
             </Button>
           </div>
           
@@ -331,7 +333,7 @@ export default function RandomGenerator() {
             <div className="mt-6 space-y-3">
               <div className="flex justify-between items-center">
                 <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Kết quả
+                  {t('tools.random.result')}
                 </h3>
                 <Button
                   variant="outline"
@@ -339,7 +341,7 @@ export default function RandomGenerator() {
                   icon={copied ? Check : Copy}
                   onClick={handleCopy}
                 >
-                  {copied ? 'Đã sao chép' : 'Sao chép'}
+                  {copied ? t('common.copied') : t('common.copy')}
                 </Button>
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-md border border-gray-200 dark:border-gray-700">

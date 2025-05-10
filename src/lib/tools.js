@@ -44,7 +44,6 @@ export function getAllTools() {
       tags: ['cookie', 'browser', 'import', 'export', 'web'],
       isFeatured: true,
     },
-    // Có thể thêm nhiều công cụ khác vào đây
     {
       id: 'hash-generator',
       slug: 'hash-generator',

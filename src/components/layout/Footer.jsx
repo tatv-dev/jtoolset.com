@@ -1,7 +1,9 @@
 // src/components/layout/Footer.jsx
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-export default function Footer() { // Thêm 'export default' trước function
+export default function Footer() { 
+  const { t } = useTranslation();
   return (
     <footer className="bg-white dark:bg-dark-surface border-t border-gray-200 dark:border-dark-border py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,35 +11,35 @@ export default function Footer() { // Thêm 'export default' trước function
           {/* Logo and Description */}
           <div>
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <span className="text-xl font-bold text-primary-600 dark:text-primary-400">JToolset</span>
+              <span className="text-xl font-bold text-primary-600 dark:text-primary-400">{t('app.name')}</span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Bộ công cụ miễn phí hữu ích cho nhà phát triển web và lập trình viên.
+              {t('common.desc')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Liên kết nhanh</h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">{t('common.quickLinks')}</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">
-                  Trang chủ
+                  {t('pages.pageList.home')}
                 </Link>
               </li>
               <li>
                 <Link to="/tools" className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">
-                  Tất cả công cụ
+                  {t('pages.pageList.tools')}
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">
-                  Giới thiệu
+                  {t('pages.pageList.about')}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">
-                  Liên hệ
+                  {t('pages.pageList.contact')}
                 </Link>
               </li>
             </ul>
@@ -45,7 +47,7 @@ export default function Footer() { // Thêm 'export default' trước function
 
           {/* Social Links */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Kết nối</h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">{t('common.connect')}</h3>
             <div className="flex space-x-4">
               <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
                 <span className="sr-only">GitHub</span>
@@ -66,7 +68,7 @@ export default function Footer() { // Thêm 'export default' trước function
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
           <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-            &copy; {new Date().getFullYear()} JToolset.
+            &copy; {new Date().getFullYear()} {t('app.name')}.
           </p>
         </div>
       </div>
