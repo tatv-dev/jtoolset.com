@@ -6,8 +6,10 @@ import { Key, FileJson, Clock, AlertTriangle, Copy, Check } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import JwtDisplay from './JwtDisplay';
+import { useTranslation } from 'react-i18next';
 
 export default function JwtDecoder() {
+  const { t } = useTranslation();
   const [jwtToken, setJwtToken] = useState('');
   const [decodedToken, setDecodedToken] = useState(null);
   const [error, setError] = useState('');
@@ -35,7 +37,7 @@ export default function JwtDecoder() {
   function decodeJwtToken(token) {
     // Kiểm tra định dạng JWT cơ bản
     if (!token.match(/^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]*$/)) {
-      throw new Error('Invalid JWT format. Expected format: xxxxx.yyyyy.zzzzz');
+      throw new Error(t('tools.jwt-decoder.errors.invalidFormat'));
     }
 
     const [headerB64, payloadB64, signatureB64] = token.split('.');
@@ -58,7 +60,7 @@ export default function JwtDecoder() {
         isExpired,
       };
     } catch (e) {
-      throw new Error('Failed to decode JWT. The token may be malformed.');
+      throw new Error(t('tools.jwt-decoder.errors.decodeFailed'));
     }
   }
 
@@ -68,7 +70,7 @@ export default function JwtDecoder() {
       const text = await navigator.clipboard.readText();
       setJwtToken(text);
     } catch (err) {
-      alert('Không thể truy cập clipboard. Vui lòng cấp quyền hoặc dán thủ công.');
+      alert(t('tools.jwt-decoder.errors.clipboardAccess'));
     }
   }
 
@@ -90,7 +92,7 @@ export default function JwtDecoder() {
     <div className="space-y-6">
       <Card
         title="JWT Decoder"
-        description="Phân tích và giải mã JWT (JSON Web Token)"
+        description={t('tools.jwt-decoder.description')}
         icon={Key}
       >
         <div className="space-y-4">
@@ -104,7 +106,7 @@ export default function JwtDecoder() {
                 rows={3}
                 value={jwtToken}
                 onChange={(e) => setJwtToken(e.target.value)}
-                placeholder="Nhập JWT token của bạn (xxxxx.yyyyy.zzzzz)"
+                placeholder={t('tools.jwt-decoder.placeholder')}
                 className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-primary-500 focus:border-primary-500"
               />
             </div>

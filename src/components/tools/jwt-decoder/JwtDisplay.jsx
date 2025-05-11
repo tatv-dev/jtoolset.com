@@ -5,8 +5,10 @@ import React, { useState } from 'react';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { FileJson, Clock, Shield, Copy, Check, AlertTriangle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function JwtDisplay({ decoded, onCopy, isCopied }) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('payload');
   
   if (!decoded) return null;
@@ -26,22 +28,25 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
   
   // Tính thời gian còn lại nếu còn hạn
   const getTimeRemaining = () => {
-    if (!payload.exp) return 'No expiration';
+    if (!payload.exp) return t('tools.jwt-decoder.noExpiration');
     
     const now = Math.floor(Date.now() / 1000);
     const remaining = payload.exp - now;
     
-    if (remaining <= 0) return 'Đã hết hạn';
+    if (remaining <= 0) return t('tools.jwt-decoder.expired');
     
     const days = Math.floor(remaining / 86400);
     const hours = Math.floor((remaining % 86400) / 3600);
     const minutes = Math.floor((remaining % 3600) / 60);
     const seconds = remaining % 60;
     
-    if (days > 0) return `${days} ngày ${hours} giờ`;
-    if (hours > 0) return `${hours} giờ ${minutes} phút`;
-    if (minutes > 0) return `${minutes} phút ${seconds} giây`;
-    return `${seconds} giây`;
+    const parts = [];
+    if (days > 0) parts.push(t('tools.jwt-decoder.time.days', { count: days }));
+    if (hours > 0) parts.push(t('tools.jwt-decoder.time.hours', { count: hours }));
+    if (minutes > 0) parts.push(t('tools.jwt-decoder.time.minutes', { count: minutes }));
+    if (seconds > 0) parts.push(t('tools.jwt-decoder.time.seconds', { count: seconds }));
+    
+    return parts.join(' ');
   };
 
   return (
@@ -53,7 +58,7 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
             <div className="flex items-center">
               <Shield className={`h-5 w-5 mr-2 ${isValid ? 'text-green-500' : 'text-red-500'}`} />
               <h3 className="text-base font-medium">
-                Token {isValid ? 'Còn hiệu lực' : 'Đã hết hạn'}
+                {isValid ? t('tools.jwt-decoder.tokenValid') : t('tools.jwt-decoder.tokenExpired')}
               </h3>
             </div>
             
@@ -61,8 +66,8 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
               <div className="mt-1 text-sm text-gray-500 dark:text-gray-400 flex items-center">
                 <Clock className="h-4 w-4 mr-1" />
                 {isValid 
-                  ? `Còn lại: ${getTimeRemaining()}` 
-                  : `Hết hạn: ${formatTimestamp(payload.exp)}`
+                  ? `${t('tools.jwt-decoder.timeRemaining')}: ${getTimeRemaining()}` 
+                  : `${t('tools.jwt-decoder.expiredAt')}: ${formatTimestamp(payload.exp)}`
                 }
               </div>
             )}
@@ -74,7 +79,7 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
             icon={isCopied ? Check : Copy}
             onClick={() => onCopy(decoded)}
           >
-            {isCopied ? 'Đã sao chép' : 'Sao chép'}
+            {isCopied ? t('tools.jwt-decoder.copied') : t('tools.jwt-decoder.copy')}
           </Button>
         </div>
       </Card>
@@ -91,7 +96,7 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
             }`}
             onClick={() => setActiveTab('payload')}
           >
-            Payload
+            {t('tools.jwt-decoder.payload')}
           </button>
           <button
             className={`px-4 py-2 text-sm font-medium border-b-2 ${
@@ -101,7 +106,7 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
             }`}
             onClick={() => setActiveTab('header')}
           >
-            Header
+            {t('tools.jwt-decoder.header')}
           </button>
           <button
             className={`px-4 py-2 text-sm font-medium border-b-2 ${
@@ -111,7 +116,7 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
             }`}
             onClick={() => setActiveTab('signature')}
           >
-            Signature
+            {t('tools.jwt-decoder.signature')}
           </button>
         </div>
         
@@ -122,23 +127,25 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
               {/* Time claims */}
               {(payload.exp || payload.iat || payload.nbf) && (
                 <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-md">
-                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Thông tin thời gian</h4>
+                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {t('tools.jwt-decoder.timeInfo')}
+                  </h4>
                   <div className="grid gap-2">
                     {payload.iat && (
                       <div className="grid grid-cols-2 text-sm">
-                        <span className="text-gray-500 dark:text-gray-400">Issued At (iat):</span>
+                        <span className="text-gray-500 dark:text-gray-400">{t('tools.jwt-decoder.issuedAt')}:</span>
                         <span>{formatTimestamp(payload.iat)}</span>
                       </div>
                     )}
                     {payload.exp && (
                       <div className="grid grid-cols-2 text-sm">
-                        <span className="text-gray-500 dark:text-gray-400">Expiration (exp):</span>
+                        <span className="text-gray-500 dark:text-gray-400">{t('tools.jwt-decoder.expiration')}:</span>
                         <span className={isExpired ? 'text-red-500' : ''}>{formatTimestamp(payload.exp)}</span>
                       </div>
                     )}
                     {payload.nbf && (
                       <div className="grid grid-cols-2 text-sm">
-                        <span className="text-gray-500 dark:text-gray-400">Not Before (nbf):</span>
+                        <span className="text-gray-500 dark:text-gray-400">{t('tools.jwt-decoder.notBefore')}:</span>
                         <span>{formatTimestamp(payload.nbf)}</span>
                       </div>
                     )}
@@ -148,7 +155,9 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
               
               {/* Standard claims */}
               <div>
-                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Payload Claims</h4>
+                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t('tools.jwt-decoder.payloadClaims')}
+                </h4>
                 <pre className="bg-gray-50 dark:bg-gray-800 p-3 rounded-md overflow-auto text-sm">
                   {JSON.stringify(payload, null, 2)}
                 </pre>
@@ -158,7 +167,9 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
           
           {activeTab === 'header' && (
             <div>
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Header</h4>
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t('tools.jwt-decoder.header')}
+              </h4>
               <pre className="bg-gray-50 dark:bg-gray-800 p-3 rounded-md overflow-auto text-sm">
                 {JSON.stringify(header, null, 2)}
               </pre>
@@ -167,14 +178,15 @@ export default function JwtDisplay({ decoded, onCopy, isCopied }) {
           
           {activeTab === 'signature' && (
             <div>
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Signature</h4>
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t('tools.jwt-decoder.signature')}
+              </h4>
               <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-md">
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                  Chữ ký JWT được sử dụng để xác minh tính toàn vẹn của token. Công cụ này chỉ giải mã 
-                  phần header và payload, không thể xác thực chữ ký.
+                  {t('tools.jwt-decoder.signatureInfo')}
                 </p>
                 <div className="font-mono text-sm break-all">
-                  {signature || 'No signature'}
+                  {signature || t('tools.jwt-decoder.noSignature')}
                 </div>
               </div>
             </div>

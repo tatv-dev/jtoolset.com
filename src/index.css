@@ -23,6 +23,7 @@ body {
 }
 
 
+
 /* Ensure proper scrolling behavior */
 .main-content-wrapper {
   height: calc(100vh - 4rem); /* Subtract header height */
@@ -100,10 +101,6 @@ button {
 }
 button:hover {
   border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {

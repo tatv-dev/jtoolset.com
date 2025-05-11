@@ -87,12 +87,15 @@
       "name": "JWT Decoder",
       "description": "Phân tích và giải mã JWT (JSON Web Token)",
       "jwtToken": "JWT Token",
+      "placeholder": "Nhập JWT token của bạn (xxxxx.yyyyy.zzzzz)",
       "paste": "Dán",
       "clear": "Xóa",
-      "valid": "Token còn hiệu lực",
-      "expired": "Token đã hết hạn",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép",
+      "tokenValid": "Token còn hiệu lực",
+      "tokenExpired": "Token đã hết hạn",
       "timeRemaining": "Còn lại",
-      "expired_at": "Hết hạn lúc",
+      "expiredAt": "Hết hạn lúc",
       "payload": "Payload",
       "header": "Header",
       "signature": "Signature",
@@ -100,7 +103,22 @@
       "issuedAt": "Phát hành lúc (iat)",
       "expiration": "Hết hạn (exp)",
       "notBefore": "Không trước (nbf)",
-      "signatureInfo": "Chữ ký JWT được sử dụng để xác minh tính toàn vẹn của token. Công cụ này chỉ giải mã phần header và payload, không thể xác thực chữ ký."
+      "payloadClaims": "Nội dung Payload",
+      "signatureInfo": "Chữ ký JWT được sử dụng để xác minh tính toàn vẹn của token. Công cụ này chỉ giải mã phần header và payload, không thể xác thực chữ ký.",
+      "noExpiration": "Không có thời hạn",
+      "expired": "Đã hết hạn",
+      "noSignature": "Không có chữ ký",
+      "time": {
+        "days": "{{count}} ngày",
+        "hours": "{{count}} giờ",
+        "minutes": "{{count}} phút",
+        "seconds": "{{count}} giây"
+      },
+      "errors": {
+        "invalidFormat": "Định dạng JWT không hợp lệ. Định dạng đúng: xxxxx.yyyyy.zzzzz",
+        "decodeFailed": "Không thể giải mã JWT. Token có thể bị lỗi.",
+        "clipboardAccess": "Không thể truy cập clipboard. Vui lòng cấp quyền hoặc dán thủ công."
+      }
     },
     "cookie-tools": {
       "name": "Công cụ Cookie",

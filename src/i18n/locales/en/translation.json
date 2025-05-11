@@ -93,12 +93,15 @@
       "name": "JWT Decoder",
       "description": "Parse and decode JWT (JSON Web Token)",
       "jwtToken": "JWT Token",
+      "placeholder": "Enter your JWT token (xxxxx.yyyyy.zzzzz)",
       "paste": "Paste",
       "clear": "Clear",
-      "valid": "Valid token",
-      "expired": "Expired token",
+      "copy": "Copy",
+      "copied": "Copied",
+      "tokenValid": "Valid Token",
+      "tokenExpired": "Expired Token",
       "timeRemaining": "Time remaining",
-      "expired_at": "Expired at",
+      "expiredAt": "Expired at",
       "payload": "Payload",
       "header": "Header",
       "signature": "Signature",
@@ -106,7 +109,26 @@
       "issuedAt": "Issued At (iat)",
       "expiration": "Expiration (exp)",
       "notBefore": "Not Before (nbf)",
-      "signatureInfo": "The JWT signature is used to verify the integrity of the token. This tool only decodes the header and payload, it cannot verify the signature."
+      "payloadClaims": "Payload Claims",
+      "signatureInfo": "The JWT signature is used to verify the integrity of the token. This tool only decodes the header and payload, it cannot verify the signature.",
+      "noExpiration": "No expiration",
+      "expired": "Expired",
+      "noSignature": "No signature",
+      "time": {
+        "days": "{{count}} day",
+        "days_plural": "{{count}} days",
+        "hours": "{{count}} hour",
+        "hours_plural": "{{count}} hours",
+        "minutes": "{{count}} minute",
+        "minutes_plural": "{{count}} minutes",
+        "seconds": "{{count}} second",
+        "seconds_plural": "{{count}} seconds"
+      },
+      "errors": {
+        "invalidFormat": "Invalid JWT format. Expected format: xxxxx.yyyyy.zzzzz",
+        "decodeFailed": "Failed to decode JWT. The token may be malformed.",
+        "clipboardAccess": "Cannot access clipboard. Please grant permission or paste manually."
+      }
     },
     "cookie-tools": {
       "name": "Cookie Manager",
