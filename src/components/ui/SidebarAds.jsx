@@ -10,8 +10,8 @@ export default function SidebarAds() {
   }
 
   return (
-    <div className="hidden xl:block w-80 flex-shrink-0">
-      <div className="sticky top-20 space-y-6">
+    <div className="hidden xl:block w-64 flex-shrink-0 p-4">
+      <div className="sticky top-4 space-y-6">
         {/* Top Ad */}
         {/* <div className="bg-white dark:bg-dark-surface rounded-lg shadow-sm border border-gray-200 dark:border-dark-border p-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 text-center mb-2">

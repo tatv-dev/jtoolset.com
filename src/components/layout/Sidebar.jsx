@@ -5,8 +5,9 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSearch } from '@/context/SearchContext';
 import { useTheme } from '@/context/ThemeContext';
-import SidebarSearchBar from '@/components/ui/SidebarSearchBar'; // Sử dụng component mới
+import SidebarSearchBar from '@/components/ui/SidebarSearchBar';
 import ThemeToggle from '@/components/layout/ThemeToggle';
+import { useTranslation } from 'react-i18next';
 
 // Icons
 import { 
@@ -27,11 +28,12 @@ const toolIcons = {
 };
 
 export default function Sidebar() {
-  const { sidebarSearchResults, allTools } = useSearch(); // Sử dụng sidebarSearchResults
+  const { sidebarSearchResults, allTools } = useSearch();
   const location = useLocation();
   const pathname = location.pathname;
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   // Close sidebar when route changes on mobile
   useEffect(() => {
@@ -88,12 +90,12 @@ export default function Sidebar() {
       <aside 
         className={`
           w-64 bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border
-          transition-all duration-300 ease-in-out z-30
+          flex-shrink-0 transition-all duration-300 ease-in-out z-30
           ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-          fixed md:static top-0 bottom-0 left-0 h-full
+          fixed md:static top-0 bottom-0 left-0 h-full md:h-auto
         `}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full overflow-hidden">
           {/* Mobile close button */}
           <div className="flex md:hidden justify-end p-2">
             <button 
@@ -105,16 +107,16 @@ export default function Sidebar() {
             </button>
           </div>
           
-          {/* Logo and search */}
-          <div className="p-4">
+          {/* Logo and search - Fixed height */}
+          <div className="p-4 flex-shrink-0">
             <Link to="/" className="flex items-center space-x-2 mb-6">
-              <span className="text-xl font-bold text-primary-600 dark:text-primary-400">JToolset</span>
+              <span className="text-xl font-bold text-primary-600 dark:text-primary-400">{t('pages.pageList.tools')}</span>
             </Link>
-            <SidebarSearchBar className="w-full" /> {/* Sử dụng SidebarSearchBar */}
+            <SidebarSearchBar className="w-full" />
           </div>
 
-          {/* Tools list */}
-          <nav className="flex-1 px-2 pb-4 space-y-1 overflow-y-auto">
+          {/* Tools list - Scrollable */}
+          <nav className="flex-1 px-2 pb-4 space-y-1 overflow-y-auto sidebar-scroll">
             {Object.entries(toolsByCategory).map(([category, tools]) => (
               <div key={category} className="py-2">
                 <h3 className="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -125,7 +127,6 @@ export default function Sidebar() {
                     const isActive = pathname === `/tools/${tool.slug}`;
                     const Icon = toolIcons[tool.slug] || Shuffle;
                     
-                    // Sử dụng các biến trung gian thay vì template strings phức tạp
                     let linkClassName = 'flex items-center px-3 py-2 text-sm font-medium rounded-md ';
                     if (isActive) {
                       linkClassName += 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400';
@@ -149,9 +150,16 @@ export default function Sidebar() {
             ))}
           </nav>
 
-          {/* Theme toggle */}
-          <div className="p-4 border-t border-gray-200 dark:border-dark-border">
+          {/* Theme toggle - Fixed height */}
+          <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
             <ThemeToggle />
+          </div>
+
+          {/* Copyright - Fixed at bottom */}
+          <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
+            <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
+              &copy; {new Date().getFullYear()} {t('app.name')}
+            </p>
           </div>
         </div>
       </aside>

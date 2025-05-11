@@ -5,36 +5,41 @@ import Sidebar from './Sidebar';
 import Footer from './Footer';
 import NewsTicker from '../ui/NewsTicker';
 import SidebarAds from '../ui/SidebarAds';
-import { GoogleAdSenseScript } from '@/lib/ads'; // Import the AdSense script component
+import { GoogleAdSenseScript } from '@/lib/ads';
 
 export default function RootLayout() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-dark-background text-gray-900 dark:text-dark-text transition-colors duration-200">
+    <div className="flex flex-col h-screen overflow-hidden bg-gray-50 dark:bg-dark-background text-gray-900 dark:text-dark-text transition-colors duration-200">
       {/* Add GoogleAdSenseScript here */}
       <GoogleAdSenseScript />
       
       {/* News Ticker - Top of the page */}
       {/* <NewsTicker /> */}
       
-      {/* Header */}
+      {/* Header - Fixed height */}
       <Header />
       
-      <div className="flex flex-1 w-full">
-        {/* Sidebar Navigation */}
+      {/* Main layout container - fills remaining space */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar Navigation - Fixed width, own scroll */}
         <Sidebar />
         
-        {/* Main Content Area */}
+        {/* Main content area */}
         <div className="flex-1 flex">
-          {/* Main Content */}
-          <main className="flex-1 p-4 md:p-6 max-w-7xl">
-            <Outlet />
-          </main>
-          
-          {/* Right Sidebar Ads - Only visible on XL screens */}
-          <SidebarAds />
+          {/* Scrollable content area */}
+          <div className="flex-1 flex">
+            {/* Main Content - Scrollable */}
+            <main className="flex-1 p-4 md:p-6 overflow-y-auto main-scroll">
+              <Outlet />
+            </main>
+            
+            {/* Right Sidebar Ads - Fixed width, same as left sidebar */}
+            <SidebarAds />
+          </div>
         </div>
       </div>
       
+      {/* Footer - Overlay */}
       <Footer />
     </div>
   );

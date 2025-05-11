@@ -26,11 +26,6 @@ export default function AboutPage() {
       description: "Developed and maintained by developers, for developers. Contributions are always welcome!"
     },
     {
-      icon: Globe,
-      title: "Multiple Languages",
-      description: "Supports multiple languages to help developers worldwide."
-    },
-    {
       icon: Shield,
       title: "Privacy First",
       description: "All processing happens in your browser. No data is sent to our servers."
