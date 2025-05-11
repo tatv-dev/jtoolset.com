@@ -38,12 +38,20 @@
       "useCurrentTime": "Dùng thời gian hiện tại",
       "timeInfo": "Thông tin thời gian",
       "timezone": "Múi giờ",
+      "unixTimestampPlaceholder": "Nhập Unix timestamp (giây hoặc mili giây)",
       "formats": {
         "friendly": "Định dạng thân thiện",
         "iso8601": "ISO 8601",
         "utc": "UTC",
         "local": "Thời gian địa phương",
-        "relative": "Thời gian tương đối"
+        "relative": "Thời gian tương đối",
+        "futureTime": "{{count}} giây từ bây giờ",
+        "secondsAgo": "{{count}} giây trước",
+        "minutesAgo": "{{count}} phút trước",
+        "hoursAgo": "{{count}} giờ trước",
+        "daysAgo": "{{count}} ngày trước",
+        "monthsAgo": "{{count}} tháng trước",
+        "yearsAgo": "{{count}} năm trước"
       }
     },
     "random": {

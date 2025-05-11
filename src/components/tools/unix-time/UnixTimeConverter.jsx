@@ -6,16 +6,15 @@ import { Clock, RefreshCw, Copy, Check } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import TimeDisplay from './TimeDisplay';
-import { useTranslation } from 'react-i18next'; // Đảm bảo import hook này
+import { useTranslation } from 'react-i18next';
 
 export default function UnixTimeConverter() {
-  const { t } = useTranslation(); // Sử dụng hook để lấy hàm t
+  const { t } = useTranslation();
   const [unixTimestamp, setUnixTimestamp] = useState('');
   const [dateTime, setDateTime] = useState('');
   const [currentUnixTime, setCurrentUnixTime] = useState(0);
   const [copied, setCopied] = useState(false);
   const [timezoneOffset, setTimezoneOffset] = useState(0);
-
 
   // Cập nhật thời gian Unix hiện tại mỗi giây
   useEffect(() => {
@@ -48,7 +47,7 @@ export default function UnixTimeConverter() {
       const isoString = date.toISOString();
       setDateTime(isoString.slice(0, 16)); // Format: YYYY-MM-DDTHH:MM
     } catch (error) {
-      alert('Timestamp Unix không hợp lệ. Vui lòng nhập số nguyên.');
+      alert(t('tools.unix-time.invalidTimestamp'));
     }
   }
 
@@ -61,7 +60,7 @@ export default function UnixTimeConverter() {
       const timestamp = Math.floor(date.getTime() / 1000);
       setUnixTimestamp(timestamp.toString());
     } catch (error) {
-      alert('Ngày giờ không hợp lệ');
+      alert(t('tools.unix-time.invalidDateTime'));
     }
   }
 
@@ -94,7 +93,9 @@ export default function UnixTimeConverter() {
           <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">{t('tools.unix-time.currentTime')}</h3>
+                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                  {t('tools.unix-time.currentTime')}
+                </h3>
                 <p className="text-2xl font-mono mt-1">{currentUnixTime}</p>
               </div>
               <Button
@@ -107,51 +108,55 @@ export default function UnixTimeConverter() {
             </div>
           </div>
 
-          {/* Unix to DateTime */}
+          {/* Unix to DateTime Conversion */}
           <div className="space-y-4">
             <div>
-              <label htmlFor="unix-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="unix-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {t('tools.unix-time.unixTimestamp')}
               </label>
-              <div className="mt-1 flex rounded-md shadow-sm">
-                <input
-                  type="text"
-                  id="unix-input"
-                  value={unixTimestamp}
-                  onChange={(e) => setUnixTimestamp(e.target.value)}
-                  placeholder="Nhập Unix timestamp (giây)"
-                  className="flex-1 min-w-0 block w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                />
+              <div className="flex items-center space-x-2">
+                <div className="flex-grow">
+                  <input
+                    type="text"
+                    id="unix-input"
+                    value={unixTimestamp}
+                    onChange={(e) => setUnixTimestamp(e.target.value)}
+                    placeholder={t('tools.unix-time.unixTimestampPlaceholder')}
+                    className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                  />
+                </div>
+                <button 
+                  onClick={convertUnixToDateTime} 
+                  className="p-2 text-primary-600 dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+                  title={t('tools.unix-time.convertToDateTime')}
+                >
+                  <RefreshCw className="h-5 w-5" />
+                </button>
               </div>
-            </div>
-
-            <div className="flex justify-center">
-              <button onClick={convertUnixToDateTime} className="text-primary-600 dark:text-primary-400">
-                <RefreshCw className="mx-auto h-5 w-5" />
-                <span className="text-xs block mt-1">{t('tools.unix-time.convertToDateTime')}</span>
-              </button>
             </div>
 
             <div>
-              <label htmlFor="date-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="date-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {t('tools.unix-time.dateTime')}
               </label>
-              <div className="mt-1 flex rounded-md shadow-sm">
-                <input
-                  type="datetime-local"
-                  id="date-input"
-                  value={dateTime}
-                  onChange={(e) => setDateTime(e.target.value)}
-                  className="flex-1 min-w-0 block w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                />
+              <div className="flex items-center space-x-2">
+                <div className="flex-grow">
+                  <input
+                    type="datetime-local"
+                    id="date-input"
+                    value={dateTime}
+                    onChange={(e) => setDateTime(e.target.value)}
+                    className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                  />
+                </div>
+                <button 
+                  onClick={convertDateTimeToUnix} 
+                  className="p-2 text-primary-600 dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+                  title={t('tools.unix-time.convertToUnix')}
+                >
+                  <RefreshCw className="h-5 w-5 rotate-180" />
+                </button>
               </div>
-            </div>
-
-            <div className="flex justify-center">
-              <button onClick={convertDateTimeToUnix} className="text-primary-600 dark:text-primary-400">
-                <RefreshCw className="mx-auto h-5 w-5 rotate-180" />
-                <span className="text-xs block mt-1">{t('tools.unix-time.convertToUnix')}</span>
-              </button>
             </div>
 
             <div className="flex justify-end">

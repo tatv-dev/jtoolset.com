@@ -7,7 +7,7 @@ import Card from '@/components/ui/Card';
 import { useTranslation } from 'react-i18next';
 
 export default function TimeDisplay({ timestamp, timezoneOffset }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   
   const dateTime = useMemo(() => {
     const date = new Date(timestamp * 1000);
@@ -27,10 +27,10 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
 
     // Định dạng chuẩn
     const iso = dateTime.toISOString();
-    const local = dateTime.toLocaleString();
+    const local = dateTime.toLocaleString(i18n.language);
     
     // Định dạng theo tiêu chuẩn khác nhau
-    const readable = dateTime.toLocaleString('vi-VN', options);
+    const readable = dateTime.toLocaleString(i18n.language, options);
     const utc = dateTime.toUTCString();
     const relative = getRelativeTime(timestamp);
 
@@ -41,7 +41,7 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
       utc,
       relative,
     };
-  }, [dateTime, timestamp]);
+  }, [dateTime, timestamp, i18n.language]);
 
   // Xác định múi giờ cục bộ
   const timezoneInfo = useMemo(() => {
@@ -62,16 +62,16 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
     const diff = now - unixTime;
     
     if (diff < 0) {
-      return `${Math.abs(diff)} giây từ bây giờ`;
+      return t('tools.unix-time.formats.futureTime', { count: Math.abs(diff) });
     }
     
-    if (diff < 60) return `${diff} giây trước`;
-    if (diff < 3600) return `${Math.floor(diff / 60)} phút trước`;
-    if (diff < 86400) return `${Math.floor(diff / 3600)} giờ trước`;
-    if (diff < 2592000) return `${Math.floor(diff / 86400)} ngày trước`;
-    if (diff < 31536000) return `${Math.floor(diff / 2592000)} tháng trước`;
+    if (diff < 60) return t('tools.unix-time.formats.secondsAgo', { count: diff });
+    if (diff < 3600) return t('tools.unix-time.formats.minutesAgo', { count: Math.floor(diff / 60) });
+    if (diff < 86400) return t('tools.unix-time.formats.hoursAgo', { count: Math.floor(diff / 3600) });
+    if (diff < 2592000) return t('tools.unix-time.formats.daysAgo', { count: Math.floor(diff / 86400) });
+    if (diff < 31536000) return t('tools.unix-time.formats.monthsAgo', { count: Math.floor(diff / 2592000) });
     
-    return `${Math.floor(diff / 31536000)} năm trước`;
+    return t('tools.unix-time.formats.yearsAgo', { count: Math.floor(diff / 31536000) });
   }
 
   return (
