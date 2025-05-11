@@ -15,6 +15,10 @@ import JsonFormatter from '../components/tools/json-formatter/JsonFormatter';
 import UrlEncoder from '../components/tools/url-encoder/UrlEncoder';
 import Base64 from '../components/tools/base64/Base64';
 import HashGenerator from '../components/tools/hash-generator/HashGenerator';
+import QrGenerator from '../components/tools/qr-generator/QrGenerator';
+import IpChecker from '../components/tools/ip-checker/IpChecker';
+import DomainIp from '../components/tools/domain-ip/DomainIp';
+import LoremIpsum from '../components/tools/lorem-ipsum/LoremIpsum';
 
 export default function ToolPage() {
   const { t } = useTranslation();
@@ -54,7 +58,15 @@ export default function ToolPage() {
       case 'base64':
         return <Base64 />;
       case 'hash-generator':
-  return <HashGenerator />;
+        return <HashGenerator />;
+      case 'qr-generator':
+        return <QrGenerator />;
+      case 'ip-checker':
+        return <IpChecker />;
+      case 'domain-ip':
+        return <DomainIp />;
+      case 'lorem-ipsum':
+        return <LoremIpsum />;
       default:
         return (
           <div className="text-center py-12">
@@ -72,9 +84,9 @@ export default function ToolPage() {
     const title = encodeURIComponent(`${t('tools.' + tool.slug + '.name')} - JToolset`);
     
     switch (type) {
-      case 'twitter':
-        return `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-      case 'facebook':
+      case 'x':
+        return `https://x.com/intent/tweet?url=${url}&text=${title}`;
+      case 'facebook':  
         return `https://www.facebook.com/sharer/sharer.php?u=${url}`;
       case 'linkedin':
         return `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;

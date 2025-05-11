@@ -18,13 +18,21 @@ src/
 │   │   │   ├── CookieExporter.jsx
 │   │   │   ├── CookieImporter.jsx
 │   │   │   └── CookieTools.jsx
+│   │   ├── domain-ip/
+│   │   │   └── DomainIp.jsx
 │   │   ├── hash-generator/
 │   │   │   └── HashGenerator.jsx
+│   │   ├── ip-checker/
+│   │   │   └── IpChecker.jsx
 │   │   ├── json-formatter/
 │   │   │   └── JsonFormatter.jsx
 │   │   ├── jwt-decoder/
 │   │   │   ├── JwtDecoder.jsx
 │   │   │   └── JwtDisplay.jsx
+│   │   ├── lorem-ipsum/
+│   │   │   └── LoremIpsum.jsx
+│   │   ├── qr-generator/
+│   │   │   └── QrGenerator.jsx
 │   │   ├── random/
 │   │   │   ├── RandomGenerator.jsx
 │   │   │   └── RandomOptions.jsx
