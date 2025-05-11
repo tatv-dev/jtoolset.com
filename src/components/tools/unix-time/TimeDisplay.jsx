@@ -96,9 +96,9 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
 
 function FormatItem({ label, value }) {
   return (
-    <div>
+    <div className="w-full">
       <div className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</div>
-      <div className="mt-1 text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded-md overflow-x-auto">
+      <div className="mt-1 text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded-md overflow-x-auto break-all">
         {value}
       </div>
     </div>

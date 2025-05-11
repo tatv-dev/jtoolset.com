@@ -23,6 +23,7 @@
       "Crypto": "Crypto",
       "Formatter": "Formatter",
       "Encoder": "Encoder",
+      "Network": "Network",
       "Other": "Other"
     },
     "unix-time": {
@@ -381,7 +382,7 @@
     },
     "pageList": {
       "home": "Home",
-      "tools": "Tools",
+      "tools": "All tools",
       "about": "About",
       "contact": "Contact"
     },
@@ -389,6 +390,7 @@
       "title": "All Tools",
       "subtitle": "Explore all developer tools",
       "needSomethingElse": "Can't find the tool you need?",
+      "suggestToolDescription": "We are constantly adding new tools. If you have a suggestion for a new tool, please let us know!",
       "suggestTool": "Suggest a new tool"
     }
   },
@@ -406,6 +408,7 @@
     "loading": "Loading...",
     "error": "An error occurred",
     "notFound": "Not Found",
-    "backToHome": "Back to Home"
+    "backToHome": "Back to Home",
+    "all": "All"
   }
 }

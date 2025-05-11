@@ -80,7 +80,7 @@ export default function ToolPage() {
 
   // Hàm xử lý chia sẻ
   const getShareUrl = (type) => {
-    const url = encodeURIComponent(`https://JToolset.com/tools/${tool.slug}`);
+    const url = encodeURIComponent(`https://jtoolset.com/tools/${tool.slug}`);
     const title = encodeURIComponent(`${t('tools.' + tool.slug + '.name')} - JToolset`);
     
     switch (type) {

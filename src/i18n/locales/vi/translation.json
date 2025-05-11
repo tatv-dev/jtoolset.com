@@ -23,6 +23,7 @@
       "Crypto": "Mã hóa",
       "Formatter": "Định dạng",
       "Encoder": "Mã hóa/Giải mã",
+      "Network": "Mạng",
       "Other": "Khác"
     },
     "unix-time": {
@@ -385,6 +386,7 @@
       "title": "Tất cả công cụ",
       "subtitle": "Khám phá tất cả các công cụ cho nhà phát triển",
       "needSomethingElse": "Không tìm thấy công cụ bạn cần?",
+      "suggestToolDescription": "Chúng tôi luôn tìm kiếm cách cải thiện bộ công cụ của mình. Nếu bạn có ý tưởng cho một công cụ mới hoặc một tính năng mà bạn muốn thấy, hãy cho chúng tôi biết!",
       "suggestTool": "Đề xuất công cụ mới"
     }
   },
@@ -402,6 +404,7 @@
     "loading": "Đang tải...",
     "error": "Đã xảy ra lỗi",
     "notFound": "Không tìm thấy",
-    "goBack": "Quay lại"
+    "goBack": "Quay lại",
+    "all": "Tất cả"
   }
 }

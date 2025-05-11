@@ -24,19 +24,13 @@ export default function RootLayout() {
         {/* Sidebar Navigation - Fixed width, own scroll */}
         <Sidebar />
         
-        {/* Main content area */}
-        <div className="flex-1 flex">
-          {/* Scrollable content area */}
-          <div className="flex-1 flex">
-            {/* Main Content - Scrollable */}
-            <main className="flex-1 p-4 md:p-6 overflow-y-auto main-scroll">
-              <Outlet />
-            </main>
-            
-            {/* Right Sidebar Ads - Fixed width, same as left sidebar */}
-            <SidebarAds />
-          </div>
-        </div>
+        {/* Main Content - Chiếm toàn bộ không gian còn lại */}
+        <main className="flex-1 p-4 md:p-6 overflow-y-auto main-scroll">
+          <Outlet />
+        </main>
+        
+        {/* Right Sidebar Ads - Fixed width */}
+        {/* <SidebarAds /> */}
       </div>
       
       {/* Footer - Overlay */}

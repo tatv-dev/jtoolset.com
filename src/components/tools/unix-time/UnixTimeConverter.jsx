@@ -82,7 +82,7 @@ export default function UnixTimeConverter() {
   }
 
   return (
-    <div className="grid gap-6">
+    <div className="space-y-6">
       <Card
         title={t('tools.unix-time.name')}
         description={t('tools.unix-time.description')}
