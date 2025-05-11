@@ -15,9 +15,11 @@ src/
 │   │   ├── base64/
 │   │   │   └── Base64.jsx
 │   │   ├── cookie-tools/
-│   │   │   ├── CookieExporter.jsx
-│   │   │   ├── CookieImporter.jsx
-│   │   │   └── CookieTools.jsx
+│   │   │   ├── CookieCreator.jsx
+│   │   │   ├── CookieEditor.jsx
+│   │   │   ├── CookiePolicyGenerator.jsx
+│   │   │   ├── CookieTools.jsx
+│   │   │   └── CookieViewer.jsx
 │   │   ├── domain-ip/
 │   │   │   └── DomainIp.jsx
 │   │   ├── hash-generator/

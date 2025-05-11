@@ -131,8 +131,12 @@
       }
     },
     "cookie-tools": {
-      "name": "Cookie Manager",
-      "description": "Manage cookies in your browser",
+      "name": "Cookie Tools",
+      "description": "Manage, import, export, and create browser cookies",
+      "viewCookies": "View Cookies",
+      "createCookie": "Create Cookie",
+      "importCookie": "Import Cookie",
+      "exportCookie": "Export Cookie",
       "cookies": "Cookies",
       "domain": "Domain",
       "path": "Path",
@@ -142,9 +146,23 @@
       "httpOnly": "HttpOnly",
       "sameSite": "SameSite",
       "deleteAll": "Delete All Cookies",
-      "deleteSelected": "Delete Selected Cookies",
+      "deleteSelected": "Delete Selected Cookies ({{count}})",
       "copyAll": "Copy All Cookies",
-      "copySelected": "Copy Selected Cookies"
+      "copySelected": "Copy Selected Cookies",
+      "cookieName": "Cookie Name",
+      "cookieValue": "Cookie Value",
+      "cookiesList": "Cookies List",
+      "noCookiesFound": "No cookies found",
+      "selectAll": "Select All",
+      "deselectAll": "Deselect All",
+      "cookieCreated": "Cookie created successfully",
+      "cookieCreateError": "Failed to create cookie",
+      "cookieNamePlaceholder": "Enter cookie name",
+      "cookieValuePlaceholder": "Enter cookie value",
+      "cookieWarning": "Cookies are stored in your browser and can be accessed by websites. Be cautious when creating or modifying cookies.",
+      "viewerWarning": "Only showing cookies for the current domain and path.",
+      "copied": "Copied",
+      "cookieCreateInfo": "Create a new browser cookie with custom settings."
     },
     "json-formatter": {
       "name": "JSON Formatter",
@@ -404,7 +422,7 @@
     },
     "pageList": {
       "home": "Home",
-      "tools": "All tools",
+      "tools": "All Tools",
       "about": "About",
       "contact": "Contact"
     },
