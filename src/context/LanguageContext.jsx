@@ -21,7 +21,8 @@ export function LanguageProvider({ children }) {
       const browserLang = navigator.language || navigator.userLanguage;
       
       // Updated language detection to include Japanese
-      const lang = browserLang.startsWith('ja') ? 'ja' : 
+      const lang = browserLang.startsWith('ja') ? 'ja' :
+                  browserLang.startsWith('ko') ? 'ko' : 
                   browserLang.startsWith('vi') ? 'vi' : 'en';
       
       setLanguage(lang);
