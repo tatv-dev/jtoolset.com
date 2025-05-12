@@ -10,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 import UnixTimeConverter from '../components/tools/unix-time/UnixTimeConverter';
 import RandomGenerator from '../components/tools/random/RandomGenerator';
 import JwtDecoder from '../components/tools/jwt-decoder/JwtDecoder';
-import CookieTools from '../components/tools/cookie-tools/CookieTools';
 import JsonFormatter from '../components/tools/json-formatter/JsonFormatter';
 import UrlEncoder from '../components/tools/url-encoder/UrlEncoder';
 import Base64 from '../components/tools/base64/Base64';
@@ -19,6 +18,8 @@ import QrGenerator from '../components/tools/qr-generator/QrGenerator';
 import IpChecker from '../components/tools/ip-checker/IpChecker';
 import DomainIp from '../components/tools/domain-ip/DomainIp';
 import LoremIpsum from '../components/tools/lorem-ipsum/LoremIpsum';
+import ColorToImage from '../components/tools/color-to-image/ColorToImage';
+import RegexTester from '../components/tools/regex-tester/RegexTester';
 
 export default function ToolPage() {
   const { t } = useTranslation();
@@ -49,8 +50,6 @@ export default function ToolPage() {
         return <RandomGenerator />;
       case 'jwt-decoder':
         return <JwtDecoder />;
-      case 'cookie-tools':
-        return <CookieTools />;
       case 'json-formatter':
         return <JsonFormatter />;
       case 'url-encoder':
@@ -67,6 +66,10 @@ export default function ToolPage() {
         return <DomainIp />;
       case 'lorem-ipsum':
         return <LoremIpsum />;
+      case 'color-to-image':
+        return <ColorToImage />;
+      case 'regex-tester':
+        return <RegexTester />;
       default:
         return (
           <div className="text-center py-12">
