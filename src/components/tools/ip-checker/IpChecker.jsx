@@ -20,31 +20,80 @@ export default function IpChecker() {
     setLoading(true);
     setError('');
     
+    const apis = [
+      {
+        url: 'https://api.ipify.org?format=json',
+        extractIp: (data) => data.ip
+      },
+      {
+        url: 'https://api.myip.com',
+        extractIp: (data) => data.ip
+      },
+      {
+        url: 'https://ipinfo.io/json',
+        extractIp: (data) => data.ip
+      }
+    ];
+  
+    const detailApis = [
+      {
+        url: 'https://ip-api.com/json/',
+        process: async (ip) => {
+          const response = await fetch(`https://ip-api.com/json/${ip}`);
+          return await response.json();
+        }
+      },
+      {
+        url: 'https://ipapi.co/json/',
+        process: async (ip) => {
+          const response = await fetch(`https://ipapi.co/${ip}/json/`);
+          return await response.json();
+        }
+      }
+    ];
+  
     try {
-      // First API call to get basic IP info
-      const response = await fetch('https://api.ipify.org?format=json');
-      const data = await response.json();
-      
-      // Second API call to get detailed information
-      const detailsResponse = await fetch(`http://ip-api.com/json/${data.ip}`);
-      const details = await detailsResponse.json();
-      
+      // Tìm IP
+      let ipAddress = null;
+      for (const api of apis) {
+        try {
+          const response = await fetch(api.url);
+          const data = await response.json();
+          ipAddress = api.extractIp(data);
+          if (ipAddress) break;
+        } catch (err) {
+          console.warn(`Failed to fetch from ${api.url}:`, err);
+        }
+      }
+  
+      if (!ipAddress) {
+        throw new Error('Could not retrieve IP');
+      }
+  
+      // Lấy chi tiết IP
+      let details = null;
+      for (const detailApi of detailApis) {
+        try {
+          details = await detailApi.process(ipAddress);
+          if (details && details.status !== 'fail') break;
+        } catch (err) {
+          console.warn(`Failed to fetch details from ${detailApi.url}:`, err);
+        }
+      }
+  
+      if (!details) {
+        throw new Error('Could not retrieve IP details');
+      }
+  
+      // Cập nhật state
       setIpData({
-        ip: data.ip,
+        ip: ipAddress,
         ...details
       });
-      
-      // Optional: Get additional info from another API
-      try {
-        const additionalResponse = await fetch(`https://ipapi.co/${data.ip}/json/`);
-        const additionalInfo = await additionalResponse.json();
-        setAdditionalData(additionalInfo);
-      } catch (err) {
-        console.error('Error fetching additional data:', err);
-      }
-      
+  
     } catch (err) {
       setError(t('tools.ip-checker.errors.fetchFailed'));
+      console.error('IP fetch error:', err);
     } finally {
       setLoading(false);
     }

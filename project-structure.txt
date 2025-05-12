@@ -14,12 +14,8 @@ src/
 │   ├── tools/
 │   │   ├── base64/
 │   │   │   └── Base64.jsx
-│   │   ├── cookie-tools/
-│   │   │   ├── CookieCreator.jsx
-│   │   │   ├── CookieEditor.jsx
-│   │   │   ├── CookiePolicyGenerator.jsx
-│   │   │   ├── CookieTools.jsx
-│   │   │   └── CookieViewer.jsx
+│   │   ├── color-to-image/
+│   │   │   └── ColorToImage.jsx
 │   │   ├── domain-ip/
 │   │   │   └── DomainIp.jsx
 │   │   ├── hash-generator/
@@ -38,11 +34,19 @@ src/
 │   │   ├── random/
 │   │   │   ├── RandomGenerator.jsx
 │   │   │   └── RandomOptions.jsx
+│   │   ├── regex-tester/
+│   │   │   └── RegexTester.jsx
+│   │   ├── remove-duplicate-lines/
+│   │   │   └── RemoveDuplicateLines.jsx
+│   │   ├── reverse-text/
+│   │   │   └── ReverseText.jsx
 │   │   ├── unix-time/
 │   │   │   ├── TimeDisplay.jsx
 │   │   │   └── UnixTimeConverter.jsx
-│   │   └── url-encoder/
-│   │       └── UrlEncoder.jsx
+│   │   ├── url-encoder/
+│   │   │   └── UrlEncoder.jsx
+│   │   └── word-counter/
+│   │       └── WordCounter.jsx
 │   └── ui/
 │       ├── Button.jsx
 │       ├── Card.jsx
@@ -85,8 +89,5 @@ src/
 │   ├── NotFoundPage.jsx
 │   ├── ToolPage.jsx
 │   └── ToolsListPage.jsx
-├── public/
-│   ├── icons/
-│   └── images/
 └── styles/
     └── news-ticker.css

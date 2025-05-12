@@ -24,6 +24,7 @@
       "Formatter": "Định dạng",
       "Encoder": "Mã hóa/Giải mã",
       "Network": "Mạng",
+      "Text": "Chữ và Văn bản",
       "Other": "Khác"
     },
     "unix-time": {
@@ -652,7 +653,8 @@
       "home": "Trang chủ",
       "tools": "Tất cả công cụ",
       "about": "Giới thiệu",
-      "contact": "Liên hệ"
+      "contact": "Liên hệ",
+      "privacyPolicy": "Chính sách bảo mật"
     },
     "toolsList": {
       "title": "Tất cả công cụ",
@@ -660,6 +662,58 @@
       "needSomethingElse": "Không tìm thấy công cụ bạn cần?",
       "suggestToolDescription": "Chúng tôi luôn tìm kiếm cách cải thiện bộ công cụ của mình. Nếu bạn có ý tưởng cho một công cụ mới hoặc một tính năng mà bạn muốn thấy, hãy cho chúng tôi biết!",
       "suggestTool": "Đề xuất công cụ mới"
+    },
+    "privacyPolicy": {
+      "title": "Chính Sách Bảo Mật",
+      "subtitle": "Quyền riêng tư của bạn rất quan trọng với chúng tôi. Chính sách này giải thích cách chúng tôi thu thập, sử dụng và bảo vệ thông tin cá nhân của bạn.",
+      "overview": {
+        "title": "Tổng Quan",
+        "description": "Tại JToolset, chúng tôi cam kết bảo vệ quyền riêng tư của bạn trong khi cung cấp các công cụ trực tuyến hữu ích. Chính sách bảo mật này giải thích cách chúng tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin cá nhân của bạn."
+      },
+      "dataCollection": {
+        "title": "Thu Thập Dữ Liệu",
+        "subtitle": "Chúng tôi thu thập những thông tin nào?",
+        "point1": "Dữ liệu sử dụng khi bạn sử dụng các công cụ trực tuyến của chúng tôi",
+        "point2": "Thông tin trình duyệt và thiết bị",
+        "point3": "Địa chỉ IP cho mục đích phân tích và bảo mật",
+        "point4": "Dữ liệu thống kê được ẩn danh"
+      },
+      "cookies": {
+        "title": "Cookie và Theo Dõi",
+        "description": "Chúng tôi sử dụng cookie và các công nghệ theo dõi tương tự để nâng cao trải nghiệm của bạn:",
+        "point1": "Cookie thiết yếu cho chức năng trang web",
+        "point2": "Cookie phân tích để hiểu hành vi người dùng",
+        "point3": "Cookie quảng cáo cho các quảng cáo được cá nhân hóa"
+      },
+      "thirdParty": {
+        "title": "Dịch Vụ Của Bên Thứ Ba",
+        "description": "Chúng tôi sử dụng các dịch vụ của bên thứ ba để hỗ trợ trang web:",
+        "googleAnalytics": "Google Analytics để phân tích lưu lượng truy cập trang web",
+        "adSense": "Google AdSense cho quảng cáo",
+        "cloudServices": "Dịch vụ lưu trữ đám mây và phân phối nội dung"
+      },
+      "userRights": {
+        "title": "Quyền Của Bạn",
+        "description": "Bạn có các quyền sau liên quan đến thông tin cá nhân của mình:",
+        "point1": "Quyền truy cập dữ liệu cá nhân",
+        "point2": "Quyền yêu cầu xóa dữ liệu",
+        "point3": "Quyền từ chối thu thập dữ liệu",
+        "point4": "Quyền sửa thông tin không chính xác"
+      },
+      "contactInfo": {
+        "title": "Thông Tin Liên Hệ",
+        "description": "Nếu bạn có bất kỳ câu hỏi hoặc lo ngại nào về Chính Sách Bảo Mật của chúng tôi, vui lòng liên hệ:",
+        "email": "Email liên hệ"
+      },
+      "lastUpdated": "Cập nhật lần cuối"
+    },
+    "contact": {
+      "title": "Liên Hệ",
+      "subtitle": "Bạn có câu hỏi hoặc đề xuất? Chúng tôi rất mong nghe từ bạn!",
+      "contactDetails": "Kết Nối",
+      "description": "Hãy thoải mái liên hệ với chúng tôi qua email để đưa ra các câu hỏi, ý kiến phản hồi hoặc cơ hội hợp tác.",
+      "emailLabel": "Email liên hệ",
+      "responseTime": "Chúng tôi thường phản hồi trong vài ngày làm việc."
     }
   },
   "common": {
@@ -677,6 +731,13 @@
     "error": "Đã xảy ra lỗi",
     "notFound": "Không tìm thấy",
     "goBack": "Quay lại",
-    "all": "Tất cả"
+    "all": "Tất cả",
+    "legalInfo": "Thông tin pháp lý",
+    "termsOfService": "Điều khoản dịch vụ",
+    "email": "Email liên hệ",
+    "support": "Hỗ trợ",
+    "reportIssue": "Báo cáo lỗi",
+    "discussions": "Thảo luận",
+    "allRightsReserved": "Bản quyền đã được bảo hộ."
   }
 }

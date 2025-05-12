@@ -37,6 +37,9 @@ export default function Header() {
               <Link to="/about" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.about')}
               </Link>
+              <Link to="/contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                {t('pages.pageList.contact')}
+              </Link>
             </nav>
           </div>
 

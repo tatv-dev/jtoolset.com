@@ -24,6 +24,7 @@
       "Formatter": "Formatter",
       "Encoder": "Encoder",
       "Network": "Network",
+      "Text": "Text",
       "Other": "Other"
     },
     "unix-time": {
@@ -662,7 +663,8 @@
       "home": "Home",
       "tools": "All Tools",
       "about": "About",
-      "contact": "Contact"
+      "contact": "Contact",
+      "privacyPolicy": "Privacy Policy"
     },
     "toolsList": {
       "title": "All Tools",
@@ -670,6 +672,58 @@
       "needSomethingElse": "Can't find the tool you need?",
       "suggestToolDescription": "We are constantly adding new tools. If you have a suggestion for a new tool, please let us know!",
       "suggestTool": "Suggest a new tool"
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "subtitle": "Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.",
+      "overview": {
+        "title": "Overview",
+        "description": "At JToolset, we are committed to protecting your privacy while providing useful online tools. This Privacy Policy explains how we collect, use, store, and protect your personal information."
+      },
+      "dataCollection": {
+        "title": "Data Collection",
+        "subtitle": "What information do we collect?",
+        "point1": "Usage data when you use our online tools",
+        "point2": "Browser type and device information",
+        "point3": "IP address for analytics and security purposes",
+        "point4": "Anonymized statistical data"
+      },
+      "cookies": {
+        "title": "Cookies and Tracking",
+        "description": "We use cookies and similar tracking technologies to enhance your experience:",
+        "point1": "Essential cookies for website functionality",
+        "point2": "Analytics cookies to understand user behavior",
+        "point3": "Advertising cookies for personalized ads"
+      },
+      "thirdParty": {
+        "title": "Third-Party Services",
+        "description": "We use third-party services to support our website:",
+        "googleAnalytics": "Google Analytics for website traffic analysis",
+        "adSense": "Google AdSense for advertising",
+        "cloudServices": "Cloud hosting and content delivery services"
+      },
+      "userRights": {
+        "title": "Your Rights",
+        "description": "You have the following rights regarding your personal information:",
+        "point1": "Right to access your personal data",
+        "point2": "Right to request data deletion",
+        "point3": "Right to opt-out of data collection",
+        "point4": "Right to correct inaccurate information"
+      },
+      "contactInfo": {
+        "title": "Contact Information",
+        "description": "If you have any questions or concerns about our Privacy Policy, please contact us:",
+        "email": "Contact Email"
+      },
+      "lastUpdated": "Last Updated"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Got a question or suggestion? We'd love to hear from you!",
+      "contactDetails": "Get in Touch",
+      "description": "Feel free to reach out to us via email for any inquiries, feedback, or collaboration opportunities.",
+      "emailLabel": "Contact Email",
+      "responseTime": "We typically respond within a few business days."
     }
   },
   "common": {
@@ -687,6 +741,13 @@
     "error": "An error occurred",
     "notFound": "Not Found",
     "backToHome": "Back to Home",
-    "all": "All"
+    "all": "All",
+    "legalInfo": "Legal Information",
+    "termsOfService": "Terms of Service",
+    "email": "Contact Email",
+    "support": "Support",
+    "reportIssue": "Report an Issue",
+    "discussions": "Discussions",
+    "allRightsReserved": "All Rights Reserved."
   }
 }

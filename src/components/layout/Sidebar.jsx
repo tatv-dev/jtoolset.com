@@ -14,17 +14,37 @@ import {
   Clock, 
   Shuffle, 
   Key, 
-  Cookie, 
+  Code, 
   ChevronRight,
   ChevronLeft,
-  X
+  X,
+  FileText,
+  Network,
+  Globe,
+  QrCode,
+  Link2,
+  Hash,
+  Filter,
+  FilterX,
+  RotateCcw
 } from 'lucide-react';
 
 const toolIcons = {
   'unix-time': Clock,
   'random': Shuffle,
   'jwt-decoder': Key,
-  'cookie-tools': Cookie,
+  'base64': Code,
+  'url-encoder': Link2,
+  'hash-generator': Hash,
+  'qr-generator': QrCode,
+  'ip-checker': Network,
+  'domain-ip': Globe,
+  'lorem-ipsum': FileText,
+  'color-to-image': Code,
+  'regex-tester': Code,
+  'word-counter': FileText,
+  'remove-duplicate-lines': FilterX,
+  'reverse-text': RotateCcw
 };
 
 export default function Sidebar() {
@@ -120,7 +140,7 @@ export default function Sidebar() {
             {Object.entries(toolsByCategory).map(([category, tools]) => (
               <div key={category} className="py-2">
                 <h3 className="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  {category}
+                  {t(`tools.categories.${category}`)}
                 </h3>
                 <div className="mt-1 space-y-1">
                   {tools.map((tool) => {
@@ -141,7 +161,7 @@ export default function Sidebar() {
                         className={linkClassName}
                       >
                         <Icon size={18} className="mr-3 flex-shrink-0" />
-                        <span className="truncate">{tool.name}</span>
+                        <span className="truncate">{t(`tools.${tool.slug}.name`)}</span>
                       </Link>
                     );
                   })}
@@ -157,9 +177,15 @@ export default function Sidebar() {
 
           {/* Copyright - Fixed at bottom */}
           <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
-            <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-              &copy; {new Date().getFullYear()} {t('app.name')}
-            </p>
+            <div className='flex items-center justify-center'>
+              <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                &copy; {new Date().getFullYear()} {t('app.name')}
+              </p>
+              <span className="mx-1 text-gray-400 dark:text-gray-600">|</span>
+              <Link to="/privacy-policy" className="text-xs font-normal hover:text-primary-600 dark:hover:text-primary-400">
+                {t('pages.privacyPolicy.title')}
+              </Link>
+            </div>
           </div>
         </div>
       </aside>
