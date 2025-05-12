@@ -3,6 +3,7 @@
 /* Import styles */
 @import './styles/news-ticker.css';
 @import './styles/social.css';
+@import './styles/animation/wiggle.css';
 
 /* Cấu hình tailwind */
 @tailwind base;
@@ -10,6 +11,7 @@
 @tailwind utilities;
 
 /* Các styles tùy chỉnh khác */
+
 
 /* Keyframes cho animation */
 @keyframes slide-in {
