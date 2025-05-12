@@ -134,6 +134,36 @@ export function getAllTools() {
       tags: ['regex', 'regular expression', 'pattern', 'match', 'replace', 'validation', 'web'],
       isFeatured: true,
     },
+    {
+      id: 'word-counter',
+      slug: 'word-counter',
+      name: 'Word Counter',
+      description: 'Count words, characters, lines and paragraphs in text',
+      category: 'Text',
+      icon: 'FileText',
+      tags: ['text', 'word', 'count', 'character', 'statistics', 'counter', 'analysis'],
+      isFeatured: true,
+    },
+    {
+      id: 'remove-duplicate-lines',
+      slug: 'remove-duplicate-lines',
+      name: 'Remove Duplicate Lines',
+      description: 'Remove duplicate lines from text with various options',
+      category: 'Text',
+      icon: 'FilterX',
+      tags: ['text', 'duplicate', 'lines', 'clean', 'dedupe', 'sort', 'remove'],
+      isFeatured: true,
+    },
+    {
+      id: 'reverse-text',
+      slug: 'reverse-text',
+      name: 'Reverse Text',
+      description: 'Reverse text by characters, words, or lines with various options',
+      category: 'Text',
+      icon: 'RotateCcw',
+      tags: ['text', 'reverse', 'mirror', 'character', 'word', 'line', 'backward'],
+      isFeatured: true,
+    },
   ];
 }
 

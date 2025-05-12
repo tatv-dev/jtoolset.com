@@ -33,7 +33,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jtoolset.com/tools/json-formatter</loc>
+    <loc>https://jtoolset.com/tools/regex-tester</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -69,6 +69,26 @@
   </url>
   <url>
     <loc>https://jtoolset.com/tools/lorem-ipsum</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jtoolset.com/tools/color-to-image</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jtoolset.com/tools/word-counter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jtoolset.com/tools/remove-duplicate-lines</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jtoolset.com/tools/reverse-text</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

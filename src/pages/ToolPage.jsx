@@ -20,6 +20,9 @@ import DomainIp from '../components/tools/domain-ip/DomainIp';
 import LoremIpsum from '../components/tools/lorem-ipsum/LoremIpsum';
 import ColorToImage from '../components/tools/color-to-image/ColorToImage';
 import RegexTester from '../components/tools/regex-tester/RegexTester';
+import WordCounter from '../components/tools/word-counter/WordCounter';
+import RemoveDuplicateLines from '../components/tools/remove-duplicate-lines/RemoveDuplicateLines';
+import ReverseText from '../components/tools/reverse-text/ReverseText';
 
 export default function ToolPage() {
   const { t } = useTranslation();
@@ -70,6 +73,12 @@ export default function ToolPage() {
         return <ColorToImage />;
       case 'regex-tester':
         return <RegexTester />;
+      case 'word-counter':
+        return <WordCounter />;
+      case 'remove-duplicate-lines':
+        return <RemoveDuplicateLines />;
+      case 'reverse-text':
+  return <ReverseText />;
       default:
         return (
           <div className="text-center py-12">
