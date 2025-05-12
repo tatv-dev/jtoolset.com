@@ -1,126 +1,139 @@
 // src/pages/AboutPage.jsx
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Code, Coffee, Terminal, Zap, Cpu, Laugh } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import Card from '../components/ui/Card';
-import { 
-  Code, 
-  Users, 
-  Globe, 
-  Shield, 
-  Lock, 
-  Heart 
-} from 'lucide-react';
+
+// Danh sách các câu nói ngộ nghĩnh về lập trình
+const DEV_JOKES = [
+  "99 little bugs in the code, 99 bugs in the code. Take one down, patch it around, 127 little bugs in the code.",
+  "I'm not a morning person, I'm a coffee person.",
+  "I do not always debug my code, but when I do, I prefer to do it at 2 AM.",
+  "Sometimes I believe the universe is purely mechanical. Then I remember my own code.",
+  "There are 10 types of people in the world: Those who understand binary, and those who don't.",
+  "I'm sorry, the programmer you are trying to reach is currently in another branch.",
+  "Debugging is like being a detective in a crime movie where you're also the murderer.",
+  "My code NEVER has bugs. It just develops random unexpected features.",
+  "I use Stack Overflow, therefore I am a programmer.",
+  "When your hammer is C++, everything begins to look like a thumb."
+];
 
 export default function AboutPage() {
   const { t } = useTranslation();
+  const [currentJoke, setCurrentJoke] = useState(null);
+  const [hoverStates, setHoverStates] = useState({
+    coffee: false,
+    terminal: false,
+    code: false,
+    cpu: false
+  });
 
-  const featuresList = [
-    {
-      icon: Code,
-      title: "Open Source",
-      description: "JToolset is completely open-source. All our tools are freely available and community-driven."
-    },
-    {
-      icon: Users,
-      title: "Community Driven",
-      description: "Developed and maintained by developers, for developers. Contributions are always welcome!"
-    },
-    {
-      icon: Shield,
-      title: "Privacy First",
-      description: "All processing happens in your browser. No data is sent to our servers."
-    },
-    {
-      icon: Lock,
-      title: "Secure",
-      description: "We prioritize security and ensure minimal data handling."
-    }
-  ];
+  const handleHover = (icon) => {
+    setHoverStates(prev => ({
+      ...prev,
+      [icon]: true
+    }));
+  };
 
-  const teamMembers = [
-    {
-      name: "Trinh Ta",
-      role: "Lead Developer",
-      bio: "Passionate about creating developer tools that solve real-world problems."
-    },
-    {
-      name: "Trinh Ta",
-      role: "UI/UX Designer",
-      bio: "Design enthusiast focused on creating intuitive and clean interfaces."
-    }
-  ];
+  const handleHoverExit = (icon) => {
+    setHoverStates(prev => ({
+      ...prev,
+      [icon]: false
+    }));
+  };
+
+  const showRandomJoke = () => {
+    const joke = DEV_JOKES[Math.floor(Math.random() * DEV_JOKES.length)];
+    setCurrentJoke(joke);
+    setTimeout(() => setCurrentJoke(null), 3000);
+  };
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-12">
-      {/* Hero Section */}
-      <div className="text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-          {t('app.name')}
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          {t('common.desc')}
-        </p>
-      </div>
+    <div className="container mx-auto px-4 py-8 min-h-[calc(100vh-4rem)] flex flex-col justify-center">
+      <div className="max-w-4xl mx-auto text-center space-y-8">
+        <div className="space-y-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+            {t('pages.about.title')}
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {t('pages.about.description')}
+          </p>
+        </div>
 
-      {/* Features Section */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {featuresList.map((feature, index) => (
-          <Card 
-            key={index} 
-            className="p-6 text-center transition-all hover:shadow-md"
-          >
-            <div className="flex flex-col items-center">
-              <feature.icon 
-                className="h-12 w-12 text-primary-600 dark:text-primary-400 mb-4" 
-              />
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                {feature.description}
-              </p>
-            </div>
-          </Card>
-        ))}
-      </section>
-
-      {/* Team Section */}
-      <section className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-          Our Team
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {teamMembers.map((member, index) => (
-            <Card 
-              key={index} 
-              className="p-6 text-center transition-all hover:shadow-md"
+        {/* Animated Icons Section */}
+        <div className="flex justify-center space-x-8 mb-8">
+          {[
+            { 
+              icon: Coffee, 
+              key: 'coffee', 
+              animationClass: "hover:rotate-12 hover:scale-110 transition-transform duration-300 hover:text-orange-500" 
+            },
+            { 
+              icon: Terminal, 
+              key: 'terminal', 
+              animationClass: "hover:rotate-[-12deg] hover:scale-110 transition-transform duration-300 hover:text-green-500" 
+            },
+            { 
+              icon: Code, 
+              key: 'code', 
+              animationClass: "hover:rotate-12 hover:scale-110 transition-transform duration-300 hover:text-blue-500" 
+            },
+            { 
+              icon: Cpu, 
+              key: 'cpu', 
+              animationClass: "hover:rotate-[-12deg] hover:scale-110 transition-transform duration-300 hover:text-purple-500" 
+            }
+          ].map(({ icon: Icon, key, animationClass }) => (
+            <div 
+              key={key}
+              className={`cursor-pointer ${animationClass}`}
+              onMouseEnter={() => handleHover(key)}
+              onMouseLeave={() => handleHoverExit(key)}
+              onClick={showRandomJoke}
             >
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-primary-600 dark:text-primary-400 mb-3">
-                  {member.role}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {member.bio}
-                </p>
-              </div>
-            </Card>
+              <Icon 
+                size={48} 
+                className="text-gray-600 dark:text-gray-400" 
+              />
+              {hoverStates[key] && (
+                <div className="absolute transform -translate-x-1/2 -translate-y-full bg-gray-800 text-white text-xs px-2 py-1 rounded-md opacity-0 animate-bounce">
+                  Click for a dev joke!
+                </div>
+              )}
+            </div>
           ))}
         </div>
-      </section>
 
-      {/* Call to Action */}
-      <section className="text-center bg-gray-100 dark:bg-gray-800 p-12 rounded-lg">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-          Join Our Community
-        </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
-          Want to contribute or have suggestions?
-        </p>
-        <div className="flex justify-center space-x-4">
+        {/* Developer Joke Display */}
+        {currentJoke && (
+          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-primary-600 text-white px-6 py-3 rounded-lg shadow-lg animate-slide-in flex items-center">
+            <Laugh className="mr-3" />
+            <p className="text-sm">{currentJoke}</p>
+          </div>
+        )}
+
+        {/* Team and Mission */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              {t('pages.about.mission.title')}
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300">
+              {t('pages.about.mission.description')}
+            </p>
+          </div>
+          
+          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              {t('pages.about.team.title')}
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300">
+              {t('pages.about.team.description')}
+            </p>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="mt-8">
           <a 
             href="https://github.com/tatv-dev" 
             target="_blank" 
@@ -129,22 +142,13 @@ export default function AboutPage() {
             border border-transparent text-base font-medium rounded-md 
             text-white bg-primary-600 hover:bg-primary-700 
             focus:outline-none focus:ring-2 focus:ring-offset-2 
-            focus:ring-primary-500"
+            focus:ring-primary-500 transition-colors duration-300 
+            hover:scale-105 transform"
           >
-            <Heart className="mr-2 h-5 w-5" /> Contribute on GitHub
+            {t('pages.about.cta')}
           </a>
-          <Link
-            to="/tools"
-            className="inline-flex items-center justify-center px-6 py-3 
-            border border-gray-300 dark:border-gray-700 
-            text-base font-medium rounded-md 
-            text-gray-700 dark:text-gray-300 
-            hover:bg-gray-50 dark:hover:bg-gray-700"
-          >
-            Explore Tools
-          </Link>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

@@ -169,14 +169,14 @@ export default function ToolsListPage() {
               </div>
               
               {/* Ad placement between categories */}
-              <div className="mt-6">
+              {/* <div className="mt-6">
                 <AdUnit 
                   slot={ADSENSE_CONFIG.AD_SLOTS.TOOL_PAGE_MIDDLE}
                   format="horizontal"
                   responsive={true}
                   className="mx-auto max-w-4xl"
                 />
-              </div>
+              </div> */}
             </div>
           ))}
         </div>

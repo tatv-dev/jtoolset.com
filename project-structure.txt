@@ -85,8 +85,10 @@ src/
 ├── main.jsx
 ├── pages/
 │   ├── AboutPage.jsx
+│   ├── ContactPage.jsx
 │   ├── HomePage.jsx
 │   ├── NotFoundPage.jsx
+│   ├── PrivacyPolicyPage.jsx
 │   ├── ToolPage.jsx
 │   └── ToolsListPage.jsx
 └── styles/

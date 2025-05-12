@@ -18,9 +18,6 @@ export default function MobileAds({ position = 'top' }) {
   return (
     <div className="xl:hidden w-full my-6">
       <div className="bg-white dark:bg-dark-surface rounded-lg shadow-sm border border-gray-200 dark:border-dark-border p-4">
-        <div className="text-xs text-gray-500 dark:text-gray-400 text-center mb-2">
-          Advertisement
-        </div>
         {/* <AdUnit 
           slot={adSlots[position]}
           format="horizontal"

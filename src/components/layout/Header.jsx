@@ -12,32 +12,39 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useTranslation();
 
+  // Chọn logo dựa trên theme
+  const logoSrc = theme === 'dark' 
+    ? '/logo-dark.png' 
+    : (theme === 'light' 
+      ? '/logo-light.png' 
+      : '/logo-system.png');
+
   return (
     <header className="bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex-shrink-0 z-10 h-16">
       <div className="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-full items-center">
           {/* Logo and Quick Links */}
-          <div className="flex items-center space-x-8">
-            <Link to="/" className="flex items-center space-x-2">
+          <div className="flex items-center">
+            <Link to="/" className="items-center space-x-2 hidden lg:flex mr-4">
               <img 
-                src="/logo.png" 
+                src={logoSrc}
                 alt="JToolset Logo" 
-                className="h-12"
+                className="h-12 w-36"
               />
             </Link>
             
             {/* Quick Links - Desktop */}
             <nav className="hidden md:flex items-center space-x-6">
-              <Link to="/" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              {/* <Link to="/" className="hidden xl:flex text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.home')}
-              </Link>
-              <Link to="/tools" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              </Link> */}
+              <Link to="/tools" className="text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.tools')}
               </Link>
-              <Link to="/about" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              <Link to="/about" className="text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.about')}
               </Link>
-              <Link to="/contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              <Link to="/contact" className="text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.contact')}
               </Link>
             </nav>
@@ -56,7 +63,7 @@ export default function Header() {
           </div>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
+          <div className="hidden md:flex md:items-center md:space-x-6 ml-4">
             <HeaderSearchBar className="w-64" /> 
             <LanguageSelector />
             <div className="flex items-center space-x-2">

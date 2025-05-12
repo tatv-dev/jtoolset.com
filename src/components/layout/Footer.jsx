@@ -29,7 +29,7 @@ export default function Footer() {
                 slot={ADSENSE_CONFIG.AD_SLOTS.TOOL_PAGE_BOTTOM}
                 format="horizontal"
                 responsive={true}
-                className="min-h-[87px]"
+                className="min-h-[95px]"
               />
             ) : (
               <div className="bg-gray-100 dark:bg-gray-800 rounded-md p-8 text-gray-500 dark:text-gray-400">

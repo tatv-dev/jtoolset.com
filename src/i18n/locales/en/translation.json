@@ -641,12 +641,12 @@
   "pages": {
     "home": {
       "title": "JToolset",
-      "subtitle": "A collection of free tools to help make your development work easier.",
+      "subtitle": "A collection of free tools to help make your development work easier and more fun.",
       "featuredTools": "Featured Tools",
       "whyUse": "Why use JToolset?",
       "feature1": {
-        "title": "Free & Open Source",
-        "description": "All tools are completely free, no registration or software download required."
+        "title": "Powerful & User-Friendly",
+        "description": "Intuitive tools designed to streamline your development workflow with minimal friction."
       },
       "feature2": {
         "title": "Works in browser",
@@ -656,8 +656,8 @@
         "title": "Mobile optimized",
         "description": "Responsive design, allowing you to use it on any device."
       },
-      "readyToStart": "Ready to start?",
-      "exploreTools": "Explore all tools"
+      "readyToStart": "Ready to supercharge your workflow?",
+      "exploreTools": "Explore All Tools"
     },
     "pageList": {
       "home": "Home",
@@ -724,6 +724,19 @@
       "description": "Feel free to reach out to us via email for any inquiries, feedback, or collaboration opportunities.",
       "emailLabel": "Contact Email",
       "responseTime": "We typically respond within a few business days."
+    },
+    "about": {
+      "title": "About JToolset",
+      "description": "A free, open-source collection of developer tools designed to make your coding life easier and more enjoyable.",
+      "mission": {
+        "title": "Our Mission",
+        "description": "To provide developers with quick, efficient, and easy-to-use online tools that streamline common development tasks and enhance productivity."
+      },
+      "team": {
+        "title": "Who We Are",
+        "description": "A group of passionate developers who believe in creating practical, user-friendly tools that solve real-world coding challenges."
+      },
+      "cta": "Explore Our GitHub"
     }
   },
   "common": {

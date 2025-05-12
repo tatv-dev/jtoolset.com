@@ -635,8 +635,8 @@
       "featuredTools": "Công cụ nổi bật",
       "whyUse": "Tại sao nên sử dụng JToolset?",
       "feature1": {
-        "title": "Miễn phí & Mã nguồn mở",
-        "description": "Tất cả công cụ hoàn toàn miễn phí, không cần đăng ký hay tải xuống phần mềm."
+        "title": "Mạnh Mẽ & Thân Thiện",
+        "description": "Các công cụ trực quan được thiết kế để hợp lý hóa quy trình phát triển của bạn với độ phức tạp tối thiểu."
       },
       "feature2": {
         "title": "Làm việc trong trình duyệt",
@@ -714,6 +714,19 @@
       "description": "Hãy thoải mái liên hệ với chúng tôi qua email để đưa ra các câu hỏi, ý kiến phản hồi hoặc cơ hội hợp tác.",
       "emailLabel": "Email liên hệ",
       "responseTime": "Chúng tôi thường phản hồi trong vài ngày làm việc."
+    },
+    "about": {
+      "title": "Giới Thiệu JToolset",
+      "description": "Bộ công cụ miễn phí, mã nguồn mở dành cho các nhà phát triển, được thiết kế để làm cho công việc lập trình của bạn dễ dàng và thú vị hơn.",
+      "mission": {
+        "title": "Sứ Mệnh Của Chúng Tôi",
+        "description": "Cung cấp cho các nhà phát triển các công cụ trực tuyến nhanh chóng, hiệu quả và dễ sử dụng để hợp lý hóa các tác vụ phát triển thông thường và nâng cao năng suất."
+      },
+      "team": {
+        "title": "Chúng Tôi Là Ai",
+        "description": "Một nhóm các nhà phát triển nhiệt huyết, tin rằng việc tạo ra các công cụ thực tế và thân thiện với người dùng để giải quyết các thách thức lập trình thực tế là rất quan trọng."
+      },
+      "cta": "Khám Phá GitHub"
     }
   },
   "common": {
