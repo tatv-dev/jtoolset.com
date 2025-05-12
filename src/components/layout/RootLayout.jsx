@@ -25,7 +25,7 @@ export default function RootLayout() {
         <Sidebar />
         
         {/* Main Content - Chiếm toàn bộ không gian còn lại */}
-        <main className="flex-1 p-4 md:p-6 md:pb-24 overflow-y-auto main-scroll">
+        <main className="flex-1 p-4 md:p-6 md:pb-[150px] overflow-y-auto main-scroll">
           <Outlet />
         </main>
         

@@ -23,6 +23,7 @@ import RegexTester from '../components/tools/regex-tester/RegexTester';
 import WordCounter from '../components/tools/word-counter/WordCounter';
 import RemoveDuplicateLines from '../components/tools/remove-duplicate-lines/RemoveDuplicateLines';
 import ReverseText from '../components/tools/reverse-text/ReverseText';
+import SocialShare from '../components/ui/SocialShare';
 
 export default function ToolPage() {
   const { t } = useTranslation();
@@ -176,54 +177,11 @@ export default function ToolPage() {
       
       {/* Phần chia sẻ */}
       <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
-        <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-          {t('common.share')}
-        </h2>
-        
-        <div className="flex space-x-3">
-          <ShareButton type="twitter" getShareUrl={getShareUrl} />
-          <ShareButton type="facebook" getShareUrl={getShareUrl} />
-          <ShareButton type="linkedin" getShareUrl={getShareUrl} />
-        </div>
-        
-        <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-          {t('common.shareMessage')}
-        </p>
+        <SocialShare 
+          url={`https://jtoolset.com/tools/${tool.slug}`} 
+          title={`${t(`tools.${tool.slug}.name`)} - JToolset: ${t(`tools.${tool.slug}.description`)}`}
+        />
       </div>
     </div>
-  );
-}
-
-// Component nút chia sẻ
-function ShareButton({ type, getShareUrl }) {
-  // Sử dụng các biến thông thường thay vì functions
-  let buttonStyle = 'text-white w-10 h-10 rounded-full flex items-center justify-center font-bold ';
-  let buttonIcon = '';
-  let ariaLabel = 'Share on social media';
-  
-  if (type === 'twitter') {
-    buttonStyle += 'bg-blue-400 hover:bg-blue-500';
-    buttonIcon = '𝕏';
-    ariaLabel = 'Share on Twitter';
-  } else if (type === 'facebook') {
-    buttonStyle += 'bg-blue-600 hover:bg-blue-700';
-    buttonIcon = 'f';
-    ariaLabel = 'Share on Facebook';
-  } else if (type === 'linkedin') {
-    buttonStyle += 'bg-blue-700 hover:bg-blue-800';
-    buttonIcon = 'in';
-    ariaLabel = 'Share on LinkedIn';
-  }
-  
-  return (
-    <a
-      href={getShareUrl(type)}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={buttonStyle}
-      aria-label={ariaLabel}
-    >
-      {buttonIcon}
-    </a>
   );
 }
