@@ -23,6 +23,7 @@ import RegexTester from '../components/tools/regex-tester/RegexTester';
 import WordCounter from '../components/tools/word-counter/WordCounter';
 import RemoveDuplicateLines from '../components/tools/remove-duplicate-lines/RemoveDuplicateLines';
 import ReverseText from '../components/tools/reverse-text/ReverseText';
+import HashVerifier from '../components/tools/hash-verifier/HashVerifier';
 import SocialShare from '../components/ui/SocialShare';
 
 export default function ToolPage() {
@@ -79,7 +80,9 @@ export default function ToolPage() {
       case 'remove-duplicate-lines':
         return <RemoveDuplicateLines />;
       case 'reverse-text':
-  return <ReverseText />;
+        return <ReverseText />;
+      case 'hash-verifier':
+        return <HashVerifier />;
       default:
         return (
           <div className="text-center py-12">

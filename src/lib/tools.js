@@ -164,6 +164,16 @@ export function getAllTools() {
       tags: ['text', 'reverse', 'mirror', 'character', 'word', 'line', 'backward'],
       isFeatured: true,
     },
+    {
+      id: 'hash-verifier',
+      slug: 'hash-verifier',
+      name: 'Hash Generator & Verifier',
+      description: 'Generate and verify hashes for text or files',
+      category: 'Crypto',
+      icon: 'Shield',
+      tags: ['hash', 'verify', 'integrity', 'sha256', 'md5', 'sha1', 'checksum', 'security'],
+      isFeatured: true,
+    },
   ];
 }
 
@@ -207,7 +217,7 @@ export function getAllCategories() {
 export function getRelatedTools(toolId, limit = 3) {
   const currentTool = getAllTools().find(tool => tool.id === toolId);
   if (!currentTool) return [];
-  
+
   return getAllTools()
     .filter(tool => tool.id !== toolId && tool.category === currentTool.category)
     .slice(0, limit);

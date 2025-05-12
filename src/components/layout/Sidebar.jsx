@@ -112,31 +112,31 @@ export default function Sidebar() {
           w-64 bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border
           flex-shrink-0 transition-all duration-300 ease-in-out z-30
           ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-          fixed md:static top-0 bottom-0 left-0 overflow-hidden flex flex-col h-full
+          fixed md:static top-0 bottom-0 left-0 h-full md:h-auto
         `}
       >
-        {/* Mobile close button */}
-        <div className="flex md:hidden justify-end p-2">
-          <button 
-            onClick={() => setIsOpen(false)}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-            aria-label="Close sidebar"
-          >
-            <X size={20} />
-          </button>
-        </div>
-        
-        {/* Logo and search - Fixed height */}
-        <div className="p-4 flex-shrink-0">
-          <Link to="/" className="flex items-center space-x-2 mb-6">
-            <span className="text-xl font-bold text-primary-600 dark:text-primary-400">{t('pages.pageList.tools')}</span>
-          </Link>
-          <SidebarSearchBar className="w-full" />
-        </div>
+        <div className="flex flex-col h-full overflow-hidden">
+          {/* Mobile close button */}
+          <div className="flex md:hidden justify-end p-2">
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              aria-label="Close sidebar"
+            >
+              <X size={20} />
+            </button>
+          </div>
+          
+          {/* Logo and search - Fixed height */}
+          <div className="p-4 flex-shrink-0">
+            <Link to="/" className="flex items-center space-x-2 mb-6">
+              <span className="text-xl font-bold text-primary-600 dark:text-primary-400">{t('pages.pageList.tools')}</span>
+            </Link>
+            <SidebarSearchBar className="w-full" />
+          </div>
 
-        {/* Tools list - Scrollable area - KEY FIXES HERE */}
-        <div className="flex-1 overflow-hidden">
-          <nav className="h-full px-2 pb-4 space-y-1 overflow-y-auto sidebar-scroll">
+          {/* Tools list - Scrollable */}
+          <nav className="flex-1 px-2 pb-4 space-y-1 overflow-y-auto sidebar-scroll">
             {Object.entries(toolsByCategory).map(([category, tools]) => (
               <div key={category} className="py-2">
                 <h3 className="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -169,23 +169,23 @@ export default function Sidebar() {
               </div>
             ))}
           </nav>
-        </div>
 
-        {/* Theme toggle - Fixed height */}
-        <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
-          <ThemeToggle />
-        </div>
+          {/* Theme toggle - Fixed height */}
+          <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
+            <ThemeToggle />
+          </div>
 
-        {/* Copyright - Fixed at bottom */}
-        <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
-          <div className='flex items-center justify-center'>
-            <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-              &copy; {new Date().getFullYear()} {t('app.name')}
-            </p>
-            <span className="mx-1 text-gray-400 dark:text-gray-600">|</span>
-            <Link to="/privacy-policy" className="text-xs font-normal hover:text-primary-600 dark:hover:text-primary-400">
-              {t('pages.privacyPolicy.title')}
-            </Link>
+          {/* Copyright - Fixed at bottom */}
+          <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
+            <div className='flex items-center justify-center'>
+              <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                &copy; {new Date().getFullYear()} {t('app.name')}
+              </p>
+              <span className="mx-1 text-gray-400 dark:text-gray-600">|</span>
+              <Link to="/privacy-policy" className="text-xs font-normal hover:text-primary-600 dark:hover:text-primary-400">
+                {t('pages.privacyPolicy.title')}
+              </Link>
+            </div>
           </div>
         </div>
       </aside>

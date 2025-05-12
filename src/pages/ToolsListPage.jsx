@@ -58,7 +58,7 @@ export default function ToolsListPage() {
   };
   
   return (
-    <div className="space-y-8 py-6">
+    <div className="space-y-8 py-6 px-4 lg:px-20 xl:px-40">
       {/* Page Header */}
       <div className="text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -70,7 +70,7 @@ export default function ToolsListPage() {
       </div>
       
       {/* Mobile ad */}
-      <MobileAds position="top" />
+      {/* <MobileAds position="top" /> */}
       
       {/* Search and Filter */}
       <div className="bg-white dark:bg-dark-surface rounded-lg shadow-sm border border-gray-200 dark:border-dark-border p-4">

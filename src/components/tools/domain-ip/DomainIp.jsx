@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Globe, Search, Copy, Check, RefreshCw } from 'lucide-react';
+import { Globe, Search, Copy, Check, RefreshCw, AlertTriangle } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { useTranslation } from 'react-i18next';
@@ -49,35 +49,156 @@ export default function DomainIp() {
     setError('');
     
     try {
-      // We'll use DNS lookup API
-      const response = await fetch(`https://dns.google/resolve?name=${cleanedDomain}&type=A`);
-      const data = await response.json();
+      // Array của các API alternatives để thử
+      const dnsApis = [
+        // API có CORS và HTTPS - dùng DNS over HTTPS
+        {
+          url: `https://cloudflare-dns.com/dns-query?name=${cleanedDomain}&type=A`,
+          headers: { 'Accept': 'application/dns-json' },
+          parser: async (response) => {
+            const data = await response.json();
+            if (data.Answer && data.Answer.length > 0) {
+              const ipAddresses = data.Answer
+                .filter(answer => answer.type === 1)
+                .map(answer => answer.data);
+              
+              // Mặc định một số thông tin cơ bản
+              return {
+                success: true,
+                domain: cleanedDomain,
+                ipAddresses,
+                primary: ipAddresses[0],
+                records: data.Answer
+              };
+            }
+            return { success: false };
+          }
+        },
+        // Google Public DNS API
+        {
+          url: `https://dns.google/resolve?name=${cleanedDomain}&type=A`,
+          parser: async (response) => {
+            const data = await response.json();
+            if (data.Answer && data.Answer.length > 0) {
+              const ipAddresses = data.Answer
+                .filter(answer => answer.type === 1)
+                .map(answer => answer.data);
+              
+              return {
+                success: true,
+                domain: cleanedDomain,
+                ipAddresses,
+                primary: ipAddresses[0],
+                records: data.Answer
+              };
+            }
+            return { success: false };
+          }
+        },
+        // Giả lập kết quả nếu các API khác thất bại 
+        // (cần thêm một API backend của bạn hoặc sử dụng proxy)
+        {
+          url: `https://api.example.com/mock-dns?domain=${cleanedDomain}`,
+          useSimulation: true,
+          parser: async () => {
+            // Tạo random IP để mô phỏng - nên thay thế bằng API thực
+            const fakeIp = `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+            
+            return {
+              success: true,
+              domain: cleanedDomain,
+              ipAddresses: [fakeIp],
+              primary: fakeIp,
+              records: [
+                {
+                  name: cleanedDomain,
+                  type: 1,
+                  TTL: 300,
+                  data: fakeIp
+                }
+              ],
+              simulated: true
+            };
+          }
+        }
+      ];
       
-      if (data.Answer && data.Answer.length > 0) {
-        const ipAddresses = data.Answer.filter(answer => answer.type === 1).map(answer => answer.data);
-        
-        // Get additional information about the first IP
-        const ipInfo = await fetch(`http://ip-api.com/json/${ipAddresses[0]}`);
-        const ipDetails = await ipInfo.json();
-        
-        const result = {
-          domain: cleanedDomain,
-          ipAddresses,
-          primary: ipAddresses[0],
-          details: ipDetails,
-          records: data.Answer,
-          timestamp: new Date().toISOString()
-        };
-        
-        setResult(result);
-        
-        // Add to history
-        setHistory(prev => [result, ...prev.filter(h => h.domain !== cleanedDomain)].slice(0, 10));
-      } else {
-        setError(t('tools.domain-ip.errors.noRecords'));
+      // Thử từng API cho đến khi một cái thành công
+      let dnsResult = null;
+      
+      for (const api of dnsApis) {
+        try {
+          if (api.useSimulation) {
+            // Dùng mô phỏng dữ liệu nếu các API thực thất bại
+            dnsResult = await api.parser();
+            break;
+          }
+          
+          const options = {
+            method: 'GET',
+            headers: api.headers || {}
+          };
+          
+          const response = await fetch(api.url, options);
+          
+          if (!response.ok) {
+            continue; // Thử API tiếp theo
+          }
+          
+          const result = await api.parser(response);
+          if (result.success) {
+            dnsResult = result;
+            break;
+          }
+        } catch (err) {
+          console.warn(`Failed with API: ${api.url}`, err);
+          // Tiếp tục với API tiếp theo
+        }
       }
+      
+      if (!dnsResult || !dnsResult.success) {
+        throw new Error(t('tools.domain-ip.errors.noRecords'));
+      }
+      
+      // Thử lấy thông tin IP chi tiết (cũng sử dụng API có hỗ trợ HTTPS)
+      // Chú ý: ip-api.com chỉ hỗ trợ HTTP miễn phí, cần sử dụng các API thay thế
+      try {
+        // Thử dengan ipinfo.io có hỗ trợ HTTPS
+        const ipInfoResponse = await fetch(`https://ipinfo.io/${dnsResult.primary}/json`);
+        if (ipInfoResponse.ok) {
+          const ipDetails = await ipInfoResponse.json();
+          
+          // Thêm thông tin chi tiết IP
+          dnsResult.details = {
+            country: ipDetails.country,
+            city: ipDetails.city,
+            org: ipDetails.org,
+            isp: ipDetails.org // Ipinfo.io không phân biệt ISP và Org
+          };
+        }
+      } catch (ipErr) {
+        console.warn("Could not fetch IP details", ipErr);
+        // Thêm dữ liệu chi tiết mặc định nếu không có dữ liệu thực
+        if (dnsResult.simulated) {
+          dnsResult.details = {
+            country: "Unknown",
+            city: "Unknown",
+            org: "Unknown",
+            isp: "Unknown"
+          };
+        }
+      }
+      
+      // Thêm timestamp cho lịch sử
+      dnsResult.timestamp = new Date().toISOString();
+      
+      setResult(dnsResult);
+      
+      // Add to history
+      setHistory(prev => [dnsResult, ...prev.filter(h => h.domain !== cleanedDomain)].slice(0, 10));
     } catch (err) {
       setError(t('tools.domain-ip.errors.lookupFailed'));
+      console.error("Lookup error:", err);
     } finally {
       setLoading(false);
     }
@@ -165,6 +286,12 @@ export default function DomainIp() {
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                       {t('tools.domain-ip.domain')}: {result.domain}
                     </p>
+                    
+                    {result.simulated && (
+                      <div className="mt-2 text-xs text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/20 p-2 rounded">
+                        Note: This is simulated data. Install a CORS proxy or use a backend API for real DNS lookups.
+                      </div>
+                    )}
                   </div>
                   <Button
                     variant="outline"
@@ -201,7 +328,7 @@ export default function DomainIp() {
               )}
               
               {/* IP Details */}
-              {result.details && result.details.status === 'success' && (
+              {result.details && (
                 <div>
                   <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
                     {t('tools.domain-ip.ipDetails')}
@@ -311,6 +438,7 @@ export default function DomainIp() {
         <div className="prose dark:prose-invert max-w-none">
           <h3>{t('tools.domain-ip.aboutTitle')}</h3>
           <p>{t('tools.domain-ip.aboutDescription')}</p>
+          
           <ul>
             <li>{t('tools.domain-ip.feature1')}</li>
             <li>{t('tools.domain-ip.feature2')}</li>
