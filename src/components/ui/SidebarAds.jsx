@@ -25,19 +25,6 @@ export default function SidebarAds() {
           />
         </div> */}
 
-        {/* Middle Ad - Large Rectangle */}
-        {/* <div className="bg-white dark:bg-dark-surface rounded-lg shadow-sm border border-gray-200 dark:border-dark-border p-4">
-          <div className="text-xs text-gray-500 dark:text-gray-400 text-center mb-2">
-            Advertisement
-          </div>
-          <AdUnit 
-            slot={ADSENSE_CONFIG.AD_SLOTS.SIDEBAR_MIDDLE}
-            format="rectangle"
-            responsive={true}
-            className="min-h-[250px]"
-          />
-        </div> */}
-
         {/* Bottom Ad - Skyscraper */}
         {/* <div className="bg-white dark:bg-dark-surface rounded-lg shadow-sm border border-gray-200 dark:border-dark-border p-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 text-center mb-2">
