@@ -10,23 +10,26 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import NotFoundPage from './pages/NotFoundPage'
 import { ThemeProvider } from './context/ThemeContext'
 import { SearchProvider } from './context/SearchContext'
+import { LanguageProvider } from './context/LanguageContext'
 
 function App() {
   return (
     <ThemeProvider>
-      <SearchProvider>
-        <Routes>
-          <Route path="/" element={<RootLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="tools" element={<ToolsListPage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="contact" element={<ContactPage />} />
-            <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="tools/:slug" element={<ToolPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </SearchProvider>
+      <LanguageProvider>
+        <SearchProvider>
+          <Routes>
+            <Route path="/" element={<RootLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="tools" element={<ToolsListPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="contact" element={<ContactPage />} />
+              <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="tools/:slug" element={<ToolPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </SearchProvider>
+      </LanguageProvider>
     </ThemeProvider>
   )
 }

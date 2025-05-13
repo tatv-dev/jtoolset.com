@@ -133,7 +133,7 @@ export default function AboutPage() {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <a 
             href="https://github.com/tatv-dev" 
             target="_blank" 
@@ -147,7 +147,7 @@ export default function AboutPage() {
           >
             {t('pages.about.cta')}
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

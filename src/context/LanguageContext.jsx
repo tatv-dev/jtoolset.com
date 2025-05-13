@@ -1,4 +1,3 @@
-// src/context/LanguageContext.jsx
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
@@ -11,22 +10,27 @@ export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState('en');
 
   useEffect(() => {
-    // Lấy ngôn ngữ từ localStorage nếu có
+    // Get language from localStorage if available
     const storedLanguage = localStorage.getItem('language');
     
     if (storedLanguage) {
       setLanguage(storedLanguage);
       i18n.changeLanguage(storedLanguage);
     } else {
-      // Kiểm tra ngôn ngữ trình duyệt
+      // Check browser language
       const browserLang = navigator.language || navigator.userLanguage;
-      const lang = browserLang.startsWith('vi') ? 'vi' : 'en';
+      
+      // Updated language detection to include Japanese
+      const lang = browserLang.startsWith('ja') ? 'ja' :
+                  browserLang.startsWith('ko') ? 'ko' : 
+                  browserLang.startsWith('vi') ? 'vi' : 'en';
+      
       setLanguage(lang);
       i18n.changeLanguage(lang);
     }
   }, [i18n]);
 
-  // Thay đổi ngôn ngữ
+  // Change language
   const changeLanguage = (lang) => {
     setLanguage(lang);
     i18n.changeLanguage(lang);

@@ -6,6 +6,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSearch } from '@/context/SearchContext';
 import { useTheme } from '@/context/ThemeContext';
 import SidebarSearchBar from '@/components/ui/SidebarSearchBar';
+import CuteCatLogo from '@/components/ui/CuteCatLogo';
+import AnimationLogo from '@/components/ui/AnimationLogo';
 import ThemeToggle from '@/components/layout/ThemeToggle';
 import { useTranslation } from 'react-i18next';
 
@@ -129,10 +131,10 @@ export default function Sidebar() {
           
           {/* Logo and search - Fixed height */}
           <div className="p-4 flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-2 mb-6">
-              <span className="text-xl font-bold text-primary-600 dark:text-primary-400">{t('pages.pageList.tools')}</span>
-            </Link>
+            {/* <AnimationLogo className="w-full" text={t('pages.pageList.tools')} /> */}
+            <CuteCatLogo className="w-full" text={t('pages.pageList.tools')} />
             <SidebarSearchBar className="w-full" />
+          
           </div>
 
           {/* Tools list - Scrollable */}

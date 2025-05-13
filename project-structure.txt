@@ -20,6 +20,8 @@ src/
 │   │   │   └── DomainIp.jsx
 │   │   ├── hash-generator/
 │   │   │   └── HashGenerator.jsx
+│   │   ├── hash-verifier/
+│   │   │   └── HashVerifier.jsx
 │   │   ├── ip-checker/
 │   │   │   └── IpChecker.jsx
 │   │   ├── json-formatter/
@@ -48,17 +50,21 @@ src/
 │   │   └── word-counter/
 │   │       └── WordCounter.jsx
 │   └── ui/
+│       ├── AnimationLogo.jsx
 │       ├── Button.jsx
 │       ├── Card.jsx
+│       ├── CuteCatLogo.jsx
 │       ├── HeaderSearchBar.jsx
 │       ├── Input.jsx
 │       ├── LanguageSelector.jsx
 │       ├── MobileAds.jsx
+│       ├── ModePicker.jsx
 │       ├── NewsTicker.jsx
 │       ├── Script.jsx
 │       ├── SearchBar.jsx
 │       ├── SidebarAds.jsx
 │       ├── SidebarSearchBar.jsx
+│       ├── SocialShare.jsx
 │       └── Tooltip.jsx
 ├── context/
 │   ├── LanguageContext.jsx
@@ -72,6 +78,10 @@ src/
 │   ├── i18n.js
 │   └── locales/
 │       ├── en/
+│       │   └── translation.json
+│       ├── ja/
+│       │   └── translation.json
+│       ├── ko/
 │       │   └── translation.json
 │       └── vi/
 │           └── translation.json
@@ -91,5 +101,13 @@ src/
 │   ├── PrivacyPolicyPage.jsx
 │   ├── ToolPage.jsx
 │   └── ToolsListPage.jsx
+├── public/
+│   ├── icons/
+│   └── images/
 └── styles/
-    └── news-ticker.css
+    ├── animation/
+    │   ├── glitch-text.css
+    │   ├── typing-text.css
+    │   └── wiggle.css
+    ├── news-ticker.css
+    └── social.css

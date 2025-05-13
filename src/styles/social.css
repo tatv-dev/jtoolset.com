@@ -1,0 +1,39 @@
+/* Add these CSS animations to your src/index.css file for smooth tooltip transitions */
+
+/* Tooltip and button hover animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Apply animations to share buttons */
+.animate-fade-in-out {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.share-button-hover:hover {
+  animation: pulse 0.3s ease-in-out;
+}
+
+/* Shared social buttons hover effect */
+.social-share-button {
+  transition: all 0.2s ease;
+}
+
+.social-share-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Mobile optimizations for share buttons */
+@media (max-width: 640px) {
+  .social-share-container {
+    justify-content: center;
+  }
+}

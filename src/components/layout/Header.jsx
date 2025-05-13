@@ -25,7 +25,7 @@ export default function Header() {
         <div className="flex justify-between h-full items-center">
           {/* Logo and Quick Links */}
           <div className="flex items-center">
-            <Link to="/" className="items-center space-x-2 hidden lg:flex mr-4">
+            <Link to="/" className="items-center pb-1 space-x-2 hidden lg:flex mr-4">
               <img 
                 src={logoSrc}
                 alt="JToolset Logo" 

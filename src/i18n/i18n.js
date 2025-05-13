@@ -1,4 +1,3 @@
-// src/i18n/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -6,6 +5,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 // Import translations
 import translationEN from './locales/en/translation.json';
 import translationVI from './locales/vi/translation.json';
+import translationJA from './locales/ja/translation.json';
+import translationKO from './locales/ko/translation.json';
 
 // Resources object with translations
 const resources = {
@@ -14,6 +15,12 @@ const resources = {
   },
   vi: {
     translation: translationVI
+  },
+  ja: {
+    translation: translationJA 
+  },
+  ko: {
+    translation: translationKO 
   }
 };
 
