@@ -18,7 +18,7 @@ const CuteCatLogo = ({text}) => {
               rx="15" 
               ry="12" 
               fill="currentColor"
-              className="text-primary-500 dark:text-primary-500"
+              className="text-gray-700 dark:text-gray-200"
             >
               <animate 
                 attributeName="ry" 
@@ -34,14 +34,14 @@ const CuteCatLogo = ({text}) => {
               cy="18" 
               r="10" 
               fill="currentColor"
-              className="text-primary-500 dark:text-primary-500"
+              className="text-gray-700 dark:text-gray-200"
             />
             
             {/* Tai mèo trái */}
             <path 
               d="M22,14 L24,6 L28,12 Z" 
               fill="currentColor"
-              className="text-primary-600 dark:text-primary-400"
+              className="text-gray-600 dark:text-gray-300"
             >
               <animate 
                 attributeName="d" 
@@ -55,7 +55,7 @@ const CuteCatLogo = ({text}) => {
             <path 
               d="M38,14 L36,6 L32,12 Z" 
               fill="currentColor"
-              className="text-primary-600 dark:text-primary-400"
+              className="text-gray-600 dark:text-gray-300"
             >
               <animate 
                 attributeName="d" 
@@ -72,7 +72,7 @@ const CuteCatLogo = ({text}) => {
               rx="1.5" 
               ry="2.5" 
               fill="currentColor"
-              className="text-primary-900 dark:text-gray-700"
+              className="text-gray-200 dark:text-gray-700"
             >
               <animate 
                 attributeName="ry" 
@@ -89,7 +89,7 @@ const CuteCatLogo = ({text}) => {
               rx="1.5" 
               ry="2.5" 
               fill="currentColor"
-              className="text-primary-900 dark:text-gray-700"
+              className="text-gray-200 dark:text-gray-700"
             >
               <animate 
                 attributeName="ry" 
@@ -103,7 +103,7 @@ const CuteCatLogo = ({text}) => {
             <path 
               d="M28,19 L32,19 L30,21 Z" 
               fill="currentColor"
-              className="text-primary-700 dark:text-primary-300"
+              className="text-gray-200 dark:text-gray-300"
             />
             
             {/* Miệng mèo */}
@@ -112,7 +112,7 @@ const CuteCatLogo = ({text}) => {
               stroke="currentColor"
               strokeWidth="0.7"
               fill="none"
-              className="text-primary-700 dark:text-primary-300"
+              className="text-gray-200 dark:text-gray-300"
             >
               <animate 
                 attributeName="d" 
@@ -130,7 +130,7 @@ const CuteCatLogo = ({text}) => {
               y2="19" 
               stroke="currentColor"
               strokeWidth="0.7"
-              className="text-primary-700 dark:text-primary-300"
+              className="text-gray-200 dark:text-gray-300"
             >
               <animate 
                 attributeName="y2" 
@@ -146,7 +146,7 @@ const CuteCatLogo = ({text}) => {
               y2="21" 
               stroke="currentColor"
               strokeWidth="0.7"
-              className="text-primary-700 dark:text-primary-300"
+              className="text-gray-200 dark:text-gray-300"
             >
               <animate 
                 attributeName="y2" 
@@ -164,7 +164,7 @@ const CuteCatLogo = ({text}) => {
               y2="19" 
               stroke="currentColor"
               strokeWidth="0.7"
-              className="text-primary-700 dark:text-primary-300"
+              className="text-gray-200 dark:text-gray-300"
             >
               <animate 
                 attributeName="y2" 
@@ -180,7 +180,7 @@ const CuteCatLogo = ({text}) => {
               y2="21" 
               stroke="currentColor"
               strokeWidth="0.7"
-              className="text-primary-700 dark:text-primary-300"
+              className="text-gray-200 dark:text-gray-300"
             >
               <animate 
                 attributeName="y2" 
@@ -196,7 +196,7 @@ const CuteCatLogo = ({text}) => {
               fill="none" 
               stroke="currentColor"
               strokeWidth="2"
-              className="text-primary-500 dark:text-primary-400"
+              className="text-gray-600 dark:text-gray-300"
             >
               <animate 
                 attributeName="d" 
@@ -215,7 +215,7 @@ const CuteCatLogo = ({text}) => {
             fontFamily="Arial, sans-serif" 
             fontSize="24" 
             fontWeight="bold"
-            className="text-primary-600 dark:text-primary-400 bg-red-400"
+            className="text-gray-800 dark:text-gray-300 bg-red-400"
           >
             {Array.from(text).map((char, index) => (
               <tspan 
