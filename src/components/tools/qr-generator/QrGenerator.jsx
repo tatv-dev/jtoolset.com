@@ -1,11 +1,11 @@
-// src/components/tools/qr-generator/QrGenerator.jsx
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Download, Copy, Check, RefreshCw } from 'lucide-react';
+import { QrCode, Download, Copy, Check, RefreshCw, Settings, Palette, Shield } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { useTranslation } from 'react-i18next';
+import { useScript } from '@/hooks/useScript';
 
 export default function QrGenerator() {
   const { t } = useTranslation();
@@ -32,11 +32,19 @@ export default function QrGenerator() {
   });
   const [qrCodeUrl, setQrCodeUrl] = useState('');
   const [copied, setCopied] = useState(false);
-  const canvasRef = useRef(null);
+  const qrContainerRef = useRef(null);
+  
+  // Load QR code library
+  const qrLibStatus = useScript('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js');
   
   // Generate QR code
   useEffect(() => {
+    if (qrLibStatus !== 'ready') return;
     if (!input && qrType !== 'wifi' && qrType !== 'vcard') return;
+    if (!qrContainerRef.current) return;
+    
+    // Clear previous QR code
+    qrContainerRef.current.innerHTML = '';
     
     let data = input;
     
@@ -75,37 +83,40 @@ export default function QrGenerator() {
     
     if (!data) return;
     
-    // Generate QR code using API
-    const params = new URLSearchParams({
-      size: `${qrOptions.size}x${qrOptions.size}`,
-      data: data,
-      ecc: qrOptions.errorCorrectionLevel,
-      color: qrOptions.fgColor.replace('#', ''),
-      bgcolor: qrOptions.bgColor.replace('#', ''),
-    });
-    
-    const url = `https://api.qrserver.com/v1/create-qr-code/?${params.toString()}`;
-    setQrCodeUrl(url);
-  }, [input, qrType, qrOptions, wifiOptions, vCardOptions]);
+    // Generate QR code using QRCodeJS
+    try {
+      // eslint-disable-next-line no-undef
+      new QRCode(qrContainerRef.current, {
+        text: data,
+        width: qrOptions.size,
+        height: qrOptions.size,
+        colorDark: qrOptions.fgColor,
+        colorLight: qrOptions.bgColor,
+        correctLevel: QRCode.CorrectLevel[qrOptions.errorCorrectionLevel]
+      });
+      
+      // Get image URL for download/copy
+      setTimeout(() => {
+        const qrImg = qrContainerRef.current.querySelector('img');
+        if (qrImg) {
+          setQrCodeUrl(qrImg.src);
+        }
+      }, 100);
+    } catch (error) {
+      console.error('Error generating QR code:', error);
+    }
+  }, [input, qrType, qrOptions, wifiOptions, vCardOptions, qrLibStatus]);
   
   // Download QR code
-  const downloadQR = async () => {
+  const downloadQR = () => {
     if (!qrCodeUrl) return;
     
-    try {
-      const response = await fetch(qrCodeUrl);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `qr-code-${Date.now()}.png`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-    } catch (error) {
-      console.error('Error downloading QR code:', error);
-    }
+    const a = document.createElement('a');
+    a.href = qrCodeUrl;
+    a.download = `qr-code-${Date.now()}.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
   
   // Copy QR code to clipboard
@@ -179,6 +190,9 @@ export default function QrGenerator() {
       website: '',
     });
     setQrCodeUrl('');
+    if (qrContainerRef.current) {
+      qrContainerRef.current.innerHTML = '';
+    }
   };
 
   // Render input fields based on QR type
@@ -326,6 +340,32 @@ export default function QrGenerator() {
     }
   };
 
+  // Render the error correction level options
+  const renderErrorCorrectionOptions = () => {
+    return (
+      <div className="grid grid-cols-2 gap-2 mt-2">
+        {[
+          { value: 'L', label: 'Low (7%)' },
+          { value: 'M', label: 'Medium (15%)' },
+          { value: 'Q', label: 'Quartile (25%)' },
+          { value: 'H', label: 'High (30%)' }
+        ].map((option) => (
+          <div 
+            key={option.value}
+            className={`p-2 rounded-md cursor-pointer text-center text-sm ${
+              qrOptions.errorCorrectionLevel === option.value 
+                ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 font-medium border border-primary-200 dark:border-primary-700' 
+                : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750'
+            }`}
+            onClick={() => setQrOptions({...qrOptions, errorCorrectionLevel: option.value})}
+          >
+            {option.label}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-6">
       <Card
@@ -333,156 +373,221 @@ export default function QrGenerator() {
         description={t('tools.qr-generator.description')}
         icon={QrCode}
       >
-        <div className="space-y-4">
-          {/* QR Type Selection */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('tools.qr-generator.selectType')}
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
-              {['text', 'url', 'email', 'phone', 'wifi', 'vcard'].map((type) => (
-                <button
-                  key={type}
-                  className={`px-3 py-2 text-sm font-medium rounded-md ${
-                    qrType === type
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
-                  onClick={() => setQrType(type)}
-                >
-                  {t(`tools.qr-generator.types.${type}`)}
-                </button>
-              ))}
-            </div>
-          </div>
-          
-          {/* Input fields */}
-          {renderInputFields()}
-          
-          {/* QR Options */}
-          <div className="space-y-4 border-t pt-4">
-            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              {t('tools.qr-generator.options')}
-            </h3>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="qr-size" className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                  {t('tools.qr-generator.size')}: {qrOptions.size}px
-                </label>
-                <input
-                  type="range"
-                  id="qr-size"
-                  min="128"
-                  max="512"
-                  step="8"
-                  value={qrOptions.size}
-                  onChange={(e) => setQrOptions({...qrOptions, size: parseInt(e.target.value)})}
-                  className="w-full"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="qr-error" className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                  {t('tools.qr-generator.errorCorrection')}
-                </label>
-                <select
-                  id="qr-error"
-                  value={qrOptions.errorCorrectionLevel}
-                  onChange={(e) => setQrOptions({...qrOptions, errorCorrectionLevel: e.target.value})}
-                  className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
-                >
-                  <option value="L">Low (7%)</option>
-                  <option value="M">Medium (15%)</option>
-                  <option value="Q">Quartile (25%)</option>
-                  <option value="H">High (30%)</option>
-                </select>
-              </div>
-              
-              <div>
-                <label htmlFor="qr-fgcolor" className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                  {t('tools.qr-generator.foregroundColor')}
-                </label>
-                <input
-                  type="color"
-                  id="qr-fgcolor"
-                  value={qrOptions.fgColor}
-                  onChange={(e) => setQrOptions({...qrOptions, fgColor: e.target.value})}
-                  className="w-full h-10 px-1 py-1 rounded-md border border-gray-300 dark:border-gray-700"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="qr-bgcolor" className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                  {t('tools.qr-generator.backgroundColor')}
-                </label>
-                <input
-                  type="color"
-                  id="qr-bgcolor"
-                  value={qrOptions.bgColor}
-                  onChange={(e) => setQrOptions({...qrOptions, bgColor: e.target.value})}
-                  className="w-full h-10 px-1 py-1 rounded-md border border-gray-300 dark:border-gray-700"
-                />
-              </div>
-            </div>
-          </div>
-          
-          {/* Actions */}
-          <div className="flex flex-wrap gap-3">
-            <Button
-              variant="primary"
-              onClick={loadSample}
-            >
-              {t('tools.qr-generator.loadSample')}
-            </Button>
-            
-            <Button
-              variant="secondary"
-              onClick={clearAll}
-              icon={RefreshCw}
-            >
-              {t('tools.qr-generator.clear')}
-            </Button>
-          </div>
-          
-          {/* QR Code Preview */}
-          {qrCodeUrl && (
-            <div className="border-t pt-4 space-y-4">
-              <div className="flex justify-between items-center">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {t('tools.qr-generator.preview')}
-                </h3>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    icon={Download}
-                    onClick={downloadQR}
-                  >
-                    {t('tools.qr-generator.download')}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    icon={copied ? Check : Copy}
-                    onClick={copyQR}
-                  >
-                    {copied ? t('tools.qr-generator.copied') : t('tools.qr-generator.copy')}
-                  </Button>
+        <div className="space-y-6">
+          {/* Layout container for xl screens */}
+          <div className="xl:flex xl:space-x-6 xl:space-y-0 space-y-6">
+            {/* Left column - Type selection and options */}
+            <div className="xl:w-1/2 space-y-6">
+              {/* QR Type Selection */}
+              <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="flex items-center mb-3">
+                  <QrCode className="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2" />
+                  <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                    {t('tools.qr-generator.selectType')}
+                  </h3>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-2">
+                  {['text', 'url', 'email', 'phone', 'wifi', 'vcard'].map((type) => (
+                    <button
+                      key={type}
+                      className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                        qrType === type
+                          ? 'bg-primary-600 text-white shadow-sm'
+                          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                      }`}
+                      onClick={() => setQrType(type)}
+                    >
+                      {t(`tools.qr-generator.types.${type}`)}
+                    </button>
+                  ))}
                 </div>
               </div>
               
-              <div className="flex justify-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <img
-                  src={qrCodeUrl}
-                  alt="QR Code"
-                  width={qrOptions.size}
-                  height={qrOptions.size}
-                  className="max-w-full"
-                />
+              {/* QR Options */}
+              <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="flex items-center mb-4">
+                  <Settings className="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2" />
+                  <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                    {t('tools.qr-generator.options')}
+                  </h3>
+                </div>
+                
+                <div className="space-y-6">
+                  {/* Size Slider */}
+                  <div>
+                    <div className="flex justify-between mb-2">
+                      <label htmlFor="qr-size" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {t('tools.qr-generator.size')}
+                      </label>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{qrOptions.size} px</span>
+                    </div>
+                    <input
+                      type="range"
+                      id="qr-size"
+                      min="128"
+                      max="512"
+                      step="8"
+                      value={qrOptions.size}
+                      onChange={(e) => setQrOptions({...qrOptions, size: parseInt(e.target.value)})}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                    />
+                    <div className="flex justify-between mt-1 text-xs text-gray-500">
+                      <span>128px</span>
+                      <span>512px</span>
+                    </div>
+                  </div>
+                  
+                  {/* Error Correction Level */}
+                  <div>
+                    <div className="flex items-center mb-2">
+                      <Shield className="h-4 w-4 text-gray-500 dark:text-gray-400 mr-1" />
+                      <label htmlFor="qr-error" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {t('tools.qr-generator.errorCorrection')}
+                      </label>
+                    </div>
+                    {renderErrorCorrectionOptions()}
+                  </div>
+                  
+                  {/* Color Selectors */}
+                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center mb-3">
+                      <Palette className="h-4 w-4 text-gray-500 dark:text-gray-400 mr-1" />
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {t('tools.qr-generator.colors')}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex items-center">
+                        <div className="w-full">
+                          <label htmlFor="qr-fgcolor" className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                            {t('tools.qr-generator.foregroundColor')}
+                          </label>
+                          <div className="flex">
+                            <div 
+                              className="w-10 h-10 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-700"
+                              style={{ backgroundColor: qrOptions.fgColor }}
+                            ></div>
+                            <input
+                              type="color"
+                              id="qr-fgcolor"
+                              value={qrOptions.fgColor}
+                              onChange={(e) => setQrOptions({...qrOptions, fgColor: e.target.value})}
+                              className="w-full h-10 px-1 py-1 rounded-r-md border border-gray-300 dark:border-gray-700"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center">
+                        <div className="w-full">
+                          <label htmlFor="qr-bgcolor" className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+                            {t('tools.qr-generator.backgroundColor')}
+                          </label>
+                          <div className="flex">
+                            <div 
+                              className="w-10 h-10 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-700"
+                              style={{ backgroundColor: qrOptions.bgColor }}
+                            ></div>
+                            <input
+                              type="color"
+                              id="qr-bgcolor"
+                              value={qrOptions.bgColor}
+                              onChange={(e) => setQrOptions({...qrOptions, bgColor: e.target.value})}
+                              className="w-full h-10 px-1 py-1 rounded-r-md border border-gray-300 dark:border-gray-700"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Actions */}
+                  <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <Button
+                      variant="primary"
+                      onClick={loadSample}
+                      size="sm"
+                    >
+                      {t('tools.qr-generator.loadSample')}
+                    </Button>
+                    
+                    <Button
+                      variant="secondary"
+                      onClick={clearAll}
+                      icon={RefreshCw}
+                      size="sm"
+                    >
+                      {t('tools.qr-generator.clear')}
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
-          )}
+            
+            {/* Right column - Input fields */}
+            <div className="xl:w-1/2">
+              {/* Input fields */}
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                  {t('tools.qr-generator.input')}
+                </h3>
+                {renderInputFields()}
+                
+                {/* QR Code Preview */}
+                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                      {t('tools.qr-generator.preview')}
+                    </h3>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        icon={Download}
+                        onClick={downloadQR}
+                        disabled={!qrCodeUrl}
+                      >
+                        {t('tools.qr-generator.download')}
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        icon={copied ? Check : Copy}
+                        onClick={copyQR}
+                        disabled={!qrCodeUrl}
+                      >
+                        {copied ? t('tools.qr-generator.copied') : t('tools.qr-generator.copy')}
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center items-center p-8 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div 
+                      ref={qrContainerRef} 
+                      className="flex justify-center items-center" 
+                      style={{ minHeight: '128px', minWidth: '128px' }}
+                    >
+                      {qrLibStatus === 'loading' && (
+                        <div className="text-center p-4">
+                          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+                            <span className="sr-only">Loading...</span>
+                          </div>
+                          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                            {t('tools.qr-generator.loading')}
+                          </p>
+                        </div>
+                      )}
+                      {qrLibStatus === 'error' && (
+                        <div className="text-center p-4 text-red-500">
+                          <p>{t('tools.qr-generator.libraryError')}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Card>
       

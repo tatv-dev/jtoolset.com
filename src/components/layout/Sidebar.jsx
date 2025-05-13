@@ -149,7 +149,7 @@ export default function Sidebar() {
                     const isActive = pathname === `/tools/${tool.slug}`;
                     const Icon = toolIcons[tool.slug] || Shuffle;
                     
-                    let linkClassName = 'flex items-center px-3 py-2 text-sm font-medium rounded-md ';
+                    let linkClassName = 'flex items-center px-3 py-2 text-sm font-medium rounded-md hover:text-gray-600 ';
                     if (isActive) {
                       linkClassName += 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400';
                     } else {
