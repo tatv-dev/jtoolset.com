@@ -91,7 +91,7 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile overlay */}
+      {/* Mobile overlay - only shown when sidebar is open on mobile */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
@@ -99,16 +99,16 @@ export default function Sidebar() {
         />
       )}
 
-      {/* Mobile toggle button */}
+      {/* Mobile toggle button - only shown on mobile */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed z-30 bottom-4 right-4 md:hidden bg-primary-600 dark:bg-primary-800 text-white p-3 rounded-full shadow-lg"
+        className="fixed z-30 bottom-20 right-4 md:hidden bg-primary-600 dark:bg-primary-800 text-white p-3 rounded-full shadow-lg"
         aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
       >
         {isOpen ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
       </button>
 
-      {/* Sidebar */}
+      {/* Sidebar - Hidden on mobile unless open, always visible on desktop */}
       <aside 
         className={`
           w-64 bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border
@@ -118,18 +118,18 @@ export default function Sidebar() {
         `}
       >
         <div className="flex flex-col h-full overflow-hidden">
-          {/* Mobile close button */}
+          {/* Mobile close button - only shown on mobile */}
           <div className="flex md:hidden justify-end p-2">
             <button 
               onClick={() => setIsOpen(false)}
-              className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              className="bg-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
               aria-label="Close sidebar"
             >
               <X size={20} />
             </button>
           </div>
           
-          {/* Logo and search - Fixed height */}
+          {/* Logo and search */}
           <div className="p-4 flex-shrink-0">
             {/* <AnimationLogo className="w-full" text={t('pages.pageList.tools')} /> */}
             <CuteCatLogo className="w-full" text={t('pages.pageList.tools')} />
@@ -141,9 +141,9 @@ export default function Sidebar() {
           <nav className="flex-1 px-2 pb-4 space-y-1 overflow-y-auto sidebar-scroll">
             {Object.entries(toolsByCategory).map(([category, tools]) => (
               <div key={category} className="py-2">
-                <h3 className="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                <div className="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   {t(`tools.categories.${category}`)}
-                </h3>
+                </div>
                 <div className="mt-1 space-y-1">
                   {tools.map((tool) => {
                     const isActive = pathname === `/tools/${tool.slug}`;
@@ -172,12 +172,12 @@ export default function Sidebar() {
             ))}
           </nav>
 
-          {/* Theme toggle - Fixed height */}
+          {/* Theme toggle */}
           <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
             <ThemeToggle />
           </div>
 
-          {/* Copyright - Fixed at bottom */}
+          {/* Copyright */}
           <div className="p-4 border-t border-gray-200 dark:border-dark-border flex-shrink-0">
             <div className='flex items-center justify-center'>
               <p className="text-xs text-gray-500 dark:text-gray-400 text-center">

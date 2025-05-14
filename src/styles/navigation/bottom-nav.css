@@ -1,75 +1,106 @@
-/* Mobile Navigation Styles
+/* src/index.css - Add these mobile-specific styles */
 
-/* Bottom navigation bar animations */
-@keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Apply animations */
-.mobile-nav-slide-up {
-  animation: slide-up 0.3s ease-out;
-}
-
-.mobile-nav-fade-in {
-  animation: fade-in 0.2s ease-out;
-}
-
-/* Mobile navigation visibility */
-.mobile-nav {
-  display: none; /* Hidden by default */
-}
-
-/* Show mobile navigation only on mobile devices */
+/* Mobile optimization classes */
 @media (max-width: 767px) {
+  /* Set proper spacing for mobile content */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  /* Adjust typography for mobile */
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  /* Ensure padding at the bottom for mobile nav */
+  .main-content {
+    padding-bottom: 80px !important;
+  }
+  
+  /* Improve tap target sizes */
+  button, 
+  a, 
+  input[type="checkbox"], 
+  input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Fix input sizing on mobile */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+  }
+  
+  /* Improve mobile card layouts */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  
+  /* Only use 2 columns for certain grids on mobile */
+  .mobile-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  
+  /* Sidebar adjustments */
+  .sidebar-open {
+    overflow: hidden;
+  }
+}
+
+/* Mobile navigation adjustments */
+@media (max-width: 767px) {
+  /* Optimize z-index for mobile elements */
   .mobile-nav {
-    display: block; /* Visible on mobile */
+    z-index: 40;
   }
   
-  .main-scroll {
-    padding-bottom: 80px; /* Make space for the bottom nav bar */
+  .mobile-drawer {
+    z-index: 50;
   }
   
-  /* Hide scrollbar but allow scrolling on mobile */
-  .mobile-menu-scroll {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-    -webkit-overflow-scrolling: touch; /* Better scroll on iOS */
+  .mobile-overlay {
+    z-index: 30;
   }
   
-  .mobile-menu-scroll::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+  /* Additional mobile optimizations */
+  .mobile-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .mobile-p-4 {
+    padding: 1rem !important;
+  }
+  
+  .mobile-text-center {
+    text-align: center !important;
+  }
+  
+  /* Optimized bottom spacing for iOS */
+  .ios-bottom-padding {
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
 }
 
-/* Mobile menu drawer styles */
-.mobile-drawer-enter {
-  transform: translateY(100%);
-}
-
-.mobile-drawer-enter-active {
-  transform: translateY(0);
-  transition: transform 300ms;
-}
-
-.mobile-drawer-exit {
-  transform: translateY(0);
-}
-
-.mobile-drawer-exit-active {
-  transform: translateY(100%);
-  transition: transform 300ms;
+/* Make sure the root element uses full viewport */
+#root {
+  min-height: 100vh;
+  max-width: 100vw !important;
+  padding: 0 !important;
 }

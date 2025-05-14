@@ -808,6 +808,8 @@
     "support": "지원",
     "reportIssue": "문제 신고",
     "discussions": "토론",
-    "allRightsReserved": "모든 권리 보유."
+    "allRightsReserved": "모든 권리 보유.",
+    "more": "더보기",
+    "close": "닫기"
   }
 }

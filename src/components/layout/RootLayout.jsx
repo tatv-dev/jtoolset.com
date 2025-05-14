@@ -17,15 +17,15 @@ export default function RootLayout() {
       {/* News Ticker - Top of the page */}
       {/* <NewsTicker /> */}
       
-      {/* Header - Fixed height */}
+      {/* Header - Hidden on mobile, shown on desktop */}
       <Header />
       
       {/* Main layout container - fills remaining space */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar Navigation - Fixed width, own scroll */}
+        {/* Sidebar Navigation - Visible on desktop */}
         <Sidebar />
         
-        {/* Main Content - Chiếm toàn bộ không gian còn lại */}
+        {/* Main Content - Takes full space */}
         <main className="flex-1 p-4 md:p-6 md:pb-[150px] overflow-y-auto main-scroll">
           <Outlet />
         </main>

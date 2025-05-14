@@ -680,7 +680,7 @@
   "pages": {
     "home": {
       "title": "Bộ công cụ cho nhà phát triển",
-      "subtitle": "Tập hợp các công cụ miễn phí để giúp công việc lập trình của bạn dễ dàng hơn. Từ chuyển đổi Unix Time, tạo chuỗi ngẫu nhiên, giải mã JWT đến quản lý cookie.",
+      "subtitle": "Tập hợp các công cụ miễn phí để giúp công việc lập trình của bạn dễ dàng hơn.",
       "featuredTools": "Công cụ nổi bật",
       "whyUse": "Tại sao nên sử dụng JToolset?",
       "feature1": {
@@ -800,6 +800,8 @@
     "support": "Hỗ trợ",
     "reportIssue": "Báo cáo lỗi",
     "discussions": "Thảo luận",
-    "allRightsReserved": "Bản quyền đã được bảo hộ."
+    "allRightsReserved": "Bản quyền đã được bảo hộ.",
+    "more": "Xem thêm",
+    "close": "Đóng"
   }
 }

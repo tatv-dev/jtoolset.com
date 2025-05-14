@@ -95,7 +95,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-12">
+    <div className="container mx-auto px-4 py-8 space-y-12 pb-24">
       {/* Hero Section with Animated Title */}
       <div className="text-center">
         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
@@ -124,82 +124,8 @@ export default function HomePage() {
         })}
       </section>
 
-      {/* Featured Tools */}
-      <section>
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
-          {t('pages.home.featuredTools')}
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredTools.map(({ icon, slug }) => {
-            const Icon = getIconForTool(icon);
-            return (
-              <Link
-                key={slug}
-                to={`/tools/${slug}`}
-                className="block group"
-              >
-                <Card
-                  className="h-full transition-all duration-300 
-                  hover:shadow-lg hover:border-primary-300 
-                  dark:hover:border-primary-700 
-                  transform hover:-translate-y-2"
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-primary-100 dark:bg-primary-900 rounded-md">
-                      <Icon className="h-8 w-8 text-primary-600 dark:text-primary-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">
-                        {t(`tools.${slug}.name`)}
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        {t(`tools.${slug}.description`)}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Why Use Section */}
-      <section className="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
-          {t('pages.home.whyUse')}
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((num) => (
-            <div 
-              key={num} 
-              className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md 
-              transition-transform duration-300 hover:scale-105"
-            >
-              <div className="text-4xl mb-4 text-primary-600 dark:text-primary-400">
-                {['💯', '🔐', '📱'][num-1]}
-              </div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                {t(`pages.home.feature${num}.title`)}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                {t(`pages.home.feature${num}.description`)}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Call to Action */}
       <section className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-          {t('pages.home.readyToStart')}
-        </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-          {t('pages.home.subtitle')}
-        </p>
         <Link
           to="/tools"
           className="inline-flex items-center justify-center px-8 py-4 
