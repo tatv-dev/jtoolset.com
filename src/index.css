@@ -4,6 +4,7 @@
 @import './styles/news-ticker.css';
 @import './styles/social.css';
 @import './styles/animation/wiggle.css';
+@import './styles/animation/homepage.css';
 @import './styles/navigation/bottom-nav.css';
 
 /* Cấu hình tailwind */

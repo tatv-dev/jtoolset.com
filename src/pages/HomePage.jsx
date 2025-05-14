@@ -1,143 +1,109 @@
 // src/pages/HomePage.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Clock, 
-  Shuffle, 
-  Key, 
-  Cookie, 
-  Hash, 
-  FileJson, 
-  Code, 
   Link as LinkIcon,
-  QrCode,
-  Network,
-  Globe,
-  FileText,
-  Palette
+  Star
 } from 'lucide-react';
 import Card from '../components/ui/Card';
 import { useTranslation } from 'react-i18next';
+import Button from '../components/ui/Button';
 
-// Hàm lấy icon cho công cụ
-function getIconForTool(iconName) {
-  const icons = {
-    Clock, 
-    Shuffle, 
-    Key, 
-    Cookie, 
-    Hash, 
-    FileJson, 
-    Code, 
-    Link: LinkIcon,
-    QrCode,
-    Network,
-    Globe,
-    FileText,
-    Palette
-  };
-  return icons[iconName] || Shuffle;
-}
 
-// Component hiệu ứng chữ
-function AnimatedLetter({ children, className = '' }) {
+// Animated background element
+function AnimatedBackground() {
   return (
-    <span 
-      className={`inline-block transition-transform duration-300 hover:rotate-3 hover:translate-y-1 hover:scale-110 ${className}`}
-    >
-      {children}
-    </span>
-  );
-}
-
-// Component icon dev tools
-function DevToolIcon({ Icon, description }) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div 
-      className="relative group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className={`
-        p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md 
-        transition-all duration-300 
-        transform group-hover:rotate-6 group-hover:scale-110
-        border border-gray-200 dark:border-gray-700
-      `}>
-        <Icon 
-          className="h-12 w-12 text-primary-600 dark:text-primary-400 
-          transition-colors duration-300 
-          group-hover:text-primary-800 dark:group-hover:text-primary-300"
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full bg-primary-500/5 dark:bg-primary-500/10"
+          style={{
+            width: `${Math.random() * 200 + 50}px`,
+            height: `${Math.random() * 200 + 50}px`,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            animation: `float ${Math.random() * 10 + 15}s infinite ease-in-out`,
+            animationDelay: `${Math.random() * 5}s`,
+            opacity: Math.random() * 0.5 + 0.1
+          }}
         />
-      </div>
-      {isHovered && (
-        <div className="absolute z-10 bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 
-        bg-gray-800 text-white text-xs px-3 py-1 rounded-md 
-        opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          {description}
-        </div>
-      )}
+      ))}
     </div>
   );
 }
 
 export default function HomePage() {
   const { t } = useTranslation();
-  const featuredTools = [
-    { icon: 'Clock', slug: 'unix-time' },
-    { icon: 'Shuffle', slug: 'random' },
-    { icon: 'Key', slug: 'jwt-decoder' },
-    { icon: 'QrCode', slug: 'qr-generator' },
-    { icon: 'Network', slug: 'ip-checker' },
-    { icon: 'Globe', slug: 'domain-ip' }
+  // Random developer tip
+  const [tip, setTip] = useState('');
+  const devTips = [
+    "Press F12 to open developer tools in most browsers",
+    "Use console.log() to debug your JavaScript code",
+    "CSS Grid and Flexbox make layouts much easier",
+    "Always use semantic HTML for better accessibility",
+    "Remember to optimize your images for web",
+    "localStorage is useful for client-side storage"
   ];
+  
+  useEffect(() => {
+    setTip(devTips[Math.floor(Math.random() * devTips.length)]);
+    
+    const interval = setInterval(() => {
+      setTip(devTips[Math.floor(Math.random() * devTips.length)]);
+    }, 8000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-12 pb-24">
+    <div className="container mx-auto px-4 py-8 space-y-16 pb-24 relative">
+      <AnimatedBackground />
+      
       {/* Hero Section with Animated Title */}
-      <div className="text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-          {t('pages.home.title').split('').map((char, index) => (
-            <AnimatedLetter key={index} className="inline-block mr-1">
+      <div className="text-center relative z-10">
+        <div className="text-5xl md:text-6xl font-extrabold mb-6">
+          {Array.from(t('pages.home.title')).map((char, index) => (
+            <span 
+              key={index} 
+              dx={index === 0 ? 0 : 1}
+              className="animate-pulse"
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                opacity: 0.9,
+              }}
+            >
               {char}
-            </AnimatedLetter>
+            </span>
           ))}
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        </div>
+        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mt-10">
           {t('pages.home.subtitle')}
         </p>
+        
+        {/* Dev Tip Section */}
+        <div className="mt-6 inline-flex items-center bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-full text-sm">
+          <Star className="h-4 w-4 text-yellow-500 mr-2 animate-pulse" />
+          <span className="text-gray-700 dark:text-gray-300 font-medium">
+            <span className="font-bold text-primary-600 dark:text-primary-400">Tip:</span> {tip}
+          </span>
+        </div>
       </div>
 
-      {/* Developer Tools Icons */}
-      <section className="flex flex-wrap justify-center gap-6 md:gap-8">
-        {featuredTools.map(({ icon, slug }) => {
-          const Icon = getIconForTool(icon);
-          return (
-            <DevToolIcon 
-              key={slug} 
-              Icon={Icon} 
-              description={t(`tools.${slug}.name`)} 
-            />
-          );
-        })}
-      </section>
-
       {/* Call to Action */}
-      <section className="text-center">
-        <Link
-          to="/tools"
-          className="inline-flex items-center justify-center px-8 py-4 
-          border border-transparent text-base font-medium rounded-md 
-          text-white bg-primary-600 hover:bg-primary-700 
-          focus:outline-none focus:ring-2 focus:ring-offset-2 
-          focus:ring-primary-500 
-          transition-all duration-300 
-          transform hover:scale-105 hover:rotate-1"
-        >
-          {t('pages.home.exploreTools')}
-        </Link>
+      <section className="text-center py-12">
+        <div className="relative inline-block">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-300 to-indigo-500 blur-xl opacity-30 rounded-full"></div>
+          <Button
+            variant="primary"
+            size="xl"
+            className="relative font-bold py-4 px-10 text-sm"
+            as={Link}
+            to="/tools"
+          >
+            {t('pages.home.exploreTools')}
+          </Button>
+        </div>
       </section>
     </div>
   );
