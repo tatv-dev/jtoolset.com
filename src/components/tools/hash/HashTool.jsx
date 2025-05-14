@@ -1,4 +1,4 @@
-// src/components/tools/hash-verifier/HashVerifier.jsx
+// src/components/tools/hash/HashTool.jsx
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -7,7 +7,7 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { useTranslation } from 'react-i18next';
 
-export default function HashVerifier() {
+export default function HashTool() {
   const { t } = useTranslation();
   const [mode, setMode] = useState('generate'); // 'generate' or 'verify'
   
@@ -154,8 +154,8 @@ export default function HashVerifier() {
   return (
     <div className="space-y-6">
       <Card
-        title={t('tools.hash-verifier.name')}
-        description={t('tools.hash-verifier.description')}
+        title={t('tools.hash.name')}
+        description={t('tools.hash.description')}
         icon={Hash}
       >
         <div className="space-y-4">
@@ -170,7 +170,7 @@ export default function HashVerifier() {
               onClick={() => setMode('generate')}
             >
               <Hash className="inline-block w-4 h-4 mr-1" />
-              {t('tools.hash-verifier.generateMode')}
+              {t('tools.hash.generateMode')}
             </button>
             <button
               className={`px-4 py-2 text-sm font-medium rounded-r-md ${
@@ -181,14 +181,14 @@ export default function HashVerifier() {
               onClick={() => setMode('verify')}
             >
               <Shield className="inline-block w-4 h-4 mr-1" />
-              {t('tools.hash-verifier.verifyMode')}
+              {t('tools.hash.verifyMode')}
             </button>
           </div>
           
           {/* Algorithm Selection */}
           <div>
             <label htmlFor="algorithm" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('tools.hash-verifier.algorithm')}
+              {t('tools.hash.algorithm')}
             </label>
             <select
               id="algorithm"
@@ -212,7 +212,7 @@ export default function HashVerifier() {
               }`}
               onClick={() => setInputType('text')}
             >
-              {t('tools.hash-verifier.text')}
+              {t('tools.hash.text')}
             </button>
             <button
               className={`px-4 py-2 text-sm font-medium rounded-r-md ${
@@ -222,7 +222,7 @@ export default function HashVerifier() {
               }`}
               onClick={() => setInputType('file')}
             >
-              {t('tools.hash-verifier.file')}
+              {t('tools.hash.file')}
             </button>
           </div>
           
@@ -231,8 +231,8 @@ export default function HashVerifier() {
             <div>
               <label htmlFor="input-text" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {mode === 'generate' 
-                  ? t('tools.hash-verifier.inputText') 
-                  : t('tools.hash-verifier.originalText')}
+                  ? t('tools.hash.inputText') 
+                  : t('tools.hash.originalText')}
               </label>
               <textarea
                 id="input-text"
@@ -240,8 +240,8 @@ export default function HashVerifier() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={mode === 'generate' 
-                  ? t('tools.hash-verifier.inputPlaceholder') 
-                  : t('tools.hash-verifier.originalTextPlaceholder')}
+                  ? t('tools.hash.inputPlaceholder') 
+                  : t('tools.hash.originalTextPlaceholder')}
                 className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               />
             </div>
@@ -252,8 +252,8 @@ export default function HashVerifier() {
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {mode === 'generate'
-                  ? t('tools.hash-verifier.inputFile')
-                  : t('tools.hash-verifier.originalFile')}
+                  ? t('tools.hash.inputFile')
+                  : t('tools.hash.originalFile')}
               </label>
               <div className="flex items-center justify-center w-full">
                 <label htmlFor="file-upload" className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 dark:border-gray-700 border-dashed rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
@@ -261,7 +261,7 @@ export default function HashVerifier() {
                     <FileUp className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" />
                     {!fileName ? (
                       <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                        <span className="font-semibold">{t('tools.hash-verifier.clickToUpload')}</span>
+                        <span className="font-semibold">{t('tools.hash.clickToUpload')}</span>
                       </p>
                     ) : (
                       <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
@@ -285,14 +285,14 @@ export default function HashVerifier() {
           {mode === 'verify' && (
             <div>
               <label htmlFor="original-hash" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                {t('tools.hash-verifier.hashToVerify')}
+                {t('tools.hash.hashToVerify')}
               </label>
               <input
                 type="text"
                 id="original-hash"
                 value={originalHash}
                 onChange={(e) => setOriginalHash(e.target.value)}
-                placeholder={t('tools.hash-verifier.hashPlaceholder')}
+                placeholder={t('tools.hash.hashPlaceholder')}
                 className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               />
             </div>
@@ -307,8 +307,8 @@ export default function HashVerifier() {
               isLoading={isProcessing}
             >
               {mode === 'generate' 
-                ? t('tools.hash-verifier.generateHash') 
-                : t('tools.hash-verifier.verifyHash')}
+                ? t('tools.hash.generateHash') 
+                : t('tools.hash.verifyHash')}
             </Button>
             
             {inputType === 'text' && (
@@ -316,7 +316,7 @@ export default function HashVerifier() {
                 variant="secondary"
                 onClick={loadSample}
               >
-                {t('tools.hash-verifier.loadSample')}
+                {t('tools.hash.loadSample')}
               </Button>
             )}
             
@@ -325,7 +325,7 @@ export default function HashVerifier() {
               icon={RefreshCw}
               onClick={clearAll}
             >
-              {t('tools.hash-verifier.clear')}
+              {t('tools.hash.clear')}
             </Button>
           </div>
           
@@ -334,7 +334,7 @@ export default function HashVerifier() {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {t('tools.hash-verifier.generatedHash')}
+                  {t('tools.hash.generatedHash')}
                 </label>
                 <Button
                   variant="outline"
@@ -342,7 +342,7 @@ export default function HashVerifier() {
                   icon={copied ? Check : Copy}
                   onClick={copyToClipboard}
                 >
-                  {copied ? t('tools.hash-verifier.copied') : t('tools.hash-verifier.copy')}
+                  {copied ? t('tools.hash.copied') : t('tools.hash.copy')}
                 </Button>
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-md border border-gray-200 dark:border-gray-700 overflow-x-auto">
@@ -364,10 +364,10 @@ export default function HashVerifier() {
                     <Shield className="h-6 w-6 text-green-600 dark:text-green-400 mr-3" />
                     <div>
                       <h3 className="text-base font-medium text-green-800 dark:text-green-300">
-                        {t('tools.hash-verifier.hashMatch')}
+                        {t('tools.hash.hashMatch')}
                       </h3>
                       <p className="text-sm text-green-700 dark:text-green-400 mt-1">
-                        {t('tools.hash-verifier.hashMatchDescription')}
+                        {t('tools.hash.hashMatchDescription')}
                       </p>
                     </div>
                   </>
@@ -376,10 +376,10 @@ export default function HashVerifier() {
                     <Shield className="h-6 w-6 text-red-600 dark:text-red-400 mr-3" />
                     <div>
                       <h3 className="text-base font-medium text-red-800 dark:text-red-300">
-                        {t('tools.hash-verifier.hashMismatch')}
+                        {t('tools.hash.hashMismatch')}
                       </h3>
                       <p className="text-sm text-red-700 dark:text-red-400 mt-1">
-                        {t('tools.hash-verifier.hashMismatchDescription')}
+                        {t('tools.hash.hashMismatchDescription')}
                       </p>
                     </div>
                   </>
@@ -391,13 +391,13 @@ export default function HashVerifier() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <div>
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-1">
-                      {t('tools.hash-verifier.expectedHash')}:
+                      {t('tools.hash.expectedHash')}:
                     </span>
                     <span className="text-sm font-mono break-all">{originalHash}</span>
                   </div>
                   <div>
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-1">
-                      {t('tools.hash-verifier.calculatedHash')}:
+                      {t('tools.hash.calculatedHash')}:
                     </span>
                     <span className="text-sm font-mono break-all">{result}</span>
                   </div>
@@ -411,29 +411,29 @@ export default function HashVerifier() {
       {/* Information Card */}
       <Card>
         <div className="prose dark:prose-invert max-w-none">
-          <h3>{t('tools.hash-verifier.aboutTitle')}</h3>
-          <p>{t('tools.hash-verifier.aboutDescription')}</p>
+          <h3>{t('tools.hash.aboutTitle')}</h3>
+          <p>{t('tools.hash.aboutDescription')}</p>
           
-          <h4>{t('tools.hash-verifier.algorithmsTitle')}</h4>
+          <h4>{t('tools.hash.algorithmsTitle')}</h4>
           <ul>
-            {/* <li><strong>MD5:</strong> {t('tools.hash-verifier.md5Description')}</li> */}
-            <li><strong>SHA-1:</strong> {t('tools.hash-verifier.sha1Description')}</li>
-            <li><strong>SHA-256:</strong> {t('tools.hash-verifier.sha256Description')}</li>
-            <li><strong>SHA-384:</strong> {t('tools.hash-verifier.sha384Description')}</li>
-            <li><strong>SHA-512:</strong> {t('tools.hash-verifier.sha512Description')}</li>
+            {/* <li><strong>MD5:</strong> {t('tools.hash.md5Description')}</li> */}
+            <li><strong>SHA-1:</strong> {t('tools.hash.sha1Description')}</li>
+            <li><strong>SHA-256:</strong> {t('tools.hash.sha256Description')}</li>
+            <li><strong>SHA-384:</strong> {t('tools.hash.sha384Description')}</li>
+            <li><strong>SHA-512:</strong> {t('tools.hash.sha512Description')}</li>
           </ul>
           
-          <h4>{t('tools.hash-verifier.useCasesTitle')}</h4>
+          <h4>{t('tools.hash.useCasesTitle')}</h4>
           <ul>
-            <li>{t('tools.hash-verifier.useCase1')}</li>
-            <li>{t('tools.hash-verifier.useCase2')}</li>
-            <li>{t('tools.hash-verifier.useCase3')}</li>
-            <li>{t('tools.hash-verifier.useCase4')}</li>
+            <li>{t('tools.hash.useCase1')}</li>
+            <li>{t('tools.hash.useCase2')}</li>
+            <li>{t('tools.hash.useCase3')}</li>
+            <li>{t('tools.hash.useCase4')}</li>
           </ul>
           
           <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-md border border-yellow-200 dark:border-yellow-900/30 mt-4">
-            <h4 className="text-yellow-800 dark:text-yellow-300 text-base font-medium">{t('tools.hash-verifier.securityNoteTitle')}</h4>
-            <p className="text-yellow-700 dark:text-yellow-400 text-sm mt-1">{t('tools.hash-verifier.securityNoteText')}</p>
+            <h4 className="text-yellow-800 dark:text-yellow-300 text-base font-medium">{t('tools.hash.securityNoteTitle')}</h4>
+            <p className="text-yellow-700 dark:text-yellow-400 text-sm mt-1">{t('tools.hash.securityNoteText')}</p>
           </div>
         </div>
       </Card>

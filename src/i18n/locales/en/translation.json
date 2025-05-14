@@ -196,25 +196,6 @@
       "useCase3": "Encoding binary data for transmission",
       "useCase4": "Data URLs for small files"
     },
-    "hash-generator": {
-      "name": "Hash Generator",
-      "description": "Generate various hashes (MD5, SHA-1, SHA-256, etc.)",
-      "input": "Input Text",
-      "inputPlaceholder": "Enter text to generate hashes...",
-      "selectAlgorithms": "Select Hash Algorithms",
-      "uploadFile": "Click to upload file",
-      "results": "Hash Results",
-      "clear": "Clear",
-      "copy": "Copy",
-      "copied": "Copied",
-      "aboutTitle": "About Hash Functions",
-      "aboutDescription": "Hash functions are mathematical algorithms that convert data of arbitrary size to a fixed-size hash value.",
-      "sha1Info": "160-bit hash, considered insecure for cryptographic use",
-      "sha256Info": "256-bit hash, widely used and secure",
-      "sha384Info": "384-bit hash, truncated version of SHA-512",
-      "sha512Info": "512-bit hash, most secure but slower",
-      "note": "Note: MD5 hashing is not available in this demo. For production use, consider using a dedicated library."
-    },
     "qr-generator": {
       "name": "QR Code Generator",
       "description": "Generate QR codes from text, URLs, or contact information",
@@ -605,7 +586,7 @@
       "useCase3": "Create mirror text effects for creative projects",
       "useCase4": "Reorder lines or words for text reorganization"
     },
-    "hash-verifier": {
+    "hash": {
       "name": "Hash Generator & Verifier",
       "description": "Generate and verify hashes for text or files",
       "generateMode": "Generate",
@@ -650,6 +631,60 @@
       "useCase4": "Compare original and processed data to confirm no changes occurred",
       "securityNoteTitle": "Security Note",
       "securityNoteText": "For sensitive security applications, avoid using MD5 and SHA-1 as they are considered cryptographically weak. SHA-256 or stronger is recommended for security-critical applications."
+    },
+    "bcrypt": {
+      "name": "Bcrypt Hash",
+      "description": "Generate and verify Bcrypt password hashes",
+      "generateMode": "Generate Hash",
+      "verifyMode": "Verify Hash",
+      "saltRounds": "Cost (Salt Rounds)",
+      "saltRoundsDescription": "Higher values are more secure but slower. 10-12 is recommended for most applications.",
+      "passwordInput": "Password",
+      "passwordToCheck": "Password to Check",
+      "passwordPlaceholder": "Enter password to hash...",
+      "passwordCheckPlaceholder": "Enter password to verify...",
+      "passwordLengthWarning": "Warning: Bcrypt has a 72 byte limit. Characters beyond this limit will be ignored.",
+      "hashInput": "Bcrypt Hash",
+      "hashPlaceholder": "Enter bcrypt hash to verify (e.g., $2a$10$...)",
+      "generateHash": "Generate Hash",
+      "verifyHash": "Verify Hash",
+      "loadSample": "Load Sample",
+      "clear": "Clear",
+      "generatedHash": "Generated Hash",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "useInVerify": "Use in Verify",
+      "hashDetails": "Hash Format Details",
+      "hashDetailVersion": "Format version identifier ($2a$, $2b$)",
+      "hashDetailCost": "Cost factor (rounds of hashing): ",
+      "hashDetailSalt": "22 character salt (encoded)",
+      "hashDetailHash": "31 character hash value (encoded)",
+      "hashMatch": "Hash Match Confirmed",
+      "hashMatchDescription": "The password matches the provided hash.",
+      "hashMismatch": "Hash Mismatch",
+      "hashMismatchDescription": "The password does not match the provided hash.",
+      "aboutTitle": "About Bcrypt",
+      "aboutDescription": "Bcrypt is a password-hashing function designed by Niels Provos and David Mazières, based on the Blowfish cipher. It is specifically designed for secure password hashing and has been the default password hash algorithm for OpenBSD since version 2.1.",
+      "howItWorksTitle": "How Bcrypt Works",
+      "howItWorks1": "Bcrypt uses the Blowfish cipher to perform multiple rounds of hashing.",
+      "howItWorks2": "A random salt is generated for each password to prevent rainbow table attacks.",
+      "howItWorks3": "The cost factor (salt rounds) determines how many times the password is hashed, making it computationally expensive to brute-force.",
+      "howItWorks4": "The resulting hash contains the algorithm version, cost factor, salt, and the actual hash value.",
+      "bestPracticesTitle": "Best Practices",
+      "bestPractice1": "Use a cost factor of 10 or higher for production applications.",
+      "bestPractice2": "Never store plain text passwords, only store the hashes.",
+      "bestPractice3": "Bcrypt has a 72-byte limit. For longer passwords, consider pre-hashing with SHA-256.",
+      "bestPractice4": "Consider periodically rehashing passwords with a higher cost factor as computing power increases.",
+      "securityNoteTitle": "Security Note",
+      "securityNoteText": "This tool performs all hashing operations in your browser. No passwords or hashes are sent to any server. However, for production applications, use a server-side implementation of Bcrypt.",
+      "errors": {
+        "emptyInput": "Please enter a password to hash.",
+        "missingInputs": "Both password and hash are required for verification.",
+        "libraryNotLoaded": "Bcrypt library is not loaded. Please try again in a moment.",
+        "hashFailed": "Failed to generate hash. Please try again.",
+        "verifyFailed": "Failed to verify hash. The hash may be invalid.",
+        "unknownError": "An unknown error occurred. Please try again."
+      }
     }
   },
   "pages": {
@@ -675,13 +710,13 @@
     },
     "pageList": {
       "home": "Home",
-      "tools": "All Tools",
+      "tools": "Tools",
       "about": "About",
       "contact": "Contact",
       "privacyPolicy": "Privacy Policy"
     },
     "toolsList": {
-      "title": "All Tools",
+      "title": "Tools",
       "subtitle": "Explore all developer tools",
       "needSomethingElse": "Can't find the tool you need?",
       "suggestToolDescription": "We are constantly adding new tools. If you have a suggestion for a new tool, please let us know!",
@@ -775,6 +810,9 @@
     "support": "Support",
     "reportIssue": "Report an Issue",
     "discussions": "Discussions",
-    "allRightsReserved": "All Rights Reserved."
+    "allRightsReserved": "All Rights Reserved.",
+    "more": "More",
+    "categories": "Categories",
+    "close": "Close"
   }
 }

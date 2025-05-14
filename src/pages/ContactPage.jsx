@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 export default function ContactPage() {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
-  const emailAddress = "trinhvanta1804@gmail.com";
+  const emailAddress = "contact@jtoolset.com";
 
   const copyEmail = async () => {
     try {

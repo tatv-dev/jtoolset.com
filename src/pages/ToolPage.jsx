@@ -13,7 +13,6 @@ import JwtDecoder from '../components/tools/jwt-decoder/JwtDecoder';
 import JsonFormatter from '../components/tools/json-formatter/JsonFormatter';
 import UrlEncoder from '../components/tools/url-encoder/UrlEncoder';
 import Base64 from '../components/tools/base64/Base64';
-import HashGenerator from '../components/tools/hash-generator/HashGenerator';
 import QrGenerator from '../components/tools/qr-generator/QrGenerator';
 import IpChecker from '../components/tools/ip-checker/IpChecker';
 import DomainIp from '../components/tools/domain-ip/DomainIp';
@@ -23,8 +22,9 @@ import RegexTester from '../components/tools/regex-tester/RegexTester';
 import WordCounter from '../components/tools/word-counter/WordCounter';
 import RemoveDuplicateLines from '../components/tools/remove-duplicate-lines/RemoveDuplicateLines';
 import ReverseText from '../components/tools/reverse-text/ReverseText';
-import HashVerifier from '../components/tools/hash-verifier/HashVerifier';
+import HashTool from '../components/tools/hash/HashTool';
 import SocialShare from '../components/ui/SocialShare';
+import BcryptTool from '../components/tools/bcrypt/BcryptTool';
 
 export default function ToolPage() {
   const { t } = useTranslation();
@@ -61,8 +61,6 @@ export default function ToolPage() {
         return <UrlEncoder />;
       case 'base64':
         return <Base64 />;
-      case 'hash-generator':
-        return <HashGenerator />;
       case 'qr-generator':
         return <QrGenerator />;
       case 'ip-checker':
@@ -81,8 +79,10 @@ export default function ToolPage() {
         return <RemoveDuplicateLines />;
       case 'reverse-text':
         return <ReverseText />;
-      case 'hash-verifier':
-        return <HashVerifier />;
+      case 'hash':
+        return <HashTool />;
+      case 'bcrypt':
+        return <BcryptTool />;
       default:
         return (
           <div className="text-center py-12">

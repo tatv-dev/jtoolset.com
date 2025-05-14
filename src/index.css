@@ -4,6 +4,7 @@
 @import './styles/news-ticker.css';
 @import './styles/social.css';
 @import './styles/animation/wiggle.css';
+@import './styles/navigation/bottom-nav.css';
 
 /* Cấu hình tailwind */
 @tailwind base;
@@ -151,7 +152,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #00000000;
 }
 
 @media (prefers-color-scheme: light) {

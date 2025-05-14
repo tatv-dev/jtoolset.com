@@ -85,8 +85,8 @@ export default function PrivacyPolicyPage() {
           <p>{t('pages.privacyPolicy.contactInfo.description')}</p>
           <p>
             <strong>{t('pages.privacyPolicy.contactInfo.email')}</strong>: 
-            <a href="mailto:trinhvanta1804@gmail.com" className="ml-2 text-primary-600 hover:underline">
-              trinhvanta1804@gmail.com
+            <a href="mailto:contact@jtoolset.com" className="ml-2 text-primary-600 hover:underline">
+              contact@jtoolset.com
             </a>
           </p>
         </div>

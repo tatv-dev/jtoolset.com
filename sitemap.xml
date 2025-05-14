@@ -63,7 +63,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jtoolset.com/tools/hash-generator</loc>
+    <loc>https://jtoolset.com/tools/bcrypt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -108,7 +108,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jtoolset.com/tools/hash-verifier</loc>
+    <loc>https://jtoolset.com/tools/hash</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
+import MobileNav from './MobileNav';
 import NewsTicker from '../ui/NewsTicker';
 import SidebarAds from '../ui/SidebarAds';
 import { GoogleAdSenseScript } from '@/lib/ads';
@@ -32,6 +33,9 @@ export default function RootLayout() {
         {/* Right Sidebar Ads - Fixed width */}
         {/* <SidebarAds /> */}
       </div>
+
+      {/* Mobile Navigation - Only visible on small screens */}
+      <MobileNav />
       
       {/* Footer - Overlay */}
       <Footer />
