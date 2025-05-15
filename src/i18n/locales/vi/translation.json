@@ -576,8 +576,8 @@
       "useCase3": "Tạo hiệu ứng văn bản gương cho các dự án sáng tạo",
       "useCase4": "Sắp xếp lại dòng hoặc từ để tổ chức lại văn bản"
     },
-    "hash": {
-      "name": "Tạo và Xác minh Hash",
+    "sha": {
+      "name": "SHA Hash",
       "description": "Tạo và xác minh hash cho văn bản hoặc tệp",
       "generateMode": "Tạo",
       "verifyMode": "Xác minh",
@@ -609,7 +609,6 @@
       "aboutTitle": "Về công cụ Tạo và Xác minh Hash",
       "aboutDescription": "Công cụ này cho phép bạn tạo các hash mật mã cho văn bản hoặc tệp và xác minh giá trị hash để đảm bảo tính toàn vẹn dữ liệu.",
       "algorithmsTitle": "Các thuật toán Hash được hỗ trợ",
-      "md5Description": "Một hàm hash được sử dụng rộng rãi (128-bit), được coi là bị phá vỡ về mặt mật mã nhưng vẫn thường được sử dụng cho kiểm tra tổng.",
       "sha1Description": "Một hàm hash 160-bit, nhìn chung không còn được coi là an toàn cho mục đích mật mã.",
       "sha256Description": "Thuộc họ SHA-2, hàm hash 256-bit được sử dụng rộng rãi với các thuộc tính bảo mật mạnh.",
       "sha384Description": "Một biến thể của SHA-2 tạo ra giá trị hash 384-bit để tăng cường bảo mật.",
@@ -620,7 +619,7 @@
       "useCase3": "Tạo các giá trị kiểm tra tổng cho mục đích xác minh tệp",
       "useCase4": "So sánh dữ liệu gốc và dữ liệu đã xử lý để xác nhận không có thay đổi xảy ra",
       "securityNoteTitle": "Lưu ý về bảo mật",
-      "securityNoteText": "Đối với các ứng dụng bảo mật nhạy cảm, tránh sử dụng MD5 và SHA-1 vì chúng được coi là yếu về mặt mật mã. SHA-256 hoặc mạnh hơn được khuyến nghị cho các ứng dụng quan trọng về bảo mật."
+      "securityNoteText": "Đối với các ứng dụng bảo mật nhạy cảm, tránh sử dụng SHA-1 vì chúng được coi là yếu về mặt mật mã. SHA-256 hoặc mạnh hơn được khuyến nghị cho các ứng dụng quan trọng về bảo mật."
     },
     "bcrypt": {
       "name": "Bcrypt Hash",

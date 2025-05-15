@@ -22,9 +22,9 @@ import RegexTester from '../components/tools/regex-tester/RegexTester';
 import WordCounter from '../components/tools/word-counter/WordCounter';
 import RemoveDuplicateLines from '../components/tools/remove-duplicate-lines/RemoveDuplicateLines';
 import ReverseText from '../components/tools/reverse-text/ReverseText';
-import HashTool from '../components/tools/hash/HashTool';
 import SocialShare from '../components/ui/SocialShare';
-import BcryptTool from '../components/tools/bcrypt/BcryptTool';
+import BcryptTool from '../components/tools/hash/BcryptTool';
+import ShaTool from '../components/tools/hash/ShaTool';
 
 export default function ToolPage() {
   const { t } = useTranslation();
@@ -79,8 +79,8 @@ export default function ToolPage() {
         return <RemoveDuplicateLines />;
       case 'reverse-text':
         return <ReverseText />;
-      case 'hash':
-        return <HashTool />;
+      case 'sha':
+        return <ShaTool />;
       case 'bcrypt':
         return <BcryptTool />;
       default:

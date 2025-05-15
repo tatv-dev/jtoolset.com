@@ -155,13 +155,13 @@ export function getAllTools() {
       isFeatured: true,
     },
     {
-      id: 'hash',
-      slug: 'hash',
-      name: 'Hash Generator & Verifier',
+      id: 'sha',
+      slug: 'sha',
+      name: 'SHA Hash',
       description: 'Generate and verify hashes for text or files',
       category: 'Crypto',
       icon: 'Shield',
-      tags: ['hash', 'verify', 'integrity', 'sha256', 'md5', 'sha1', 'checksum', 'security'],
+      tags: ['hash', 'verify', 'integrity', 'sha256', 'sha1', 'checksum', 'security'],
       isFeatured: true,
     },
     {

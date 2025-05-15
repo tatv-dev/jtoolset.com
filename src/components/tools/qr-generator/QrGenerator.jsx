@@ -1,4 +1,5 @@
 'use client';
+'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import { QrCode, Download, Copy, Check, RefreshCw, Settings, Palette, Shield } from 'lucide-react';
@@ -16,6 +17,7 @@ export default function QrGenerator() {
     errorCorrectionLevel: 'M',
     fgColor: '#000000',
     bgColor: '#ffffff',
+    padding: 20, // Added padding option with default value
   });
   const [wifiOptions, setWifiOptions] = useState({
     ssid: '',
@@ -85,8 +87,18 @@ export default function QrGenerator() {
     
     // Generate QR code using QRCodeJS
     try {
+      // Create a wrapper div with padding
+      const qrWrapper = document.createElement('div');
+      qrWrapper.style.padding = `${qrOptions.padding}px`;
+      qrWrapper.style.backgroundColor = qrOptions.bgColor;
+      qrWrapper.style.display = 'inline-block';
+      qrWrapper.style.borderRadius = '8px';
+      
+      // Append wrapper to container
+      qrContainerRef.current.appendChild(qrWrapper);
+      
       // eslint-disable-next-line no-undef
-      new QRCode(qrContainerRef.current, {
+      new QRCode(qrWrapper, {
         text: data,
         width: qrOptions.size,
         height: qrOptions.size,
@@ -97,9 +109,35 @@ export default function QrGenerator() {
       
       // Get image URL for download/copy
       setTimeout(() => {
-        const qrImg = qrContainerRef.current.querySelector('img');
+        // Create a canvas element
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size to include padding
+        const totalSize = qrOptions.size + (qrOptions.padding * 2);
+        canvas.width = totalSize;
+        canvas.height = totalSize;
+        
+        // Fill background
+        ctx.fillStyle = qrOptions.bgColor;
+        ctx.fillRect(0, 0, totalSize, totalSize);
+        
+        // Get QR code image
+        const qrImg = qrWrapper.querySelector('img');
+        
         if (qrImg) {
-          setQrCodeUrl(qrImg.src);
+          // Once image is loaded, draw it on canvas with padding
+          qrImg.onload = () => {
+            ctx.drawImage(qrImg, qrOptions.padding, qrOptions.padding);
+            
+            // Convert canvas to data URL for download/copy
+            setQrCodeUrl(canvas.toDataURL('image/png'));
+          };
+          
+          // If image is already loaded, force onload handler
+          if (qrImg.complete) {
+            qrImg.onload();
+          }
         }
       }, 100);
     } catch (error) {
@@ -366,6 +404,34 @@ export default function QrGenerator() {
     );
   };
 
+  // Added: Render padding slider
+  const renderPaddingSlider = () => {
+    return (
+      <div className="mt-4">
+        <div className="flex justify-between mb-2">
+          <label htmlFor="qr-padding" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            {t('tools.qr-generator.padding') || 'Padding'}
+          </label>
+          <span className="text-sm text-gray-500 dark:text-gray-400">{qrOptions.padding} px</span>
+        </div>
+        <input
+          type="range"
+          id="qr-padding"
+          min="0"
+          max="50"
+          step="5"
+          value={qrOptions.padding}
+          onChange={(e) => setQrOptions({...qrOptions, padding: parseInt(e.target.value)})}
+          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+        />
+        <div className="flex justify-between mt-1 text-xs text-gray-500">
+          <span>0px</span>
+          <span>50px</span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-6">
       <Card
@@ -436,6 +502,9 @@ export default function QrGenerator() {
                       <span>512px</span>
                     </div>
                   </div>
+                  
+                  {/* Added: Padding Slider */}
+                  {renderPaddingSlider()}
                   
                   {/* Error Correction Level */}
                   <div>
@@ -528,21 +597,21 @@ export default function QrGenerator() {
             <div className="xl:w-1/2">
               {/* Input fields */}
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                <div className="text-base xl:text-lg font-medium text-gray-900 dark:text-gray-100">
                   {t('tools.qr-generator.input')}
-                </h3>
+                </div>
                 {renderInputFields()}
                 
                 {/* QR Code Preview */}
                 <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                  <div className="flex gap-2 justify-between items-center mb-4">
+                    <div className="text-base xl:text-lg font-medium text-gray-900 dark:text-gray-100">
                       {t('tools.qr-generator.preview')}
-                    </h3>
+                    </div>
                     <div className="flex gap-2">
                       <Button
                         variant="outline"
-                        size="sm"
+                        size="xl:sm"
                         icon={Download}
                         onClick={downloadQR}
                         disabled={!qrCodeUrl}

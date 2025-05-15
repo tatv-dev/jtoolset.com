@@ -63,11 +63,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jtoolset.com/tools/bcrypt</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://jtoolset.com/tools/qr-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -108,7 +103,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jtoolset.com/tools/hash</loc>
+    <loc>https://jtoolset.com/tools/sha</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jtoolset.com/tools/bcrypt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
