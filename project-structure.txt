@@ -18,10 +18,9 @@ src/
 │   │   │   └── ColorToImage.jsx
 │   │   ├── domain-ip/
 │   │   │   └── DomainIp.jsx
-│   │   ├── hash-generator/
-│   │   │   └── HashGenerator.jsx
-│   │   ├── hash-verifier/
-│   │   │   └── HashVerifier.jsx
+│   │   ├── hash/
+│   │   │   ├── BcryptTool.jsx
+│   │   │   └── ShaTool.jsx
 │   │   ├── ip-checker/
 │   │   │   └── IpChecker.jsx
 │   │   ├── json-formatter/
@@ -73,6 +72,7 @@ src/
 ├── hooks/
 │   ├── useLocalStorage.js
 │   ├── useMediaQuery.js
+│   ├── useScript.js
 │   └── useSearchTools.js
 ├── i18n/
 │   ├── i18n.js
@@ -101,13 +101,13 @@ src/
 │   ├── PrivacyPolicyPage.jsx
 │   ├── ToolPage.jsx
 │   └── ToolsListPage.jsx
-├── public/
-│   ├── icons/
-│   └── images/
 └── styles/
     ├── animation/
     │   ├── glitch-text.css
+    │   ├── homepage.css
     │   ├── typing-text.css
     │   └── wiggle.css
+    ├── navigation/
+    │   └── bottom-nav.css
     ├── news-ticker.css
     └── social.css
