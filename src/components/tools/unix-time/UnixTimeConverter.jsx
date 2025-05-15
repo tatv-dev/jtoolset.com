@@ -7,6 +7,7 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import TimeDisplay from './TimeDisplay';
 import { useTranslation } from 'react-i18next';
+import { Tooltip } from '@/components/ui/Tooltip';
 
 export default function UnixTimeConverter() {
   const { t } = useTranslation();
@@ -125,13 +126,16 @@ export default function UnixTimeConverter() {
                     className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   />
                 </div>
-                <button 
-                  onClick={convertUnixToDateTime} 
-                  className="p-2 text-primary-600 dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
-                  title={t('tools.unix-time.convertToDateTime')}
-                >
-                  <RefreshCw className="h-5 w-5" />
-                </button>
+                <Tooltip content={t('tools.unix-time.convertToDateTime')}>
+                  <Button
+                    onClick={convertUnixToDateTime}
+                    variant="ghost"
+                    size="icon"
+                    className="text-primary-600 dark:text-primary-400"
+                  >
+                    <RefreshCw className="w-5 h-5" />
+                  </Button>
+                </Tooltip>
               </div>
             </div>
 
@@ -149,13 +153,16 @@ export default function UnixTimeConverter() {
                     className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   />
                 </div>
-                <button 
-                  onClick={convertDateTimeToUnix} 
-                  className="p-2 text-primary-600 dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
-                  title={t('tools.unix-time.convertToUnix')}
-                >
-                  <RefreshCw className="h-5 w-5 rotate-180" />
-                </button>
+                <Tooltip content={t('tools.unix-time.convertToUnix')}>
+                  <Button
+                    onClick={convertDateTimeToUnix}
+                    variant="ghost"
+                    size="icon"
+                    className="text-primary-600 dark:text-primary-400 rotate-180"
+                  >
+                    <RefreshCw className="w-5 h-5" />
+                  </Button>
+                </Tooltip>
               </div>
             </div>
 

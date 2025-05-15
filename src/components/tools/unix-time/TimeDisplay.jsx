@@ -2,7 +2,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { Clock, Globe } from 'lucide-react';
+import { Clock, Globe, Calendar, Hourglass, Tag } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import { useTranslation } from 'react-i18next';
 
@@ -10,8 +10,7 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
   const { t, i18n } = useTranslation();
   
   const dateTime = useMemo(() => {
-    const date = new Date(timestamp * 1000);
-    return date;
+    return new Date(timestamp * 1000);
   }, [timestamp]);
 
   const formats = useMemo(() => {
@@ -25,11 +24,11 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
       second: '2-digit',
     };
 
-    // Định dạng chuẩn
+    // Standard formats
     const iso = dateTime.toISOString();
     const local = dateTime.toLocaleString(i18n.language);
     
-    // Định dạng theo tiêu chuẩn khác nhau
+    // Different standard formats
     const readable = dateTime.toLocaleString(i18n.language, options);
     const utc = dateTime.toUTCString();
     const relative = getRelativeTime(timestamp);
@@ -43,7 +42,7 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
     };
   }, [dateTime, timestamp, i18n.language]);
 
-  // Xác định múi giờ cục bộ
+  // Determine local timezone
   const timezoneInfo = useMemo(() => {
     const offsetHours = Math.floor(Math.abs(timezoneOffset) / 60);
     const offsetMinutes = Math.abs(timezoneOffset) % 60;
@@ -56,7 +55,7 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
     };
   }, [timezoneOffset]);
 
-  // Tính thời gian tương đối
+  // Calculate relative time
   function getRelativeTime(unixTime) {
     const now = Math.floor(Date.now() / 1000);
     const diff = now - unixTime;
@@ -76,29 +75,65 @@ export default function TimeDisplay({ timestamp, timezoneOffset }) {
 
   return (
     <Card title={t('tools.unix-time.timeInfo')} icon={Clock}>
-      <div className="space-y-4">
-        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-          <Globe className="mr-2 h-4 w-4" />
-          <span>{t('tools.unix-time.timezone')}: {timezoneInfo.name} ({timezoneInfo.offset})</span>
+      <div className="space-y-5">
+        {/* Timezone Info with improved visibility */}
+        <div className="flex items-center gap-2 p-3 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg">
+          <Globe className="h-5 w-5 flex-shrink-0" />
+          <span className="font-medium">
+            {t('tools.unix-time.timezone')}: <span className="font-semibold">{timezoneInfo.name}</span> ({timezoneInfo.offset})
+          </span>
         </div>
         
-        <div className="space-y-3">
-          <FormatItem label={t('tools.unix-time.formats.friendly')} value={formats.readable} />
-          <FormatItem label={t('tools.unix-time.formats.iso8601')} value={formats.iso} />
-          <FormatItem label={t('tools.unix-time.formats.utc')} value={formats.utc} />
-          <FormatItem label={t('tools.unix-time.formats.local')} value={formats.local} />
-          <FormatItem label={t('tools.unix-time.formats.relative')} value={formats.relative} />
+        {/* Main format - most visually prominent */}
+        <div className="rounded-lg bg-gray-100 dark:bg-gray-800 p-4 border-l-4 border-primary-500">
+          <div className="flex items-center mb-2 text-primary-700 dark:text-primary-400 font-medium">
+            <Calendar className="mr-2 h-5 w-5" />
+            {t('tools.unix-time.formats.friendly')}
+          </div>
+          <div className="text-lg font-medium">
+            {formats.readable}
+          </div>
+        </div>
+        
+        {/* Grid of other formats */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormatItem 
+            icon={<Tag className="h-4 w-4" />}
+            label={t('tools.unix-time.formats.iso8601')} 
+            value={formats.iso} 
+          />
+          <FormatItem 
+            icon={<Globe className="h-4 w-4" />}
+            label={t('tools.unix-time.formats.utc')} 
+            value={formats.utc} 
+          />
+          <FormatItem 
+            icon={<Clock className="h-4 w-4" />}
+            label={t('tools.unix-time.formats.local')} 
+            value={formats.local} 
+          />
+          <FormatItem 
+            icon={<Hourglass className="h-4 w-4" />}
+            label={t('tools.unix-time.formats.relative')} 
+            value={formats.relative} 
+            highlight={true}
+          />
         </div>
       </div>
     </Card>
   );
 }
 
-function FormatItem({ label, value }) {
+function FormatItem({ icon, label, value, highlight = false }) {
   return (
-    <div className="w-full">
-      <div className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</div>
-      <div className="mt-1 text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded-md overflow-x-auto break-all">
+    <div className={`rounded-lg ${highlight ? 'bg-green-50 dark:bg-green-900/20' : 'bg-gray-50 dark:bg-gray-800'} p-3 h-full`}>
+      <div className="flex items-center gap-2 text-sm font-medium mb-1.5">
+        {icon}
+        <span className={highlight ? 'text-green-700 dark:text-green-400' : 'text-gray-700 dark:text-gray-300'}>
+          {label}
+        </span>
+      </div>
+      <div className="font-mono text-sm overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
         {value}
       </div>
     </div>
