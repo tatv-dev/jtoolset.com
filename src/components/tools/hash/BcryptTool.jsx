@@ -425,7 +425,7 @@ export default function BcryptTool() {
       {/* Load bcrypt-js library */}
       <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"
-        onLoad={() => window.bcryptLoaded()}
+        // onLoad={() => window.bcryptLoaded()}
       />
       
       <Card
