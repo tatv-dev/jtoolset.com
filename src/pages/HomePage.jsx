@@ -149,13 +149,16 @@ export default function HomePage() {
   const [showCategories, setShowCategories] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   
-  const categories = ['All', ...getAllCategories()];
-  const tools = getAllTools();
+  // Lấy danh sách categories và tools một lần khi component mount
+  // Không đặt vào dependency để tránh lặp vô hạn
+  const categoriesRef = useRef(['All', ...getAllCategories()]);
+  const toolsRef = useRef(getAllTools());
+  
   const searchRef = useRef(null);
   
   // Filter tools based on search and category
   useEffect(() => {
-    const filtered = tools.filter(tool => {
+    const filtered = toolsRef.current.filter(tool => {
       const matchesSearch = !searchTerm || 
         tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -167,7 +170,7 @@ export default function HomePage() {
     });
     
     setFilteredTools(filtered);
-  }, [searchTerm, selectedCategory, tools]);
+  }, [searchTerm, selectedCategory]); // Chỉ chạy khi searchTerm hoặc selectedCategory thay đổi
   
   // Handle search input change
   const handleSearchChange = (e) => {
@@ -284,14 +287,15 @@ export default function HomePage() {
                 <AnimatePresence>
                   {showCategories && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-48 max-h-64 overflow-y-auto rounded-lg shadow-lg z-50 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+                      style={{ position: 'absolute', right: 0, transform: 'translateY(-100%)', marginBottom: '10px', zIndex: 50 }}
+                      className="w-48 max-h-40 overflow-y-auto rounded-lg shadow-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 mb-2"
                     >
                       <div className="py-1">
-                        {categories.map((category) => (
+                        {categoriesRef.current.map((category) => (
                           <motion.button
                             key={category}
                             onClick={() => {
@@ -328,7 +332,7 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.5 }}
         >
-          {categories.map((category, index) => (
+          {categoriesRef.current.map((category, index) => (
             <motion.button
               key={category}
               onClick={() => setSelectedCategory(category)}

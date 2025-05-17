@@ -786,6 +786,8 @@
     "loading": "Loading...",
     "error": "An error occurred",
     "notFound": "Not Found",
+    "noResults": "No results",
+    "tryDifferentSearch": "Try a different search term.",
     "backToHome": "Back to Home",
     "all": "All",
     "legalInfo": "Legal Information",
