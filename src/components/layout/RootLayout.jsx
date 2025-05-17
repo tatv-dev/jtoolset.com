@@ -1,5 +1,6 @@
 // src/components/layout/RootLayout.jsx
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
@@ -7,8 +8,11 @@ import MobileNav from './MobileNav';
 import NewsTicker from '../ui/NewsTicker';
 import SidebarAds from '../ui/SidebarAds';
 import { GoogleAdSenseScript } from '@/lib/ads';
+import { pageTransition } from '@/lib/animationUtils';
 
 export default function RootLayout() {
+  const location = useLocation();
+  
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-gray-50 dark:bg-dark-background text-gray-900 dark:text-dark-text transition-colors duration-200">
       {/* Add GoogleAdSenseScript here */}
@@ -27,7 +31,18 @@ export default function RootLayout() {
         
         {/* Main Content - Takes full space */}
         <main className="flex-1 p-4 md:p-6 md:pb-[150px] overflow-y-auto main-scroll">
-          <Outlet />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={pageTransition}
+              className="min-h-full"
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
         </main>
         
         {/* Right Sidebar Ads - Fixed width */}

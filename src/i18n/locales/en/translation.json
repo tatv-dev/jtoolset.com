@@ -690,23 +690,7 @@
   "pages": {
     "home": {
       "title": "JToolset",
-      "subtitle": "A collection of free tools to help make your development work easier and more fun.",
-      "featuredTools": "Featured Tools",
-      "whyUse": "Why use JToolset?",
-      "feature1": {
-        "title": "Powerful & User-Friendly",
-        "description": "Intuitive tools designed to streamline your development workflow with minimal friction."
-      },
-      "feature2": {
-        "title": "Works in browser",
-        "description": "Process data right in your browser, no data is sent to servers."
-      },
-      "feature3": {
-        "title": "Mobile optimized",
-        "description": "Responsive design, allowing you to use it on any device."
-      },
-      "readyToStart": "Ready to supercharge your workflow?",
-      "exploreTools": "Explore All Tools"
+      "subtitle": "A collection of free tools to help make your development work easier and more fun."
     },
     "pageList": {
       "home": "Home",

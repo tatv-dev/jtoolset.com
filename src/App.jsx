@@ -4,7 +4,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import RootLayout from './components/layout/RootLayout';
 import HomePage from './pages/HomePage';
 import ToolPage from './pages/ToolPage';
-import ToolsListPage from './pages/ToolsListPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
@@ -45,7 +44,7 @@ function App() {
           <Routes>
             <Route path="/" element={<RootLayout />}>
               <Route index element={<HomePage />} />
-              <Route path="tools" element={<ToolsListPage />} />
+              {/* <Route path="tools" element={<HomePage />} /> */}
               <Route path="about" element={<AboutPage />} />
               <Route path="contact" element={<ContactPage />} />
               <Route path="privacy-policy" element={<PrivacyPolicyPage />} />

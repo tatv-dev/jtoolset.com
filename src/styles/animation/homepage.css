@@ -1,63 +1,112 @@
 /* src/styles/animation/homepage.css */
 
-/* Float animation for background elements */
+/* Float animation for tool cards and elements */
 @keyframes float {
   0% {
-    transform: translateY(0) translateX(0) rotate(0);
-  }
-  25% {
-    transform: translateY(-15px) translateX(10px) rotate(2deg);
+    transform: translateY(0) translateX(0);
   }
   50% {
-    transform: translateY(0) translateX(15px) rotate(0);
-  }
-  75% {
-    transform: translateY(15px) translateX(5px) rotate(-2deg);
+    transform: translateY(-10px) translateX(5px);
   }
   100% {
-    transform: translateY(0) translateX(0) rotate(0);
+    transform: translateY(0) translateX(0);
   }
 }
 
 .animate-float {
-  animation: float 12s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
-/* Subtle pulse animation */
-@keyframes subtle-pulse {
+/* Glow pulse animation for cards and buttons */
+@keyframes glow-pulse {
   0%, 100% {
-    transform: scale(1);
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
   }
   50% {
-    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
   }
 }
 
-.animate-subtle-pulse {
-  animation: subtle-pulse 4s ease-in-out infinite;
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
 }
 
-/* Ping animation that only runs once */
-@keyframes ping-once {
+/* Shimmer effect for gradients */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, 
+    rgba(59, 130, 246, 0.1) 25%, 
+    rgba(147, 51, 234, 0.1) 50%, 
+    rgba(59, 130, 246, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+/* Bounce animation for interactive elements */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Pop animation for tool icon hover effects */
+@keyframes pop {
   0% {
     transform: scale(1);
-    opacity: 1;
   }
   50% {
-    transform: scale(1.3);
-    opacity: 0.8;
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
-    opacity: 1;
   }
 }
 
-.animate-ping-once {
-  animation: ping-once 0.3s ease-in-out forwards;
+.hover-pop:hover {
+  animation: pop 0.3s ease-in-out;
 }
 
-/* Fade in animation */
+/* Typewriter effect for headings */
+@keyframes typewriter {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  animation: typewriter 2.5s steps(40, end);
+}
+
+.animate-typewriter::after {
+  content: '|';
+  position: absolute;
+  right: 0;
+  animation: caret 1s step-end infinite;
+}
+
+@keyframes caret {
+  50% { opacity: 0; }
+}
+
+/* Fade-in animation for sections */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -73,89 +122,69 @@
   animation: fade-in 0.5s ease-out forwards;
 }
 
-/* Horizontal bounce animation for the arrow */
-@keyframes bounce-horizontal {
-  0%, 100% {
-    transform: translateX(0);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: translateX(10px);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
+/* Staggered animation for children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-.animate-bounce-horizontal {
-  animation: bounce-horizontal 1s infinite;
+.stagger-children > *:nth-child(1) { animation: fade-in 0.5s 0.1s forwards; }
+.stagger-children > *:nth-child(2) { animation: fade-in 0.5s 0.2s forwards; }
+.stagger-children > *:nth-child(3) { animation: fade-in 0.5s 0.3s forwards; }
+.stagger-children > *:nth-child(4) { animation: fade-in 0.5s 0.4s forwards; }
+.stagger-children > *:nth-child(5) { animation: fade-in 0.5s 0.5s forwards; }
+.stagger-children > *:nth-child(6) { animation: fade-in 0.5s 0.6s forwards; }
+
+/* Background shapes animation */
+.animated-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  z-index: -1;
+  filter: blur(40px);
 }
 
-/* Shimmer effect for gradients */
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+.shape1 {
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 15%;
+  animation: float 20s ease-in-out infinite;
 }
 
-.animate-shimmer {
-  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 25%, rgba(147, 51, 234, 0.1) 50%, rgba(59, 130, 246, 0.1) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 8s ease-in-out infinite;
+.shape2 {
+  background: linear-gradient(45deg, #10b981, #3b82f6);
+  width: 250px;
+  height: 250px;
+  top: 40%;
+  right: 10%;
+  animation: float 25s ease-in-out infinite reverse;
 }
 
-/* Typing animation */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-.animate-typing {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3.5s steps(40, end);
-}
-
-/* Subtle rotate for hover effects */
-@keyframes subtle-rotate {
-  0% {
-    transform: rotate(-1deg);
-  }
-  50% {
-    transform: rotate(1deg);
-  }
-  100% {
-    transform: rotate(-1deg);
-  }
-}
-
-.hover-rotate:hover {
-  animation: subtle-rotate 2s ease-in-out infinite;
-}
-
-/* Glowing effect */
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
-  }
-}
-
-.animate-glow {
-  animation: glow 3s ease-in-out infinite;
+.shape3 {
+  background: linear-gradient(45deg, #f59e0b, #ef4444);
+  width: 200px;
+  height: 200px;
+  bottom: 10%;
+  left: 30%;
+  animation: float 18s ease-in-out infinite 5s;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .animate-float {
-    animation-duration: 8s; /* Faster on mobile */
+  .shape1, .shape2, .shape3 {
+    width: 150px;
+    height: 150px;
+    filter: blur(30px);
   }
   
-  .animate-fade-in {
-    animation-duration: 0.3s; /* Faster on mobile */
+  .animate-typewriter {
+    white-space: normal;
+    animation: fade-in 1s ease-out forwards;
+  }
+  
+  .animate-typewriter::after {
+    content: none;
   }
 }

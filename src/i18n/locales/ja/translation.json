@@ -680,23 +680,7 @@
   "pages": {
     "home": {
       "title": "JToolset",
-      "subtitle": "開発作業をより簡単に、より楽しくするための無料ツールコレクション。",
-      "featuredTools": "おすすめツール",
-      "whyUse": "なぜJToolsetを使うのか？",
-      "feature1": {
-        "title": "パワフル＆ユーザーフレンドリー",
-        "description": "最小限の摩擦で開発ワークフローを効率化するように設計された直感的なツール。"
-      },
-      "feature2": {
-        "title": "ブラウザで動作",
-        "description": "データはブラウザ内で処理され、サーバーに送信されません。"
-      },
-      "feature3": {
-        "title": "モバイル最適化",
-        "description": "レスポンシブデザインにより、どのデバイスでも利用可能。"
-      },
-      "readyToStart": "ワークフローを強化する準備はできましたか？",
-      "exploreTools": "すべてのツールを探索"
+      "subtitle": "開発作業をより簡単に、より楽しくするための無料ツールコレクション。"
     },
     "pageList": {
       "home": "ホーム",

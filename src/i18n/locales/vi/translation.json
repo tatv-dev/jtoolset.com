@@ -680,23 +680,7 @@
   "pages": {
     "home": {
       "title": "JToolset",
-      "subtitle": "Tập hợp các công cụ miễn phí để giúp công việc lập trình của bạn dễ dàng hơn.",
-      "featuredTools": "Công cụ nổi bật",
-      "whyUse": "Tại sao nên sử dụng JToolset?",
-      "feature1": {
-        "title": "Mạnh Mẽ & Thân Thiện",
-        "description": "Các công cụ trực quan được thiết kế để hợp lý hóa quy trình phát triển của bạn với độ phức tạp tối thiểu."
-      },
-      "feature2": {
-        "title": "Làm việc trong trình duyệt",
-        "description": "Xử lý dữ liệu ngay trong trình duyệt của bạn, không gửi dữ liệu lên máy chủ."
-      },
-      "feature3": {
-        "title": "Tối ưu cho mobile",
-        "description": "Thiết kế responsive, cho phép bạn sử dụng trên bất kỳ thiết bị nào."
-      },
-      "readyToStart": "Sẵn sàng để bắt đầu?",
-      "exploreTools": "Xem tất cả công cụ"
+      "subtitle": "Tập hợp các công cụ miễn phí để giúp công việc lập trình của bạn dễ dàng hơn."
     },
     "pageList": {
       "home": "Trang chủ",
@@ -792,6 +776,7 @@
     "loading": "Đang tải...",
     "error": "Đã xảy ra lỗi",
     "notFound": "Không tìm thấy",
+    "backToHome": "Trở về trang chủ",
     "goBack": "Quay lại",
     "all": "Tất cả",
     "legalInfo": "Thông tin pháp lý",
