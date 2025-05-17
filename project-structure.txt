@@ -101,6 +101,9 @@ src/
 │   ├── PrivacyPolicyPage.jsx
 │   ├── ToolPage.jsx
 │   └── ToolsListPage.jsx
+├── public/
+│   ├── icons/
+│   └── images/
 └── styles/
     ├── animation/
     │   ├── glitch-text.css

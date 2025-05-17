@@ -532,16 +532,12 @@ export default function QrGenerator() {
                             {t('tools.qr-generator.foregroundColor')}
                           </label>
                           <div className="flex">
-                            <div 
-                              className="w-10 h-10 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-700"
-                              style={{ backgroundColor: qrOptions.fgColor }}
-                            ></div>
                             <input
                               type="color"
                               id="qr-fgcolor"
                               value={qrOptions.fgColor}
                               onChange={(e) => setQrOptions({...qrOptions, fgColor: e.target.value})}
-                              className="w-full h-10 px-1 py-1 rounded-r-md border border-gray-300 dark:border-gray-700"
+                              className="w-full h-10 px-1 py-1 rounded-md border border-gray-300 dark:border-gray-700"
                             />
                           </div>
                         </div>
@@ -553,41 +549,17 @@ export default function QrGenerator() {
                             {t('tools.qr-generator.backgroundColor')}
                           </label>
                           <div className="flex">
-                            <div 
-                              className="w-10 h-10 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-700"
-                              style={{ backgroundColor: qrOptions.bgColor }}
-                            ></div>
                             <input
                               type="color"
                               id="qr-bgcolor"
                               value={qrOptions.bgColor}
                               onChange={(e) => setQrOptions({...qrOptions, bgColor: e.target.value})}
-                              className="w-full h-10 px-1 py-1 rounded-r-md border border-gray-300 dark:border-gray-700"
+                              className="w-full h-10 px-1 py-1 rounded-md border border-gray-300 dark:border-gray-700"
                             />
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Actions */}
-                  <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <Button
-                      variant="primary"
-                      onClick={loadSample}
-                      size="sm"
-                    >
-                      {t('tools.qr-generator.loadSample')}
-                    </Button>
-                    
-                    <Button
-                      variant="secondary"
-                      onClick={clearAll}
-                      icon={RefreshCw}
-                      size="sm"
-                    >
-                      {t('tools.qr-generator.clear')}
-                    </Button>
                   </div>
                 </div>
               </div>
@@ -601,6 +573,26 @@ export default function QrGenerator() {
                   {t('tools.qr-generator.input')}
                 </div>
                 {renderInputFields()}
+
+                {/* Actions */}
+                <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <Button
+                    variant="primary"
+                    onClick={loadSample}
+                    size="sm"
+                  >
+                    {t('tools.qr-generator.loadSample')}
+                  </Button>
+                  
+                  <Button
+                    variant="secondary"
+                    onClick={clearAll}
+                    icon={RefreshCw}
+                    size="sm"
+                  >
+                    {t('tools.qr-generator.clear')}
+                  </Button>
+                </div>
                 
                 {/* QR Code Preview */}
                 <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">

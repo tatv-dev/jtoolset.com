@@ -232,6 +232,7 @@
       "options": "Options",
       "colors": "Choose Color",
       "size": "Size",
+      "padding": "Padding",
       "errorCorrection": "Error Correction Level",
       "foregroundColor": "Foreground Color",
       "backgroundColor": "Background Color",

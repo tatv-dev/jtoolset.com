@@ -222,6 +222,7 @@
       "options": "オプション",
       "colors": "色を選択",
       "size": "サイズ",
+      "padding": "パディング",
       "errorCorrection": "誤り訂正レベル",
       "foregroundColor": "前景色",
       "backgroundColor": "背景色",

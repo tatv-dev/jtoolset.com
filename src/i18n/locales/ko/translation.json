@@ -230,6 +230,7 @@
       "options": "옵션",
       "colors": "색상 선택",
       "size": "크기",
+      "padding": "패딩",
       "errorCorrection": "오류 수정 레벨",
       "foregroundColor": "전경색",
       "backgroundColor": "배경색",
