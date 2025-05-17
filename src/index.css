@@ -139,3 +139,13 @@ input:focus, textarea:focus, select:focus, button:focus {
   display: flex;
   flex-direction: column;
 }
+
+.has-fixed-header {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+@media (min-width: 768px) {
+  .main-scroll {
+    scroll-padding-top: 80px;
+  }
+}
