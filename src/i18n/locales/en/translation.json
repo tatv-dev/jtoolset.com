@@ -690,7 +690,8 @@
   "pages": {
     "home": {
       "title": "JToolset",
-      "subtitle": "A collection of free tools to help make your development work easier and more fun."
+      "subtitle": "A collection of free tools to help make your development work easier and more fun.",
+      "featuredTools": "Featured Tools"
     },
     "pageList": {
       "home": "Home",

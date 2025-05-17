@@ -680,7 +680,8 @@
   "pages": {
     "home": {
       "title": "JToolset",
-      "subtitle": "開発作業をより簡単に、より楽しくするための無料ツールコレクション。"
+      "subtitle": "開発作業をより簡単に、より楽しくするための無料ツールコレクション。",
+      "featuredTools": "注目のツール"
     },
     "pageList": {
       "home": "ホーム",

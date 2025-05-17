@@ -680,7 +680,8 @@
   "pages": {
     "home": {
       "title": "JToolset",
-      "subtitle": "Tập hợp các công cụ miễn phí để giúp công việc lập trình của bạn dễ dàng hơn."
+      "subtitle": "Tập hợp các công cụ miễn phí để giúp công việc lập trình của bạn dễ dàng hơn.",
+      "featuredTools": "Công cụ nổi bật"
     },
     "pageList": {
       "home": "Trang chủ",
