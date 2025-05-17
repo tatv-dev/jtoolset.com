@@ -16,10 +16,10 @@ export default function LanguageSelector() {
         className="bg-transparent border-none focus:ring-0 text-sm text-gray-700 dark:text-gray-300 cursor-pointer"
         aria-label={t('common.language')}
       >
-        <option value="en">English</option>
-        <option value="vi">Tiếng Việt</option>
-        <option value="ja">日本語</option>
-        <option value="ko">한국어</option>
+        <option value="en" className='dark:bg-primary-900'>English</option>
+        <option value="vi" className='dark:bg-primary-900'>Tiếng Việt</option>
+        <option value="ja" className='dark:bg-primary-900'>日本語</option>
+        <option value="ko" className='dark:bg-primary-900'>한국어</option>
       </select>
     </div>
   );

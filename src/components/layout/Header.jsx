@@ -38,13 +38,13 @@ export default function Header() {
               {/* <Link to="/" className="hidden xl:flex text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.home')}
               </Link> */}
-              <Link to="/tools" className="text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              <Link to="/tools" className="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.tools')}
               </Link>
-              <Link to="/about" className="text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              <Link to="/about" className="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.about')}
               </Link>
-              <Link to="/contact" className="text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              <Link to="/contact" className="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
                 {t('pages.pageList.contact')}
               </Link>
             </nav>
