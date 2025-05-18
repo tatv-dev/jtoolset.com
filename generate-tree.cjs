@@ -47,5 +47,5 @@ function generateTree(dir, prefix = '', isLast = true, level = 0) {
 generateTree('./src');
 
 // Write to file
-fs.writeFileSync('project-structure.txt', output.join('\n'), 'utf8');
-console.log('Project structure has been saved to project-structure.txt');
+fs.writeFileSync('project-structure.md', output.join('\n'), 'utf8');
+console.log('Project structure has been saved to project-structure.md');
