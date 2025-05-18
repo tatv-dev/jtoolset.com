@@ -1,0 +1,224 @@
+/* src/styles/modern-layout.css */
+
+/* Modern layout styles */
+.modern-layout {
+  /* Main container tweaks */
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  
+  /* Improved content spacing */
+  main {
+    min-height: calc(100vh - 12rem);
+  }
+  
+  /* Smooth transitions */
+  .page-transition {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  /* Enhanced header animations */
+  .header-logo {
+    transform-origin: left center;
+  }
+  
+  /* Dropdown menu styles */
+  .dropdown-menu {
+    transform-origin: top center;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .sidebar-ad {
+      display: none;
+    }
+    
+    .tool-container {
+      padding: 1rem;
+    }
+  }
+  
+  /* Ad spacing */
+  .ad-container {
+    transition: opacity 0.3s ease;
+  }
+  
+  .ad-container:hover {
+    opacity: 1;
+  }
+  
+  /* Smooth animations for menus */
+  .menu-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .menu-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms, transform 200ms;
+  }
+  
+  .menu-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .menu-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 150ms, transform 150ms;
+  }
+  
+  /* Dark mode enhancements */
+  &.dark {
+    .glass-effect {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(8px);
+    }
+    
+    .animated-gradient {
+      background: linear-gradient(
+        270deg, 
+        rgba(59, 130, 246, 0.1), 
+        rgba(139, 92, 246, 0.1), 
+        rgba(59, 130, 246, 0.1)
+      );
+      background-size: 200% 100%;
+      animation: gradientShift 8s ease infinite;
+    }
+  }
+  
+  /* Light mode variants */
+  &:not(.dark) {
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+    }
+    
+    .animated-gradient {
+      background: linear-gradient(
+        270deg, 
+        rgba(59, 130, 246, 0.05), 
+        rgba(139, 92, 246, 0.05), 
+        rgba(59, 130, 246, 0.05)
+      );
+      background-size: 200% 100%;
+      animation: gradientShift 8s ease infinite;
+    }
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Tool content layout enhancements */
+.tool-content {
+  transition: all 0.3s ease;
+}
+
+.tool-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Main content area */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.main-column {
+  flex: 1;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.sidebar-column {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/* Hide sidebars on smaller screens */
+@media (max-width: 1200px) {
+  .sidebar-column {
+    display: none;
+  }
+  
+  .main-column {
+    padding: 0 1rem;
+  }
+}
+
+/* Expandable menu animations */
+.expand-menu {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: relative;
+}
+
+.tooltip:before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  background-color: #333;
+  color: white;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.tooltip:hover:before {
+  opacity: 1;
+}
+
+/* Animation for page transitions */
+.fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar */
+.modern-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modern-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(155, 155, 155, 0.5);
+  border-radius: 3px;
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(155, 155, 155, 0.7);
+}

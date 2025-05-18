@@ -4,11 +4,11 @@ import Script from '@/components/ui/Script';
 
 // Cấu hình Google AdSense
 export const ADSENSE_CONFIG = {
-  CLIENT_ID: 'ca-pub-1107241811700935', // Thay bằng Publisher ID của bạn
+  CLIENT_ID: 'ca-pub-1107241811700935', // Replace with your Publisher ID
   AD_SLOTS: {
     // Sidebar Ads
-    SIDEBAR_TOP: '2824339385',
-    SIDEBAR_BOTTOM: '5935628003',
+    SIDEBAR_LEFT: '2824339385',
+    SIDEBAR_RIGHT: '5935628003',
     
     // Mobile Ads
     MOBILE_TOP: 'MOBILE-TOP-SLOT-ID',
@@ -19,12 +19,13 @@ export const ADSENSE_CONFIG = {
     TOOL_PAGE_TOP: 'TOOL-PAGE-TOP-SLOT-ID',
     TOOL_PAGE_BOTTOM: '6186893531',
     
-    // Footer Ads
+    // Header & Footer Ads
+    HEADER_HORIZONTAL: 'HEADER-HORIZONTAL-SLOT-ID',
     FOOTER_HORIZONTAL: 'FOOTER-HORIZONTAL-SLOT-ID'
   }
 };
 
-// Component quảng cáo chung
+// General ad component
 export function AdUnit({ 
   slot, 
   format = 'auto', 
@@ -37,14 +38,14 @@ export function AdUnit({
     setIsClient(true);
   }, []);
 
-  // Không hiển thị quảng cáo nếu chưa được cấu hình
+  // Don't show ad if not configured
   if (!ADSENSE_CONFIG.CLIENT_ID || 
       ADSENSE_CONFIG.CLIENT_ID === 'ca-pub-XXXXXXXXXX' || 
       !slot) {
     return null;
   }
 
-  // Render placeholder nếu không có slot
+  // Render placeholder if not client-side
   if (!isClient) {
     return null;
   }
@@ -62,16 +63,17 @@ export function AdUnit({
       <Script 
         id={`ad-unit-${slot}`} 
         strategy="afterInteractive"
-      >
-        {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-      </Script>
+        dangerouslySetInnerHTML={{
+          __html: `(adsbygoogle = window.adsbygoogle || []).push({});`
+        }}
+      />
     </div>
   );
 }
 
-// Component Script Google AdSense
+// Google AdSense Script Component
 export function GoogleAdSenseScript() {
-  // Không render script nếu chưa cấu hình
+  // Don't render script if not configured
   if (!ADSENSE_CONFIG.CLIENT_ID || 
       ADSENSE_CONFIG.CLIENT_ID === 'ca-pub-XXXXXXXXXX') {
     return null;

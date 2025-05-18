@@ -695,7 +695,6 @@
     },
     "pageList": {
       "home": "Home",
-      "tools": "Tools",
       "about": "About",
       "contact": "Contact",
       "privacyPolicy": "Privacy Policy"
@@ -799,6 +798,9 @@
     "discussions": "Discussions",
     "allRightsReserved": "All Rights Reserved.",
     "more": "More",
-    "close": "Close"
+    "close": "Close",
+    "adInfo": "This website uses cookies to ensure you get the best experience on our website.",
+    "dismissAd": "Dismiss Ad",
+    "adsHelp": "Ads help"
   }
 }

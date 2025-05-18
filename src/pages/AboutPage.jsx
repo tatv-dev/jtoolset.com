@@ -48,16 +48,15 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 min-h-[calc(100vh-4rem)] flex flex-col justify-center pb-24">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        <div className="space-y-4">
-          <h1 className="text-4xl xl:5xl font-bold text-gray-900 dark:text-white">
-            {t('pages.about.title')}
-          </h1>
-          <p className="text-base xl:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            {t('pages.about.description')}
-          </p>
-        </div>
+    <div className="container mx-auto px-4 py-8 space-y-6 pb-24">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          {t('pages.about.title')}
+        </h1>
+        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          {t('pages.about.description')}
+        </p>
+      </div>
 
         {/* Animated Icons Section */}
         <div className="flex justify-center space-x-8 mb-16">
@@ -131,24 +130,6 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-
-        {/* Call to Action */}
-        {/* <div className="mt-8">
-          <a 
-            href="https://github.com/tatv-dev" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-6 py-3 
-            border border-transparent text-base font-medium rounded-md 
-            text-white bg-primary-600 hover:bg-primary-700 
-            focus:outline-none focus:ring-2 focus:ring-offset-2 
-            focus:ring-primary-500 transition-colors duration-300 
-            hover:scale-105 transform"
-          >
-            {t('pages.about.cta')}
-          </a>
-        </div> */}
-      </div>
     </div>
   );
 }

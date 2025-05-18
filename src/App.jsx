@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import RootLayout from './components/layout/RootLayout';
 import HomePage from './pages/HomePage';
@@ -44,7 +44,6 @@ function App() {
           <Routes>
             <Route path="/" element={<RootLayout />}>
               <Route index element={<HomePage />} />
-              {/* <Route path="tools" element={<HomePage />} /> */}
               <Route path="about" element={<AboutPage />} />
               <Route path="contact" element={<ContactPage />} />
               <Route path="privacy-policy" element={<PrivacyPolicyPage />} />

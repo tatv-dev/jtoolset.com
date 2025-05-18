@@ -8,6 +8,7 @@
 @import './styles/navigation/bottom-nav.css';
 @import './styles/animation/typing-text.css';
 @import './styles/animation/glitch-text.css';
+@import './styles/modern-layout.css';
 
 /* Tailwind */
 @tailwind base;
